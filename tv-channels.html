@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBNL - TV Channels</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">BBNL</h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="homepage.html" class="nav-item">
+                    <i class="icon">🏠</i>
+                    <span>Home</span>
+                </a>
+                <a href="tv-channels.html" class="nav-item active">
+                    <i class="icon">📺</i>
+                    <span>Live Channels</span>
+                </a>
+                <a href="movies.html" class="nav-item">
+                    <i class="icon">🎬</i>
+                    <span>Movies</span>
+                </a>
+                <a href="shows.html" class="nav-item">
+                    <i class="icon">📽️</i>
+                    <span>Shows</span>
+                </a>
+                <a href="subscriptions.html" class="nav-item">
+                    <i class="icon">💎</i>
+                    <span>Subscription</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="favorites.html" class="nav-item">
+                    <i class="icon">❤️</i>
+                    <span>Favorites</span>
+                </a>
+                <a href="notifications.html" class="nav-item">
+                    <i class="icon">🔔</i>
+                    <span>Notification</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="search-box">
+                    <input type="text" placeholder="Search Channels">
+                    <i class="search-icon">🔍</i>
+                </div>
+
+                <div class="header-controls">
+                    <button class="header-pill-btn" id="network-btn"><i class="fas fa-wifi"></i> Network</button>
+                    <button class="header-icon-btn" onclick="window.location.href='settings.html'"><i
+                            class="fas fa-cog"></i></button>
+                    <div class="profile-menu">
+                        <img src="https://i.pravatar.cc/150?u=alex" alt="User"
+                            style="width: 32px; height: 32px; border-radius: 50%;">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Channels Section -->
+            <section class="content-section">
+                <h2 class="section-title">TV Channels</h2>
+
+                <div class="filter-tabs">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Subscribed</button>
+                    <button class="filter-btn">Entertainment</button>
+                    <button class="filter-btn">Sports</button>
+                    <button class="filter-btn">News</button>
+                    <button class="filter-btn">Kids</button>
+                </div>
+
+                <h3>Live Channels</h3>
+                <div class="channels-grid large">
+                    <div class="channel-card large">
+                        <div class="channel-logo large">UTV</div>
+                        <p>Udthaya TV</p>
+                        <span>Live Channels</span>
+                        <span class="live-badge">LIVE</span>
+                    </div>
+                    <div class="channel-card large">
+                        <div class="channel-logo large">CS</div>
+                        <p>Colors Super TV</p>
+                        <span>Live Channels</span>
+                        <span class="live-badge">LIVE</span>
+                    </div>
+                    <div class="channel-card large">
+                        <div class="channel-logo large">ZK</div>
+                        <p>Zee-kanada</p>
+                        <span>Live Channels</span>
+                        <span class="live-badge">LIVE</span>
+                    </div>
+                    <div class="channel-card large">
+                        <div class="channel-logo large">GT</div>
+                        <p>Gemini TV</p>
+                        <span>Live Channels</span>
+                        <span class="live-badge">LIVE</span>
+                    </div>
+                    <div class="channel-card large">
+                        <div class="channel-logo large">UTV</div>
+                        <p>Udthaya TV</p>
+                        <span>Live Channels</span>
+                        <span class="live-badge">LIVE</span>
+                    </div>
+                </div>
+
+                <h3>Mostly Viewed Channels</h3>
+                <div class="channels-grid large">
+                    <div class="channel-card large">
+                        <div class="channel-logo large">CS</div>
+                        <p>Colors Super TV</p>
+                        <span>Live Channels</span>
+                    </div>
+                    <div class="channel-card large">
+                        <div class="channel-logo large">ZK</div>
+                        <p>Zee-kanada</p>
+                        <span>Live Channels</span>
+                    </div>
+                    <div class="channel-card large">
+                        <div class="channel-logo large">GT</div>
+                        <p>Gemini TV</p>
+                        <span>Live Channels</span>
+                    </div>
+                    <div class="channel-card large">
+                        <div class="channel-logo large">UTV</div>
+                        <p>Udthaya TV</p>
+                        <span>Live Channels</span>
+                    </div>
+                    <div class="channel-card large">
+                        <div class="channel-logo large">CS</div>
+                        <p>Colors Super TV</p>
+                        <span>Live Channels</span>
+                    </div>
+                </div>
+
+                <h3>Others Channels</h3>
+                <div class="channels-grid large">
+                    <div class="channel-card large">
+                        <div class="channel-logo large">ZK</div>
+                        <p>Zee-kanada</p>
+                        <span>Live Channels</span>
+                    </div>
+                    <div class="channel-card large">
+                        <div class="channel-logo large">GT</div>
+                        <p>Gemini TV</p>
+                        <span>Live Channels</span>
+                    </div>
+                    <div class="channel-card large">
+                        <div class="channel-logo large">UTV</div>
+                        <p>Udthaya TV</p>
+                        <span>Live Channels</span>
+                    </div>
+                    <div class="channel-card large">
+                        <div class="channel-logo large">CS</div>
+                        <p>Colors Super TV</p>
+                        <span>Live Channels</span>
+                    </div>
+                    <div class="channel-card large">
+                        <div class="channel-logo large">ZK</div>
+                        <p>Zee-kanada</p>
+                        <span>Live Channels</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+
+</html>

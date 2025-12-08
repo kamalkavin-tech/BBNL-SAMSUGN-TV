@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBNL - Favorites</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+
+<body class="dark-mode">
+    <header class="main-header">
+        <div class="header-left">
+            <div class="logo">BBNL</div>
+            <button class="menu-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="Search Channels">
+        </div>
+        <div class="header-right">
+            <button class="header-pill-btn" id="network-btn"><i class="fas fa-wifi"></i> Network</button>
+            <button class="header-icon-btn" onclick="window.location.href='settings.html'"><i
+                    class="fas fa-cog"></i></button>
+            <div class="profile-menu">
+                <img src="https://i.pravatar.cc/150?u=alex" alt="User"
+                    style="width: 32px; height: 32px; border-radius: 50%;">
+            </div>
+        </div>
+    </header>
+
+    <main class="content-area">
+        <div class="favorites-container">
+            <h1>Favorite TV Channels</h1>
+
+            <div class="filter-pills-container">
+                <button class="pill-btn active">All</button>
+                <button class="pill-btn">Subscribed</button>
+                <button class="pill-btn">Entertainment</button>
+                <button class="pill-btn">Sports</button>
+                <button class="pill-btn">News</button>
+                <button class="pill-btn">Kids</button>
+                <button class="pill-btn dropdown">Language <i class="fas fa-chevron-down"></i></button>
+            </div>
+
+            <div class="favorites-grid" id="favorites-grid">
+                <!-- Favorites will be dynamically inserted here by script.js -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Sidebar Menu (Copied from homepage) -->
+    <div id="sidebar-menu" class="sidebar-menu">
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+        <div class="sidebar-content">
+            <div class="sidebar-menu-header">
+                <div class="logo">BBNL</div>
+                <button class="close-sidebar" id="close-sidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-menu-nav">
+                <a href="homepage.html" class="sidebar-menu-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="tv-channels.html" class="sidebar-menu-item">
+                    <i class="fas fa-tv"></i>
+                    <span>Live Channels</span>
+                </a>
+                <a href="#" class="sidebar-menu-item">
+                    <i class="fas fa-film"></i>
+                    <span>Movies</span>
+                </a>
+                <a href="apps.html" class="sidebar-menu-item">
+                    <i class="fas fa-th"></i>
+                    <span>Apps</span>
+                </a>
+                <a href="subscriptions.html" class="sidebar-menu-item">
+                    <i class="fas fa-gem"></i>
+                    <span>Subscription</span>
+                </a>
+                <a href="favorites.html" class="sidebar-menu-item active">
+                    <i class="fas fa-heart"></i>
+                    <span>Favorites</span>
+                </a>
+                <a href="notifications.html" class="sidebar-menu-item">
+                    <i class="fas fa-bell"></i>
+                    <span>Notification</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-menu-footer">
+                <a href="profiles.html" class="sidebar-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Copy basic sidebar/header JS logic
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarMenu = document.getElementById('sidebar-menu');
+        const closeSidebar = document.getElementById('close-sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+        function openSidebar() {
+            sidebarMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebarMenu() {
+            sidebarMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (sidebarToggle) sidebarToggle.addEventListener('click', openSidebar);
+        if (closeSidebar) closeSidebar.addEventListener('click', closeSidebarMenu);
+        if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebarMenu);
+
+        // Filter Pills Interaction
+        const pillBtns = document.querySelectorAll('.pill-btn');
+        pillBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (!btn.classList.contains('dropdown')) {
+                    pillBtns.forEach(p => p.classList.remove('active'));
+                    btn.classList.add('active');
+                }
+            });
+        });
+
+        // Render favorites on load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFavoritesPage();
+        });
+    </script>
+</body>
+
+</html>

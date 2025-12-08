@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBNL - Settings</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+
+<body class="dark-mode">
+    <div class="settings-page-container">
+        <!-- Settings Top Header -->
+        <header class="settings-top-header">
+            <div class="settings-header-left">
+                <a href="homepage.html" class="settings-icon-btn" style="margin-right: 20px;">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="settings-search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Search settings...">
+                </div>
+            </div>
+            <div class="settings-header-right">
+                <button class="header-pill-btn" id="network-btn"><i class="fas fa-wifi"></i> Network</button>
+                <button class="header-icon-btn" onclick="window.location.href='settings.html'"><i
+                        class="fas fa-cog"></i></button>
+                <div class="profile-menu">
+                    <img src="https://i.pravatar.cc/150?u=alex" alt="User"
+                        style="width: 32px; height: 32px; border-radius: 50%;">
+                </div>
+            </div>
+        </header>
+
+        <div class="settings-layout">
+            <!-- Sidebar -->
+            <aside class="settings-sidebar">
+                <nav class="settings-nav">
+                    <a href="#" class="settings-nav-item active" data-target="account">
+                        <i class="fas fa-user"></i>
+                        <span>Account</span>
+                    </a>
+                    <a href="#" class="settings-nav-item" data-target="display">
+                        <i class="fas fa-desktop"></i>
+                        <span>Display & Audio</span>
+                    </a>
+                    <a href="#" class="settings-nav-item" data-target="profiles">
+                        <i class="fas fa-users"></i>
+                        <span>Profiles</span>
+                    </a>
+                    <a href="#" class="settings-nav-item" data-target="parental">
+                        <i class="fas fa-lock"></i>
+                        <span>Parental Controls</span>
+                    </a>
+                    <a href="#" class="settings-nav-item" data-target="network">
+                        <i class="fas fa-wifi"></i>
+                        <span>Network</span>
+                    </a>
+                    <a href="#" class="settings-nav-item" data-target="help">
+                        <i class="far fa-life-ring"></i>
+                        <span>Help & Support</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="settings-main-content">
+                <!-- Account Section -->
+                <section id="account" class="settings-section active">
+                    <h2>Account</h2>
+                    <p class="settings-subtitle">Manage your subscription and billing details</p>
+
+                    <div class="settings-card">
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <div>
+                                    <label>Membership</label>
+                                    <p class="setting-desc">Standard Plan (HD)</p>
+                                </div>
+                                <button class="btn btn-secondary small">Manage</button>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Email</label>
+                            <p class="setting-desc">alex.doe@example.com</p>
+                        </div>
+                        <div class="setting-item">
+                            <label>Password</label>
+                            <p class="setting-desc">********</p>
+                        </div>
+                        <div class="setting-item">
+                            <label>Phone Number</label>
+                            <p class="setting-desc">+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Display Section -->
+                <section id="display" class="settings-section">
+                    <h2>Display & Audio</h2>
+                    <p class="settings-subtitle">Adjust streaming quality and interface preferences</p>
+
+                    <div class="settings-card">
+                        <div class="setting-item-row">
+                            <div class="setting-info">
+                                <label>Streaming Quality</label>
+                                <p class="setting-desc">Adjust video quality based on your internet connection</p>
+                            </div>
+                            <select class="settings-dropdown">
+                                <option>Auto (Recommended)</option>
+                                <option>High (4K Ultra HD)</option>
+                                <option>High (1080p Full HD)</option>
+                                <option>Medium (720p HD)</option>
+                                <option>Low (480p SD)</option>
+                                <option>Data Saver (360p)</option>
+                            </select>
+                        </div>
+
+                        <div class="setting-item-row">
+                            <div class="setting-info">
+                                <label>Auto-Play Trailers</label>
+                                <p class="setting-desc">Play trailers automatically while browsing</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-item-row">
+                            <div class="setting-info">
+                                <label>Theme</label>
+                                <p class="setting-desc">Switch between Dark and Light mode</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="settings-theme-toggle">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <div class="setting-item-row">
+                            <div class="setting-info">
+                                <label>Audio Language</label>
+                                <p class="setting-desc">Default language for audio playback</p>
+                            </div>
+                            <select class="settings-dropdown">
+                                <option>English (Original)</option>
+                                <option>Hindi</option>
+                                <option>Kannada</option>
+                                <option>Telugu</option>
+                                <option>Tamil</option>
+                                <option>Malayalam</option>
+                                <option>Bengali</option>
+                                <option>Marathi</option>
+                                <option>Gujarati</option>
+                                <option>Punjabi</option>
+                                <option>Spanish</option>
+                                <option>French</option>
+                                <option>German</option>
+                                <option>Italian</option>
+                                <option>Japanese</option>
+                                <option>Korean</option>
+                                <option>Mandarin Chinese</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Profiles Section (Placeholder) -->
+                <section id="profiles" class="settings-section">
+                    <h2>Profiles</h2>
+                    <p class="settings-subtitle">Manage who can watch</p>
+                    <div class="settings-card">
+                        <div class="setting-item" style="text-align: center; padding: 40px;">
+                            <a href="manage-profiles.html" class="btn btn-primary">Go to Manage Profiles</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Parental Section (Placeholder) -->
+                <section id="parental" class="settings-section">
+                    <h2>Parental Controls</h2>
+                    <p class="settings-subtitle">Restrict content and set PIN</p>
+                    <div class="settings-card">
+                        <div class="setting-item" style="text-align: center; padding: 40px;">
+                            <p style="color: #888;">Enter PIN to access controls</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Network Section -->
+                <section id="network" class="settings-section">
+                    <h2>Network</h2>
+                    <p class="settings-subtitle">Check your connection status and speed</p>
+                    <div class="settings-card">
+                        <div class="setting-item-row">
+                            <div class="setting-info">
+                                <label>Connection Status</label>
+                                <p class="setting-desc" id="network-status-text">Checking...</p>
+                            </div>
+                            <div id="network-status-indicator" style="color: var(--success-color); font-weight: bold;">
+                                Connected <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="setting-item-row">
+                            <div class="setting-info">
+                                <label>Network Speed</label>
+                                <p class="setting-desc">Last check: Just now</p>
+                            </div>
+                            <button class="btn btn-secondary small">Check Network</button>
+                        </div>
+                        <div class="setting-item-row">
+                            <div class="setting-info">
+                                <label>Wi-Fi Only Downloads</label>
+                                <p class="setting-desc">Save data by downloading on Wi-Fi only</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Help Section (Placeholder) -->
+                <section id="help" class="settings-section">
+                    <h2>Help & Support</h2>
+                    <p class="settings-subtitle">Get help with your account and streaming issues</p>
+                    <div class="settings-card">
+                        <div class="setting-item">
+                            <label>Help Center</label>
+                            <p class="setting-desc">Visit our help center for FAQs</p>
+                        </div>
+                        <div class="setting-item">
+                            <label>Contact Us</label>
+                            <p class="setting-desc">Get in touch with customer support</p>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Settings Navigation Logic
+        const navItems = document.querySelectorAll('.settings-nav-item');
+        const sections = document.querySelectorAll('.settings-section');
+
+        function switchSection(targetId) {
+            // Update Nav
+            navItems.forEach(nav => {
+                nav.classList.remove('active');
+                if (nav.dataset.target === targetId) {
+                    nav.classList.add('active');
+                }
+            });
+
+            // Update Content
+            sections.forEach(section => {
+                section.classList.remove('active');
+                if (section.id === targetId) {
+                    section.classList.add('active');
+                }
+            });
+        }
+
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = item.dataset.target;
+                switchSection(targetId);
+            });
+        });
+
+        // Handle Hash Navigation (e.g. settings.html#network)
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                switchSection(hash);
+            }
+
+            // Update Network Status if on network page
+            if (hash === 'network') {
+                updateNetworkUI();
+            }
+        });
+
+        function updateNetworkUI() {
+            const statusIndicator = document.getElementById('network-status-indicator');
+            const statusText = document.getElementById('network-status-text');
+            if (navigator.onLine) {
+                statusIndicator.innerHTML = 'Connected <i class="fas fa-check-circle"></i>';
+                statusIndicator.style.color = 'var(--success-color)';
+                statusText.innerText = 'You are connected to the internet';
+            } else {
+                statusIndicator.innerHTML = 'Offline <i class="fas fa-times-circle"></i>';
+                statusIndicator.style.color = 'var(--danger-color)';
+                statusText.innerText = 'No internet connection';
+            }
+        }
+
+        // Theme Toggle Logic for Settings Page
+        const settingsThemeToggle = document.getElementById('settings-theme-toggle');
+
+        function syncSettingsToggle() {
+            const currentTheme = localStorage.getItem('bbnl-theme');
+            if (settingsThemeToggle) {
+                settingsThemeToggle.checked = currentTheme !== 'light'; // Checked = Dark
+            }
+        }
+
+        if (settingsThemeToggle) {
+            syncSettingsToggle();
+
+            settingsThemeToggle.addEventListener('change', (e) => {
+                const isDark = e.target.checked;
+                const body = document.body;
+
+                if (isDark) {
+                    body.classList.remove('light-mode');
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('bbnl-theme', 'dark');
+                } else {
+                    body.classList.remove('dark-mode');
+                    body.classList.add('light-mode');
+                    localStorage.setItem('bbnl-theme', 'light');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBNL - Shows</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">BBNL</h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="homepage.html" class="nav-item">
+                    <i class="icon"><i class="fas fa-home"></i></i>
+                    <span>Home</span>
+                </a>
+                <a href="tv-channels.html" class="nav-item">
+                    <i class="icon"><i class="fas fa-tv"></i></i>
+                    <span>Live Channels</span>
+                </a>
+                <a href="movies.html" class="nav-item">
+                    <i class="icon"><i class="fas fa-film"></i></i>
+                    <span>Movies</span>
+                </a>
+                <a href="shows.html" class="nav-item active">
+                    <i class="icon"><i class="fas fa-video"></i></i>
+                    <span>Shows</span>
+                </a>
+                <a href="subscriptions.html" class="nav-item">
+                    <i class="icon"><i class="fas fa-gem"></i></i>
+                    <span>Subscription</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="favorites.html" class="nav-item">
+                    <i class="icon"><i class="fas fa-heart"></i></i>
+                    <span>Favorites</span>
+                </a>
+                <a href="notifications.html" class="nav-item">
+                    <i class="icon"><i class="fas fa-bell"></i></i>
+                    <span>Notification</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="search-box">
+                    <input type="text" placeholder="Search Shows">
+                    <i class="search-icon"><i class="fas fa-search"></i></i>
+                </div>
+
+                <div class="header-controls">
+                    <button class="header-pill-btn" id="network-btn"><i class="fas fa-wifi"></i> Network</button>
+                    <button class="header-icon-btn" onclick="window.location.href='settings.html'"><i
+                            class="fas fa-cog"></i></button>
+                    <div class="profile-menu">
+                        <img src="https://i.pravatar.cc/150?u=alex" alt="User"
+                            style="width: 32px; height: 32px; border-radius: 50%;">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Shows Section -->
+            <section class="content-section">
+                <h2 class="section-title">TV Shows</h2>
+
+                <div class="filter-tabs">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Reality</button>
+                    <button class="filter-btn">News</button>
+                    <button class="filter-btn">Drama</button>
+                    <button class="filter-btn">Kids</button>
+                </div>
+
+                <h3>Trending Shows</h3>
+                <!-- Reusing channels-grid class but with movie content styles -->
+                <div class="channels-grid large"
+                    style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;">
+                    <!-- Show 1 -->
+                    <div class="media-item" style="width: 100%;">
+                        <div class="media-icon-box movie-box black-bg" style="aspect-ratio: 2/3;">
+                            <img src="https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Daily+Soap"
+                                alt="Daily Soap" class="channel-logo-img"
+                                style="object-fit: cover; width: 100%; height: 100%;">
+                            <div class="favorite-icon-overlay"
+                                style="position:absolute; bottom:10px; right:10px; width:30px; height:30px; background:red; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;"
+                                onclick="event.stopPropagation(); FavoritesManager.toggleFavorite({id: 'show-1', title: 'Daily Soap', image: 'https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Daily+Soap'})">
+                                <i class="far fa-heart" style="color: white; font-size: 14px;"></i>
+                            </div>
+                        </div>
+                        <div class="media-info">
+                            <h3>Daily Soap</h3>
+                            <p>Drama</p>
+                        </div>
+                    </div>
+
+                    <!-- Show 2 -->
+                    <div class="media-item" style="width: 100%;">
+                        <div class="media-icon-box movie-box black-bg" style="aspect-ratio: 2/3;">
+                            <img src="https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Reality+Show"
+                                alt="Reality Show" class="channel-logo-img"
+                                style="object-fit: cover; width: 100%; height: 100%;">
+                            <div class="favorite-icon-overlay"
+                                style="position:absolute; bottom:10px; right:10px; width:30px; height:30px; background:red; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;"
+                                onclick="event.stopPropagation(); FavoritesManager.toggleFavorite({id: 'show-2', title: 'Reality Show', image: 'https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Reality+Show'})">
+                                <i class="far fa-heart" style="color: white; font-size: 14px;"></i>
+                            </div>
+                        </div>
+                        <div class="media-info">
+                            <h3>Reality Show</h3>
+                            <p>Reality</p>
+                        </div>
+                    </div>
+
+                    <!-- Show 3 -->
+                    <div class="media-item" style="width: 100%;">
+                        <div class="media-icon-box movie-box black-bg" style="aspect-ratio: 2/3;">
+                            <img src="https://via.placeholder.com/300x450/1a1a1a/ffffff?text=News+Hour" alt="News Hour"
+                                class="channel-logo-img" style="object-fit: cover; width: 100%; height: 100%;">
+                            <div class="favorite-icon-overlay"
+                                style="position:absolute; bottom:10px; right:10px; width:30px; height:30px; background:red; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;"
+                                onclick="event.stopPropagation(); FavoritesManager.toggleFavorite({id: 'show-3', title: 'News Hour', image: 'https://via.placeholder.com/300x450/1a1a1a/ffffff?text=News+Hour'})">
+                                <i class="far fa-heart" style="color: white; font-size: 14px;"></i>
+                            </div>
+                        </div>
+                        <div class="media-info">
+                            <h3>News Hour</h3>
+                            <p>News</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const contentItems = document.querySelectorAll('.media-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filterValue = btn.innerText.trim().toLowerCase();
+
+                contentItems.forEach(item => {
+                    const genreTag = item.querySelector('.media-info p');
+                    if (genreTag) {
+                        const genre = genreTag.innerText.toLowerCase();
+
+                        if (filterValue === 'all') {
+                            item.style.display = ''; // Reset
+                        } else if (genre.includes(filterValue)) {
+                            item.style.display = '';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Make Media Items Clickable (Navigate to Player)
+        const mediaItems = document.querySelectorAll('.media-item');
+        mediaItems.forEach(item => {
+            item.style.cursor = 'pointer';
+            item.addEventListener('click', (e) => {
+                // Prevent if clicking the favorite heart
+                if (e.target.closest('.favorite-icon-overlay') || e.target.classList.contains('fa-heart')) {
+                    return;
+                }
+                const title = item.querySelector('h3') ? item.querySelector('h3').innerText : 'Unknown Title';
+                window.location.href = `player.html?title=${encodeURIComponent(title)}`;
+            });
+        });
+    </script>
+</body>
+
+</html>

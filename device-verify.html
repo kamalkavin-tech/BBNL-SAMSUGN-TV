@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBNL - Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+    <style>
+        .phone-input-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+        .phone-input-container input[type="tel"] {
+            flex-grow: 1;
+            width: auto;
+        }
+        .country-code-picker {
+            position: relative;
+            flex-shrink: 0;
+        }
+        .selected-country {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: #242424;
+        }
+        .country-list-container {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            background-color: #242424;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 10px;
+            z-index: 10;
+            display: none; /* Hidden by default */
+            width: 250px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .country-code-picker.open .country-list-container {
+            display: block;
+        }
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .search-box svg {
+            stroke: #6c757d;
+        }
+        .search-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            width: 100%;
+        }
+        .country-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .country-list li {
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+        .country-list li:hover, .country-list li.selected {
+            background-color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-content">
+                <h2>Welcome Back</h2>
+                <p>Sign in to continue to your profile</p>
+                
+                <div class="auth-tabs">
+                    <button class="tab-btn active" data-tab="phone">
+                        <span class="indicator"></span>
+                        Phone
+                    </button>
+                    <button class="tab-btn" data-tab="verify">
+                        <span class="indicator"></span>
+                        Verify
+                    </button>
+                </div>
+                
+                <form class="auth-form" action="verify.html" method="get">
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <div class="phone-input-container">
+                            <div class="country-code-picker">
+                                <div class="selected-country">
+                                    <span id="selected-country-code">+91</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                </div>
+                                <div class="country-list-container">
+                                    <div class="search-box">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                        <input type="text" id="country-search" placeholder="Search for your country">
+                                    </div>
+                                    <ul class="country-list">
+                                        <li data-code="+44">United Kingdom (+44)</li>
+                                        <li data-code="+91" class="selected">India (+91)</li>
+                                        <li data-code="+1">Canada (+1)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <input name="phone" type="tel" placeholder="Enter 10 Digit Number" maxlength="10" pattern="[0-9]{10}" inputmode="numeric" required title="Enter 10 digit phone number">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Get OTP</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        const countryCodePicker = document.querySelector('.country-code-picker');
+        const selectedCountry = document.querySelector('.selected-country');
+        const countryListContainer = document.querySelector('.country-list-container');
+        const countrySearch = document.getElementById('country-search');
+        const countryList = document.querySelector('.country-list');
+        const selectedCountryCode = document.getElementById('selected-country-code');
+
+        selectedCountry.addEventListener('click', (e) => {
+            e.stopPropagation();
+            countryCodePicker.classList.toggle('open');
+        });
+
+        countryList.addEventListener('click', (e) => {
+            if (e.target.tagName === 'LI') {
+                const newCode = e.target.dataset.code;
+                selectedCountryCode.textContent = newCode;
+                
+                // Update selected class
+                countryList.querySelector('.selected').classList.remove('selected');
+                e.target.classList.add('selected');
+                
+                countryCodePicker.classList.remove('open');
+            }
+        });
+
+        countrySearch.addEventListener('input', () => {
+            const filter = countrySearch.value.toLowerCase();
+            const countries = countryList.querySelectorAll('li');
+            countries.forEach(country => {
+                const text = country.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    country.style.display = '';
+                } else {
+                    country.style.display = 'none';
+                }
+            });
+        });
+
+        const form = document.querySelector('.auth-form');
+        const phoneInput = document.querySelector('input[name="phone"]');
+
+        form.addEventListener('submit', (e) => {
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(phoneInput.value)) {
+                e.preventDefault();
+                window.location.href = 'invalid-number.html';
+            } else {
+                // Redirect to new-verify.html on successful validation
+                e.preventDefault(); // Prevent default form submission
+                window.location.href = 'new-verify.html';
+            }
+        });
+    </script>
+</body>
+</html>

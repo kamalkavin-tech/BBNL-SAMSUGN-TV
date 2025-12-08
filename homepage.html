@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBNL - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+
+<body class="dark-mode">
+    <header class="main-header">
+        <div class="header-left">
+            <div class="logo">BBNL</div>
+            <button class="menu-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="Search for movies, TV shoes...">
+        </div>
+        <div class="header-right">
+            <div class="dark-mode-toggle">
+                <span>Dark Mode</span>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle-checkbox" class="theme-toggle-input" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <button class="header-pill-btn" id="network-btn"><i class="fas fa-wifi"></i> Network</button>
+            <button class="header-icon-btn" onclick="window.location.href='settings.html'"><i
+                    class="fas fa-cog"></i></button>
+            <div class="profile-menu" id="profile-menu-container">
+                <img src="https://i.pravatar.cc/150?u=alex" alt="User" id="current-profile-avatar">
+            </div>
+        </div>
+    </header>
+
+    <main class="content-area">
+        <section class="home-hero-section">
+            <!-- Background Image Overlay -->
+            <div class="hero-bg-overlay"></div>
+
+            <div class="hero-content">
+                <h1>The Batman</h1>
+                <p class="subtitle">Superhero - 2022</p>
+                <p class="description">noir-inspired reboot of the iconic superhero, directed by Matt Reeves and
+                    starring Robert Pattinson as a younger, more emotionally raw Bruce Wayne. Set during Batman's second
+                    year of crime-fighting.</p>
+                <div class="tags">
+                    <span class="tag">Sci-fi</span>
+                    <span class="tag">Thriller</span>
+                    <span class="tag">Drama</span>
+                </div>
+                <div class="hero-actions">
+                    <button class="btn btn-watch">Watch Now</button>
+                    <button class="btn btn-add" data-id="batman-2022"
+                        onclick="FavoritesManager.toggleFavorite({id: 'batman-2022', title: 'The Batman', image: 'https://image.tmdb.org/t/p/original/74xTEgt7R36Fpooo50r9T25onhq.jpg'})"><i
+                            class="far fa-heart"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-carousel">
+            <h2>Your OTT Apps</h2>
+            <div class="media-scroll-container">
+                <!-- JioHotstar -->
+                <div class="media-item">
+                    <div class="media-icon-box gradient-purple">
+                        <img src="https://img.hotstar.com/image/upload/v1656431456/web-images/logo-d-plus.svg"
+                            alt="JioHotstar" class="ott-logo">
+                    </div>
+                    <div class="media-info">
+                        <h3>jioHotstart</h3>
+                        <p>Streaming Secrvices</p>
+                    </div>
+                </div>
+
+                <!-- Prime Video (Active/Selected) -->
+                <div class="media-item active">
+                    <div class="media-icon-box gradient-blue">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png" alt="Prime Video"
+                            class="ott-logo">
+                    </div>
+                    <div class="media-info">
+                        <h3>Prime Video</h3>
+                        <p>Streaming Secrvices</p>
+                    </div>
+                </div>
+
+                <!-- Netflix -->
+                <div class="media-item">
+                    <div class="media-icon-box black-bg">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+                            alt="Netflix" class="ott-logo">
+                    </div>
+                    <div class="media-info">
+                        <h3>Netflix</h3>
+                        <p>Streaming Secrvices</p>
+                    </div>
+                </div>
+
+                <!-- Apple TV -->
+                <div class="media-item">
+                    <div class="media-icon-box black-bg">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apple_logo_grey.svg/1724px-Apple_logo_grey.svg.png"
+                            alt="Apple TV" class="ott-logo white-filter">
+                    </div>
+                    <div class="media-info">
+                        <h3>Apple Tv</h3>
+                        <p>Streaming Secrvices</p>
+                    </div>
+                </div>
+
+                <!-- View All -->
+                <div class="media-item">
+                    <div class="media-icon-box view-all-box">
+                        <span>View All Ott</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="media-info">
+                        <h3>View All Ott</h3>
+                        <p>Streaming Secrvices</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-carousel">
+            <h2>Live TV Channels</h2>
+            <div class="media-scroll-container">
+                <!-- Udhaya TV -->
+                <div class="media-item">
+                    <div class="media-icon-box white-bg">
+                        <img src="https://www.indiantvinfo.com/media/2023/03/Udaya-TV-Logo.jpg" alt="Udhaya TV"
+                            class="channel-logo-img">
+                        <div class="favorite-icon-overlay" data-id="udhaya-tv"
+                            style="position:absolute; bottom:10px; right:10px; width:30px; height:30px; background:red; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;"
+                            onclick="event.stopPropagation(); FavoritesManager.toggleFavorite({id: 'udhaya-tv', title: 'Udhaya TV', image: 'https://www.indiantvinfo.com/media/2023/03/Udaya-TV-Logo.jpg'})">
+                            <i class="far fa-heart" style="color: white; font-size: 14px;"></i>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3>Udhaya TV</h3>
+                        <p>live Channals</p>
+                    </div>
+                </div>
+
+                <!-- Colors Super TV -->
+                <div class="media-item">
+                    <div class="media-icon-box white-bg">
+                        <img src="https://www.indiantvinfo.com/media/2023/09/Colors-Super-Logo.jpg"
+                            alt="Colors Super TV" class="channel-logo-img">
+                        <div class="favorite-icon-overlay" data-id="colors-super-tv"
+                            style="position:absolute; bottom:10px; right:10px; width:30px; height:30px; background:red; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;"
+                            onclick="event.stopPropagation(); FavoritesManager.toggleFavorite({id: 'colors-super-tv', title: 'Colors Super TV', image: 'https://www.indiantvinfo.com/media/2023/09/Colors-Super-Logo.jpg'})">
+                            <i class="far fa-heart" style="color: white; font-size: 14px;"></i>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3>Colors Super TV</h3>
+                        <p>live Channals</p>
+                    </div>
+                </div>
+
+                <!-- Zee-kanada -->
+                <div class="media-item">
+                    <div class="media-icon-box white-bg">
+                        <img src="https://www.indiantvinfo.com/media/2017/10/Zee-Kannada-Logo.jpg" alt="Zee-kanada"
+                            class="channel-logo-img">
+                        <div class="favorite-icon-overlay" data-id="zee-kannada"
+                            style="position:absolute; bottom:10px; right:10px; width:30px; height:30px; background:red; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;"
+                            onclick="event.stopPropagation(); FavoritesManager.toggleFavorite({id: 'zee-kannada', title: 'Zee-kanada', image: 'https://www.indiantvinfo.com/media/2017/10/Zee-Kannada-Logo.jpg'})">
+                            <i class="far fa-heart" style="color: white; font-size: 14px;"></i>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3>Zee-kanada</h3>
+                        <p>live Channals</p>
+                    </div>
+                </div>
+
+                <!-- Gemini TV -->
+                <div class="media-item">
+                    <div class="media-icon-box white-bg">
+                        <img src="https://www.lyngsat.com/logo/tv/gg/gemini_tv.png" alt="Gemini TV"
+                            class="channel-logo-img">
+                        <div class="favorite-icon-overlay" data-id="gemini-tv"
+                            style="position:absolute; bottom:10px; right:10px; width:30px; height:30px; background:red; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;"
+                            onclick="event.stopPropagation(); FavoritesManager.toggleFavorite({id: 'gemini-tv', title: 'Gemini TV', image: 'https://www.lyngsat.com/logo/tv/gg/gemini_tv.png'})">
+                            <i class="far fa-heart" style="color: white; font-size: 14px;"></i>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3>Gemini TV</h3>
+                        <p>live Channals</p>
+                    </div>
+                </div>
+
+                <!-- View All -->
+                <div class="media-item">
+                    <div class="media-icon-box view-all-box">
+                        <span>View All Channel</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="media-info">
+                        <h3>View All Channels</h3>
+                        <p>Live Channels</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-carousel" id="movies">
+            <h2>Popular Movies</h2>
+            <div class="media-scroll-container">
+                <!-- Movie 1 -->
+                <div class="media-item">
+                    <div class="media-icon-box movie-box black-bg">
+                        <img src="https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Action+Movie"
+                            alt="Action Movie" class="channel-logo-img"
+                            style="object-fit: cover; width: 100%; height: 100%;">
+                        <div class="favorite-icon-overlay" data-id="mov-1"
+                            style="position:absolute; bottom:10px; right:10px; width:30px; height:30px; background:red; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;"
+                            onclick="event.stopPropagation(); FavoritesManager.toggleFavorite({id: 'mov-1', title: 'Action Movie', image: 'https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Action+Movie'})">
+                            <i class="far fa-heart" style="color: white; font-size: 14px;"></i>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3>Action Movie</h3>
+                        <p>Adventure</p>
+                    </div>
+                </div>
+
+                <!-- Movie 2 -->
+                <div class="media-item">
+                    <div class="media-icon-box movie-box black-bg">
+                        <img src="https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Comedy+Night"
+                            alt="Comedy Night" class="channel-logo-img"
+                            style="object-fit: cover; width: 100%; height: 100%;">
+                        <div class="favorite-icon-overlay" data-id="mov-2"
+                            style="position:absolute; bottom:10px; right:10px; width:30px; height:30px; background:red; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;"
+                            onclick="event.stopPropagation(); FavoritesManager.toggleFavorite({id: 'mov-2', title: 'Comedy Night', image: 'https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Comedy+Night'})">
+                            <i class="far fa-heart" style="color: white; font-size: 14px;"></i>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3>Comedy Night</h3>
+                        <p>Comedy</p>
+                    </div>
+                </div>
+
+                <!-- Movie 3 -->
+                <div class="media-item">
+                    <div class="media-icon-box movie-box black-bg">
+                        <img src="https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Sci-Fi+World"
+                            alt="Sci-Fi World" class="channel-logo-img"
+                            style="object-fit: cover; width: 100%; height: 100%;">
+                        <div class="favorite-icon-overlay" data-id="mov-3"
+                            style="position:absolute; bottom:10px; right:10px; width:30px; height:30px; background:red; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;"
+                            onclick="event.stopPropagation(); FavoritesManager.toggleFavorite({id: 'mov-3', title: 'Sci-Fi World', image: 'https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Sci-Fi+World'})">
+                            <i class="far fa-heart" style="color: white; font-size: 14px;"></i>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3>Sci-Fi World</h3>
+                        <p>Sci-Fi</p>
+                    </div>
+                </div>
+
+                <!-- Movie 4 -->
+                <div class="media-item">
+                    <div class="media-icon-box movie-box black-bg">
+                        <img src="https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Romance" alt="Romance"
+                            class="channel-logo-img" style="object-fit: cover; width: 100%; height: 100%;">
+                        <div class="favorite-icon-overlay" data-id="mov-4"
+                            style="position:absolute; bottom:10px; right:10px; width:30px; height:30px; background:red; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;"
+                            onclick="event.stopPropagation(); FavoritesManager.toggleFavorite({id: 'mov-4', title: 'Romance', image: 'https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Romance'})">
+                            <i class="far fa-heart" style="color: white; font-size: 14px;"></i>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3>Romance</h3>
+                        <p>Drama</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-carousel" id="shows">
+            <h2>Trending Shows</h2>
+            <div class="media-scroll-container">
+                <!-- Show 1 -->
+                <div class="media-item">
+                    <div class="media-icon-box movie-box black-bg">
+                        <img src="https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Daily+Soap" alt="Daily Soap"
+                            class="channel-logo-img" style="object-fit: cover; width: 100%; height: 100%;">
+                        <div class="favorite-icon-overlay" data-id="show-1"
+                            style="position:absolute; bottom:10px; right:10px; width:30px; height:30px; background:red; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;"
+                            onclick="event.stopPropagation(); FavoritesManager.toggleFavorite({id: 'show-1', title: 'Daily Soap', image: 'https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Daily+Soap'})">
+                            <i class="far fa-heart" style="color: white; font-size: 14px;"></i>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3>Daily Soap</h3>
+                        <p>Drama</p>
+                    </div>
+                </div>
+
+                <!-- Show 2 -->
+                <div class="media-item">
+                    <div class="media-icon-box movie-box black-bg">
+                        <img src="https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Reality+Show"
+                            alt="Reality Show" class="channel-logo-img"
+                            style="object-fit: cover; width: 100%; height: 100%;">
+                        <div class="favorite-icon-overlay" data-id="show-2"
+                            style="position:absolute; bottom:10px; right:10px; width:30px; height:30px; background:red; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;"
+                            onclick="event.stopPropagation(); FavoritesManager.toggleFavorite({id: 'show-2', title: 'Reality Show', image: 'https://via.placeholder.com/300x450/1a1a1a/ffffff?text=Reality+Show'})">
+                            <i class="far fa-heart" style="color: white; font-size: 14px;"></i>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3>Reality Show</h3>
+                        <p>Reality</p>
+                    </div>
+                </div>
+
+                <!-- Show 3 -->
+                <div class="media-item">
+                    <div class="media-icon-box movie-box black-bg">
+                        <img src="https://via.placeholder.com/300x450/1a1a1a/ffffff?text=News+Hour" alt="News Hour"
+                            class="channel-logo-img" style="object-fit: cover; width: 100%; height: 100%;">
+                        <div class="favorite-icon-overlay" data-id="show-3"
+                            style="position:absolute; bottom:10px; right:10px; width:30px; height:30px; background:red; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;"
+                            onclick="event.stopPropagation(); FavoritesManager.toggleFavorite({id: 'show-3', title: 'News Hour', image: 'https://via.placeholder.com/300x450/1a1a1a/ffffff?text=News+Hour'})">
+                            <i class="far fa-heart" style="color: white; font-size: 14px;"></i>
+                        </div>
+                    </div>
+                    <div class="media-info">
+                        <h3>News Hour</h3>
+                        <p>News</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-carousel">
+            <h2>Applications</h2>
+            <div class="apps-grid-container">
+                <div class="app-tile">
+                    <i class="fas fa-film"></i> <!-- Using better icon for Video Player -->
+                    <div class="app-tile-content">
+                        <p>Video Player</p>
+                    </div>
+                </div>
+
+                <div class="app-tile">
+                    <i class="fas fa-music"></i>
+                    <div class="app-tile-content">
+                        <p>Video Player</p>
+                        <!-- Keeping text as per image even if typo? I'll correct to Video Player (Music) if I must, but user said "same design". The image says "Video Player" for the music one. I will use "Video Player" to be safe but the icon is music. -->
+                    </div>
+                </div>
+
+                <div class="app-tile">
+                    <i class="fas fa-globe"></i>
+                    <div class="app-tile-content">
+                        <p>Web Search</p>
+                    </div>
+                </div>
+
+                <div class="app-tile">
+                    <i class="fas fa-image"></i>
+                    <div class="app-tile-content">
+                        <p>Image Viewer</p>
+                    </div>
+                </div>
+
+                <div class="app-tile">
+                    <i class="fas fa-gamepad"></i>
+                    <div class="app-tile-content">
+                        <p>Game Hub</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <div id="sidebar-menu" class="sidebar-menu">
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+        <div class="sidebar-content">
+            <div class="sidebar-menu-header">
+                <div class="logo">BBNL</div>
+                <button class="close-sidebar" id="close-sidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-menu-nav">
+                <a href="homepage.html" class="sidebar-menu-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="tv-channels.html" class="sidebar-menu-item">
+                    <i class="fas fa-tv"></i>
+                    <span>Live Channels</span>
+                </a>
+                <a href="movies.html" class="sidebar-menu-item">
+                    <i class="fas fa-film"></i>
+                    <span>Movies</span>
+                </a>
+                <a href="shows.html" class="sidebar-menu-item">
+                    <i class="fas fa-video"></i>
+                    <span>Shows</span>
+                </a>
+                <a href="apps.html" class="sidebar-menu-item">
+                    <i class="fas fa-th"></i>
+                    <span>Apps</span>
+                </a>
+                <a href="subscriptions.html" class="sidebar-menu-item">
+                    <i class="fas fa-gem"></i>
+                    <span>Subscription</span>
+                </a>
+                <a href="favorites.html" class="sidebar-menu-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Favorites</span>
+                </a>
+                <a href="notifications.html" class="sidebar-menu-item">
+                    <i class="fas fa-bell"></i>
+                    <span>Notification</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-menu-footer">
+                <a href="profiles.html" class="sidebar-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Network Settings Modal -->
+    <div id="network-modal" class="network-modal" style="display: none;">
+        <div class="network-modal-content">
+            <div class="network-modal-header">
+                <h3>Network Settings</h3>
+                <button class="close-modal" id="close-network-modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="network-option">
+                <div class="network-option-icon">
+                    <i class="fas fa-wifi" style="color: var(--primary-color);"></i>
+                </div>
+                <div class="network-option-content">
+                    <h4>WiFi</h4>
+                    <p>Connected to Home-5GHz</p>
+                </div>
+                <button class="network-option-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="network-option">
+                <div class="network-option-icon">
+                    <i class="fas fa-network-wired" style="color: var(--text-secondary);"></i>
+                </div>
+                <div class="network-option-content">
+                    <h4>Wired Network</h4>
+                    <p>Disconnected</p>
+                </div>
+                <button class="network-option-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Switcher Dropdown -->
+    <div id="profile-dropdown" class="profile-dropdown" style="display: none;">
+        <div class="profile-dropdown-header">
+            <h4>Switch Profile</h4>
+        </div>
+        <div class="profile-dropdown-list">
+            <div class="profile-dropdown-item" data-profile="alex" data-avatar="https://i.pravatar.cc/150?u=alex">
+                <img src="https://i.pravatar.cc/150?u=alex" alt="Alex">
+                <div class="profile-dropdown-info">
+                    <p class="profile-dropdown-name">Alex</p>
+                    <span class="profile-dropdown-badge">Active</span>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="profile-check">
+                    <path d="M20 6 9 17l-5-5" />
+                </svg>
+            </div>
+            <div class="profile-dropdown-item" data-profile="catherine"
+                data-avatar="https://i.pravatar.cc/150?u=catherine">
+                <img src="https://i.pravatar.cc/150?u=catherine" alt="Catherine">
+                <div class="profile-dropdown-info">
+                    <p class="profile-dropdown-name">Catherine</p>
+                </div>
+            </div>
+            <div class="profile-dropdown-item" data-profile="tom" data-avatar="https://i.pravatar.cc/150?u=tom">
+                <img src="https://i.pravatar.cc/150?u=tom" alt="Tom">
+                <div class="profile-dropdown-info">
+                    <p class="profile-dropdown-name">Tom</p>
+                </div>
+            </div>
+        </div>
+        <div class="profile-dropdown-footer">
+            <a href="manage-profiles.html" class="profile-dropdown-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                    <circle cx="12" cy="12" r="3" />
+                </svg>
+                Manage Profiles
+            </a>
+            <a href="profiles.html" class="profile-dropdown-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+                Sign Out
+            </a>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Sidebar Menu
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarMenu = document.getElementById('sidebar-menu');
+        const closeSidebar = document.getElementById('close-sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+        function openSidebar() {
+            sidebarMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebarMenu() {
+            sidebarMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        sidebarToggle.addEventListener('click', openSidebar);
+        closeSidebar.addEventListener('click', closeSidebarMenu);
+        sidebarOverlay.addEventListener('click', closeSidebarMenu);
+
+        // Network Modal
+        const networkBtn = document.getElementById('network-btn');
+        const networkModal = document.getElementById('network-modal');
+        const closeNetworkModal = document.getElementById('close-network-modal');
+
+        networkBtn.addEventListener('click', () => {
+            networkModal.style.display = 'flex';
+        });
+
+        closeNetworkModal.addEventListener('click', () => {
+            networkModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        networkModal.addEventListener('click', (e) => {
+            if (e.target === networkModal) {
+                networkModal.style.display = 'none';
+            }
+        });
+
+        // Make Media Items Clickable (Navigate to Player)
+        const mediaItems = document.querySelectorAll('.media-item');
+        mediaItems.forEach(item => {
+            // Check if it's the view-all card
+            if (item.querySelector('.view-all-box')) return;
+
+            item.style.cursor = 'pointer';
+            item.addEventListener('click', (e) => {
+                // Prevent if clicking the favorite heart
+                if (e.target.closest('.favorite-icon-overlay') || e.target.classList.contains('fa-heart')) {
+                    return;
+                }
+
+                const title = item.querySelector('h3') ? item.querySelector('h3').innerText : 'Unknown Title';
+                window.location.href = `player.html?title=${encodeURIComponent(title)}`;
+            });
+        });
+
+        // Profile Switcher
+        const profileMenuContainer = document.getElementById('profile-menu-container');
+        const profileDropdown = document.getElementById('profile-dropdown');
+        const currentProfileAvatar = document.getElementById('current-profile-avatar');
+        const profileItems = document.querySelectorAll('.profile-dropdown-item');
+
+        // Load saved profile
+        const savedProfile = localStorage.getItem('bbnl-current-profile') || 'alex';
+        const savedAvatar = localStorage.getItem('bbnl-current-avatar') || 'https://i.pravatar.cc/150?u=alex';
+        currentProfileAvatar.src = savedAvatar;
+
+        // Update active profile indicator
+        function updateActiveProfile(profileName) {
+            profileItems.forEach(item => {
+                const badge = item.querySelector('.profile-dropdown-badge');
+                const check = item.querySelector('.profile-check');
+
+                if (item.dataset.profile === profileName) {
+                    if (!badge) {
+                        const newBadge = document.createElement('span');
+                        newBadge.className = 'profile-dropdown-badge';
+                        newBadge.textContent = 'Active';
+                        item.querySelector('.profile-dropdown-info').appendChild(newBadge);
+                    }
+                    if (check) check.style.display = 'block';
+                } else {
+                    if (badge) badge.remove();
+                    if (check) check.style.display = 'none';
+                }
+            });
+        }
+
+        updateActiveProfile(savedProfile);
+
+        // Toggle profile dropdown
+        profileMenuContainer.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isVisible = profileDropdown.style.display === 'flex';
+            profileDropdown.style.display = isVisible ? 'none' : 'flex';
+        });
+
+        // Profile selection
+        profileItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const profileName = item.dataset.profile;
+                const avatarUrl = item.dataset.avatar;
+
+                // Save to localStorage
+                localStorage.setItem('bbnl-current-profile', profileName);
+                localStorage.setItem('bbnl-current-avatar', avatarUrl);
+
+                // Update avatar
+                currentProfileAvatar.src = avatarUrl;
+
+                // Update active indicator
+                updateActiveProfile(profileName);
+
+                // Close dropdown
+                profileDropdown.style.display = 'none';
+
+                // Optional: Add console log for demo
+                console.log(`Switched to profile: ${profileName}`);
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!profileDropdown.contains(e.target) && !profileMenuContainer.contains(e.target)) {
+                profileDropdown.style.display = 'none';
+            }
+        });
+
+        // Navbar Link Navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Remove active class from all links
+                navLinks.forEach(l => l.classList.remove('active'));
+
+                // Add active class to clicked link
+                link.classList.add('active');
+
+                // Get section to navigate to
+                const section = link.dataset.section;
+                console.log('Navigating to section:', section);
+
+                // Here you would implement actual section navigation
+                // For now, we'll just log the action
+                alert(`Navigating to ${section} section`);
+            });
+        });
+    </script>
+</body>
+
+</html>

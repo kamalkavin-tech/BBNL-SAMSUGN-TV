@@ -1,0 +1,156 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+    --dark-bg: #0d1117;
+    --card-bg: #161b22;
+    --text-primary: #ffffff;
+    --text-secondary: #b0bec5;
+    --border-color: #30363d;
+    --accent-color: #ffc107;
+    --input-bg: #0d1117;
+}
+
+/* Light mode overrides */
+body.light-mode {
+    --dark-bg: #f5f6f7;
+    --card-bg: #ffffff;
+    --text-primary: #0b1113;
+    --text-secondary: #6c757d;
+    --border-color: rgba(11, 17, 19, 0.08);
+    --accent-color: #d9a200;
+    --input-bg: #f5f6f7;
+}
+
+/* Specific Light Mode overrides for components that need direct style changes beyond vars */
+body.light-mode .main-header {
+    background: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+}
+
+body.light-mode .header-pill-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: var(--text-secondary);
+}
+
+body.light-mode .header-pill-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+}
+
+body.light-mode .search-container input {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+}
+
+body.light-mode .search-container .search-icon {
+    color: var(--text-secondary);
+}
+
+body.light-mode .media-info h3 {
+    color: var(--text-primary);
+}
+
+body.light-mode .media-info p {
+    color: var(--text-secondary);
+}
+
+body.light-mode .media-item.active .media-icon-box {
+    border-color: var(--primary-color);
+}
+
+body.light-mode .view-all-box {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+}
+
+body.light-mode .app-tile {
+    background: #ffffff;
+    border-color: var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .app-tile:hover {
+    background: #f8f9fa;
+    border-color: var(--primary-color);
+}
+
+body.light-mode .app-tile i {
+    color: var(--primary-color);
+}
+
+body.light-mode .app-tile-content p {
+    color: var(--text-primary);
+}
+
+body.light-mode .favorites-container h1 {
+    color: var(--text-primary);
+}
+
+body.light-mode .pill-btn {
+    border-color: #ccc;
+    color: var(--text-secondary);
+}
+
+body.light-mode .pill-btn:hover,
+body.light-mode .pill-btn.active {
+    background: var(--text-primary);
+    color: white;
+    border-color: var(--text-primary);
+}
+
+body.light-mode .channel-info h3 {
+    color: var(--text-primary);
+}
+
+body.light-mode .apps-tab-btn.active {
+    color: var(--text-primary);
+}
+
+body.light-mode .apps-tab-btn.active::after {
+    background-color: var(--text-primary);
+}
+
+body.light-mode .app-filter-pill {
+    border-color: #ddd;
+    color: var(--text-secondary);
+}
+
+body.light-mode .app-filter-pill:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: var(--text-secondary);
+}
+
+body.light-mode .app-filter-pill.active {
+    background: var(--text-primary);
+    color: white;
+}
+
+body.light-mode .app-logo-box {
+    background: linear-gradient(145deg, #fff, #f0f0f0);
+    border-color: #eee;
+}
+
+body.light-mode .new-app-card:hover .app-logo-box {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .language-dropdown-menu {
+    background: #fff;
+    border-color: #eee;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .language-option:hover {
+    background: #f5f5f5;
+}
+
+body.light-mode .icon-btn#network-btn,
+body.light-mode .icon-btn#theme-toggle {
+    background: rgba(11, 17, 19, 0.03);
+    color: var(--text-primary);
+}

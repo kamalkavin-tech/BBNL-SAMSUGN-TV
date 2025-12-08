@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBNL - Apps</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+
+<body class="dark-mode">
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">BBNL</h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="homepage.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="tv-channels.html" class="nav-item">
+                    <i class="fas fa-tv"></i>
+                    <span>Live Channels</span>
+                </a>
+                <a href="apps.html" class="nav-item active">
+                    <i class="fas fa-th-large"></i>
+                    <span>Apps</span>
+                </a>
+                <a href="favorites.html" class="nav-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Favorites</span>
+                </a>
+                <a href="subscriptions.html" class="nav-item">
+                    <i class="fas fa-crown"></i>
+                    <span>Subscription</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Search Apps">
+                </div>
+
+                <div class="header-controls">
+                    <button class="header-pill-btn" id="network-btn"><i class="fas fa-wifi"></i> Network</button>
+                    <button class="header-icon-btn" onclick="window.location.href='settings.html'"><i
+                            class="fas fa-cog"></i></button>
+                    <div class="profile-menu">
+                        <img src="https://i.pravatar.cc/150?u=alex" alt="User"
+                            style="width: 32px; height: 32px; border-radius: 50%;">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Apps Page Content -->
+            <div class="apps-page-content">
+
+                <!-- Category Tabs -->
+                <div class="apps-category-tabs">
+                    <button class="apps-tab-btn active" data-target="ott">OTT Apps</button>
+                    <button class="apps-tab-btn" data-target="social">Social Media Apps</button>
+                    <button class="apps-tab-btn" data-target="games">Games</button>
+                </div>
+
+                <!-- Filter Pills -->
+                <div class="apps-filter-pills">
+                    <button class="app-filter-pill active">All</button>
+                    <button class="app-filter-pill">Subscribed</button>
+                    <button class="app-filter-pill">Entertainment</button>
+                    <button class="app-filter-pill">Sports</button>
+                    <button class="app-filter-pill">News</button>
+                    <button class="app-filter-pill">Kids</button>
+                    <div class="language-dropdown-container">
+                        <button class="app-filter-pill" id="language-dropdown-btn">Language <i
+                                class="fas fa-chevron-down" style="font-size: 10px; margin-left: 5px;"></i></button>
+                        <div class="language-dropdown-menu" id="language-dropdown-list">
+                            <button class="language-option" data-lang="all">All Languages</button>
+                            <button class="language-option" data-lang="english">English</button>
+                            <button class="language-option" data-lang="hindi">Hindi</button>
+                            <button class="language-option" data-lang="kannada">Kannada</button>
+                            <button class="language-option" data-lang="tamil">Tamil</button>
+                            <button class="language-option" data-lang="telugu">Telugu</button>
+                            <button class="language-option" data-lang="malayalam">Malayalam</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OTT Apps Grid (Default View) -->
+                <section id="ott" class="apps-section active">
+                    <div class="apps-grid-view">
+                        <!-- App Card: JioHotstar -->
+                        <div class="new-app-card" data-languages="english,hindi,tamil,telugu,malayalam,kannada">
+                            <div class="app-logo-box">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Disney%2B_Hotstar_logo.svg/2560px-Disney%2B_Hotstar_logo.svg.png"
+                                    alt="JioHotstar">
+                            </div>
+                            <div class="app-card-title">JioHotstar</div>
+                            <div class="app-card-subtitle">Streaming Services</div>
+                        </div>
+
+                        <!-- App Card: Prime Video -->
+                        <div class="new-app-card" data-languages="english,hindi,tamil,telugu,malayalam,kannada">
+                            <div class="app-logo-box">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Prime_Video.png/250px-Prime_Video.png"
+                                    alt="Prime Video">
+                            </div>
+                            <div class="app-card-title">Prime Video</div>
+                            <div class="app-card-subtitle">Streaming Services</div>
+                        </div>
+
+                        <!-- App Card: Netflix -->
+                        <div class="new-app-card" data-languages="english,hindi,tamil,telugu,malayalam">
+                            <div class="app-logo-box">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+                                    alt="Netflix">
+                            </div>
+                            <div class="app-card-title">Netflix</div>
+                            <div class="app-card-subtitle">Streaming Services</div>
+                        </div>
+
+                        <!-- App Card: Apple TV -->
+                        <div class="new-app-card" data-languages="english">
+                            <div class="app-logo-box">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Apple_TV_App_Icon.png/240px-Apple_TV_App_Icon.png"
+                                    alt="Apple TV">
+                            </div>
+                            <div class="app-card-title">Apple TV</div>
+                            <div class="app-card-subtitle">Streaming Services</div>
+                        </div>
+
+                        <!-- App Card: SonyLIV -->
+                        <div class="new-app-card" data-languages="hindi,english,marathi">
+                            <div class="app-logo-box">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/SonyLIV_Logo_2020.svg/1200px-SonyLIV_Logo_2020.svg.png"
+                                    alt="SonyLIV">
+                            </div>
+                            <div class="app-card-title">SonyLIV</div>
+                            <div class="app-card-subtitle">Streaming Services</div>
+                        </div>
+
+                        <!-- App Card: Zee5 -->
+                        <div class="new-app-card" data-languages="hindi,kannada,tamil,telugu,english">
+                            <div class="app-logo-box">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Zee5-official-logo.jpeg"
+                                    alt="Zee5">
+                            </div>
+                            <div class="app-card-title">Zee5</div>
+                            <div class="app-card-subtitle">Streaming Services</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Social Media Apps Grid (Hidden by Default) -->
+                <section id="social" class="apps-section" style="display: none;">
+                    <div class="apps-grid-view">
+                        <div class="new-app-card" data-languages="english">
+                            <div class="app-logo-box">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/2048px-Instagram_logo_2016.svg.png"
+                                    alt="Instagram">
+                            </div>
+                            <div class="app-card-title">Instagram</div>
+                            <div class="app-card-subtitle">Social Media</div>
+                        </div>
+                        <div class="new-app-card" data-languages="english">
+                            <div class="app-logo-box">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/800px-LinkedIn_logo_initials.png"
+                                    alt="LinkedIn">
+                            </div>
+                            <div class="app-card-title">LinkedIn</div>
+                            <div class="app-card-subtitle">Social Media</div>
+                        </div>
+                        <div class="new-app-card" data-languages="english">
+                            <div class="app-logo-box">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg"
+                                    alt="Twitter">
+                            </div>
+                            <div class="app-card-title">X (Twitter)</div>
+                            <div class="app-card-subtitle">Social Media</div>
+                        </div>
+                        <div class="new-app-card" data-languages="english">
+                            <div class="app-logo-box">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1024px-Facebook_Logo_%282019%29.png"
+                                    alt="Facebook">
+                            </div>
+                            <div class="app-card-title">Facebook</div>
+                            <div class="app-card-subtitle">Social Media</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Games Grid (Hidden by Default) -->
+                <section id="games" class="apps-section" style="display: none;">
+                    <div class="apps-grid-view">
+                        <div class="new-app-card" data-languages="english">
+                            <div class="app-logo-box">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Asphalt_9_Legends_Logo.png/640px-Asphalt_9_Legends_Logo.png"
+                                    alt="Asphalt 9">
+                            </div>
+                            <div class="app-card-title">Asphalt 9</div>
+                            <div class="app-card-subtitle">Racing</div>
+                        </div>
+                        <div class="new-app-card" data-languages="english">
+                            <div class="app-logo-box">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Candy_Crush_Saga_Logo_1.png/640px-Candy_Crush_Saga_Logo_1.png"
+                                    alt="Candy Crush">
+                            </div>
+                            <div class="app-card-title">Candy Crush</div>
+                            <div class="app-card-subtitle">Casual</div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Tab Switching Logic
+        const tabs = document.querySelectorAll('.apps-tab-btn');
+        const sections = document.querySelectorAll('.apps-section');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+
+                // Hide all sections
+                sections.forEach(section => section.style.display = 'none');
+
+                // Show target section
+                const targetId = tab.dataset.target;
+                document.getElementById(targetId).style.display = 'block';
+            });
+        });
+
+        // Filter Pill Selection Logic (Updated to ignore Language button)
+        const pills = document.querySelectorAll('.app-filter-pill:not(#language-dropdown-btn)');
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                pills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+            });
+        });
+
+        // Language Dropdown & Filtering Logic
+        const langBtn = document.getElementById('language-dropdown-btn');
+        const langMenu = document.getElementById('language-dropdown-list');
+        const langOptions = document.querySelectorAll('.language-option');
+        const appCards = document.querySelectorAll('.new-app-card');
+
+        if (langBtn && langMenu) {
+            // Toggle Menu
+            langBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                langMenu.classList.toggle('show');
+            });
+
+            // Close on Click Outside
+            document.addEventListener('click', (e) => {
+                if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+                    langMenu.classList.remove('show');
+                }
+            });
+
+            // Handle Language Selection
+            langOptions.forEach(option => {
+                option.addEventListener('click', function () {
+                    const selectedLang = this.getAttribute('data-lang');
+                    const langName = this.innerText;
+
+                    // Update Button Text
+                    langBtn.innerHTML = `${langName} <i class="fas fa-chevron-down" style="font-size: 10px; margin-left: 5px;"></i>`;
+                    langBtn.classList.add('active'); // Highlight the language filter
+
+                    // Close Dropdown
+                    langMenu.classList.remove('show');
+
+                    // Filter Logic
+                    filterApps(selectedLang);
+                });
+            });
+        }
+
+        function filterApps(language) {
+            appCards.forEach(card => {
+                const supportedLanguages = card.getAttribute('data-languages');
+
+                if (language === 'all') {
+                    card.style.display = 'flex'; // Show all
+                    return;
+                }
+
+                if (supportedLanguages && supportedLanguages.includes(language)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

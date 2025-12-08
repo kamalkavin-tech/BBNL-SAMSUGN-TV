@@ -1,0 +1,81 @@
+/* Apps Page Content */
+.apps-page-content {
+    padding: 30px 40px;
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+}
+
+/* Tabs Navigation */
+.apps-category-tabs {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.apps-tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    padding-bottom: 10px;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.apps-tab-btn.active {
+    color: var(--text-primary);
+}
+
+.apps-tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -11px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-primary);
+    border-radius: 2px 2px 0 0;
+}
+
+/* Filter Pills */
+.apps-filter-pills {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.app-filter-pill {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 8px 24px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.app-filter-pill:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--text-secondary);
+}
+
+.app-filter-pill.active {
+    background: var(--text-primary);
+    color: var(--dark-bg);
+    border-color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Apps Grid */
+.apps-grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+    padding-bottom: 50px;
+}

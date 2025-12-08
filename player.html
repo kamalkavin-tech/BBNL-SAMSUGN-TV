@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBNL - Player</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/script.js"></script>
+    <style>
+        .player-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: black;
+            color: white;
+        }
+
+        .player-header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .video-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            position: relative;
+        }
+
+        /* Placeholder for video content */
+        .video-placeholder {
+            width: 80%;
+            height: 60%;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: #111;
+        }
+
+        .video-placeholder i {
+            font-size: 64px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .player-controls {
+            padding: 20px;
+            background: #111;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="player-container">
+        <div class="player-header">
+            <button class="back-btn" onclick="history.back()"><i class="fas fa-arrow-left"></i></button>
+            <h2 id="media-title">Now Playing</h2>
+            <div class="header-right" style="margin-left: auto; display: flex; gap: 10px; align-items: center;">
+                <button class="header-pill-btn" id="network-btn"><i class="fas fa-wifi"></i> Network</button>
+                <button class="header-icon-btn" onclick="window.location.href='settings.html'"><i
+                        class="fas fa-cog"></i></button>
+                <div class="profile-menu">
+                    <img src="https://i.pravatar.cc/150?u=alex" alt="User"
+                        style="width: 32px; height: 32px; border-radius: 50%;">
+                </div>
+            </div>
+        </div>
+
+        <div class="video-wrapper">
+            <div class="video-placeholder">
+                <i class="fas fa-play-circle"></i>
+                <p>Video Content would play here</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple script to get title from URL
+        const params = new URLSearchParams(window.location.search);
+        const title = params.get('title');
+        if (title) {
+            document.getElementById('media-title').innerText = title;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBNL - Who's Watching?</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <div class="profile-container">
+        <!-- Profile Selection View -->
+        <div id="view-profiles" class="profile-selection">
+            <h1>Who's Watching?</h1>
+            <div class="profiles-grid">
+                <div class="profile-card" onclick="window.location.href='homepage.html';">
+                    <div class="profile-avatar">
+                        <img src="https://i.pravatar.cc/150?u=alex" alt="Alex">
+                    </div>
+                    <p class="profile-name">Alex</p>
+                </div>
+                <div class="profile-card" onclick="window.location.href='homepage.html';">
+                    <div class="profile-avatar">
+                        <img src="https://i.pravatar.cc/150?u=catherine" alt="Catherine">
+                    </div>
+                    <p class="profile-name">Catherine</p>
+                </div>
+                <div class="profile-card" onclick="window.location.href='homepage.html';">
+                    <div class="profile-avatar">
+                        <img src="https://i.pravatar.cc/150?u=tom" alt="Tom">
+                    </div>
+                    <p class="profile-name">Tom</p>
+                </div>
+                <div id="add-profile-btn" class="profile-card add-profile">
+                    <div class="profile-avatar add">
+                        <span>+</span>
+                    </div>
+                    <p class="profile-name">Add Profile</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Profile View -->
+        <div id="view-add-profile" class="profile-add-edit" style="display: none;">
+            <button id="back-to-profiles" class="back-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </button>
+            <h2>Add Profile</h2>
+            <p>Create a personalized profile for another member of your household</p>
+            
+            <div class="avatar-selection">
+                <button class="avatar-arrow prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <div class="avatar-options">
+                    <div class="avatar-option"><img src="https://i.pravatar.cc/150?u=new1" alt="Avatar 1"></div>
+                    <div class="avatar-option selected"><img src="https://i.pravatar.cc/150?u=new2" alt="Avatar 2"></div>
+                    <div class="avatar-option"><img src="https://i.pravatar.cc/150?u=new3" alt="Avatar 3"></div>
+                </div>
+                <button class="avatar-arrow next">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+            </div>
+            <p class="upload-link"><span></span>Upload Photo</p>
+
+            <form class="profile-form">
+                <div class="form-group">
+                    <label for="profile-name">Name</label>
+                    <input type="text" id="profile-name" placeholder="Enter Profile Name">
+                </div>
+                <div class="form-group kids-toggle">
+                    <div>
+                        <label>Kids Profile</label>
+                        <p>(Only show content rated for ages 12 and under)</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Create Profile</button>
+                    <button type="button" id="cancel-add-profile" class="btn btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const viewProfiles = document.getElementById('view-profiles');
+        const viewAddProfile = document.getElementById('view-add-profile');
+        const addProfileBtn = document.getElementById('add-profile-btn');
+        const backToProfilesBtn = document.getElementById('back-to-profiles');
+        const cancelAddProfileBtn = document.getElementById('cancel-add-profile');
+        const profileForm = document.querySelector('.profile-form');
+        const profilesGrid = document.querySelector('.profiles-grid');
+        const addProfileCard = document.getElementById('add-profile-btn');
+        const profileNameInput = document.getElementById('profile-name');
+
+        // Avatar Carousel
+        const avatarOptionsContainer = document.querySelector('.avatar-options');
+        const prevAvatarBtn = document.querySelector('.avatar-arrow.prev');
+        const nextAvatarBtn = document.querySelector('.avatar-arrow.next');
+        const avatars = [
+            'https://i.pravatar.cc/150?u=new1',
+            'https://i.pravatar.cc/150?u=new2',
+            'https://i.pravatar.cc/150?u=new3',
+            'https://i.pravatar.cc/150?u=new4',
+            'https://i.pravatar.cc/150?u=new5',
+            'https://i.pravatar.cc/150?u=new6'
+        ];
+        let currentAvatarIndex = 1;
+
+        function updateAvatarSelection() {
+            avatarOptionsContainer.innerHTML = '';
+            const visibleAvatars = [];
+            for (let i = 0; i < 3; i++) {
+                const index = (currentAvatarIndex - 1 + i + avatars.length) % avatars.length;
+                visibleAvatars.push(avatars[index]);
+            }
+
+            visibleAvatars.forEach((src, i) => {
+                const isSelected = i === 1;
+                const avatarOption = document.createElement('div');
+                avatarOption.className = `avatar-option ${isSelected ? 'selected' : ''}`;
+                avatarOption.innerHTML = `<img src="${src}" alt="Avatar">`;
+                avatarOption.addEventListener('click', () => {
+                    currentAvatarIndex = (currentAvatarIndex + i - 1 + avatars.length) % avatars.length;
+                    updateAvatarSelection();
+                });
+                avatarOptionsContainer.appendChild(avatarOption);
+            });
+        }
+
+        prevAvatarBtn.addEventListener('click', () => {
+            currentAvatarIndex = (currentAvatarIndex - 1 + avatars.length) % avatars.length;
+            updateAvatarSelection();
+        });
+
+        nextAvatarBtn.addEventListener('click', () => {
+            currentAvatarIndex = (currentAvatarIndex + 1) % avatars.length;
+            updateAvatarSelection();
+        });
+
+        function resetAddProfileForm() {
+            profileNameInput.value = '';
+            document.querySelector('.kids-toggle input').checked = false;
+            currentAvatarIndex = 1;
+            updateAvatarSelection();
+        }
+
+        function showProfileView() {
+            viewProfiles.style.display = 'block';
+            viewAddProfile.style.display = 'none';
+            resetAddProfileForm();
+        }
+
+        addProfileBtn.addEventListener('click', () => {
+            viewProfiles.style.display = 'none';
+            viewAddProfile.style.display = 'block';
+            resetAddProfileForm();
+        });
+
+        backToProfilesBtn.addEventListener('click', showProfileView);
+        cancelAddProfileBtn.addEventListener('click', showProfileView);
+
+        profileForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const profileName = profileNameInput.value.trim();
+            if (profileName) {
+                const selectedAvatarSrc = avatars[currentAvatarIndex];
+                
+                const newProfileCard = document.createElement('div');
+                newProfileCard.className = 'profile-card';
+                newProfileCard.innerHTML = `
+                    <div class="profile-avatar">
+                        <img src="${selectedAvatarSrc}" alt="${profileName}">
+                    </div>
+                    <p class="profile-name">${profileName}</p>
+                `;
+                newProfileCard.addEventListener('click', () => {
+                    window.location.href = 'homepage.html';
+                });
+
+                profilesGrid.insertBefore(newProfileCard, addProfileCard);
+                showProfileView();
+            }
+        });
+
+        // Initial setup
+        updateAvatarSelection();
+    </script>
+</body>
+</html>
