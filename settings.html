@@ -5,7 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BBNL - Settings</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Base Styles -->
+    <link rel="stylesheet" href="css/base/variable.css">
+    <link rel="stylesheet" href="css/base/reset.css">
+    <!-- Layout Styles -->
+    <link rel="stylesheet" href="css/layout/header.css">
+    <link rel="stylesheet" href="css/layout/sidebar.css">
+    <!-- Component Styles -->
+    <link rel="stylesheet" href="css/componentes/buttons.css">
+    <link rel="stylesheet" href="css/componentes/forms.css">
+    <!-- Page Styles -->
+    <link rel="stylesheet" href="css/pages/settings.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
@@ -14,21 +24,23 @@
         <!-- Settings Top Header -->
         <header class="settings-top-header">
             <div class="settings-header-left">
-                <a href="homepage.html" class="settings-icon-btn" style="margin-right: 20px;">
-                    <i class="fas fa-arrow-left"></i>
-                </a>
+                <div class="settings-logo">BBNL</div>
+            </div>
+            <div class="settings-header-center">
                 <div class="settings-search-container">
                     <i class="fas fa-search search-icon"></i>
-                    <input type="text" placeholder="Search settings...">
+                    <input type="text" placeholder="Search Channels">
                 </div>
             </div>
             <div class="settings-header-right">
-                <button class="header-pill-btn" id="network-btn"><i class="fas fa-wifi"></i> Network</button>
-                <button class="header-icon-btn" onclick="window.location.href='settings.html'"><i
-                        class="fas fa-cog"></i></button>
-                <div class="profile-menu">
-                    <img src="https://i.pravatar.cc/150?u=alex" alt="User"
-                        style="width: 32px; height: 32px; border-radius: 50%;">
+                <button class="settings-icon-btn" onclick="window.location.href='homepage.html'">
+                    <i class="fas fa-home"></i>
+                </button>
+                <button class="settings-icon-btn" onclick="window.location.href='notifications.html'">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <div class="settings-profile-avatar">
+                    <img src="https://i.pravatar.cc/150?u=alex" alt="User">
                 </div>
             </div>
         </header>
@@ -37,204 +49,135 @@
             <!-- Sidebar -->
             <aside class="settings-sidebar">
                 <nav class="settings-nav">
-                    <a href="#" class="settings-nav-item active" data-target="account">
-                        <i class="fas fa-user"></i>
-                        <span>Account</span>
-                    </a>
-                    <a href="#" class="settings-nav-item" data-target="display">
-                        <i class="fas fa-desktop"></i>
-                        <span>Display & Audio</span>
-                    </a>
-                    <a href="#" class="settings-nav-item" data-target="profiles">
-                        <i class="fas fa-users"></i>
-                        <span>Profiles</span>
-                    </a>
-                    <a href="#" class="settings-nav-item" data-target="parental">
-                        <i class="fas fa-lock"></i>
+                    <a href="#" class="settings-nav-item active" data-target="parental">
+                        <i class="fas fa-shield-alt"></i>
                         <span>Parental Controls</span>
                     </a>
-                    <a href="#" class="settings-nav-item" data-target="network">
-                        <i class="fas fa-wifi"></i>
-                        <span>Network</span>
+                    <a href="#" class="settings-nav-item" data-target="display">
+                        <i class="fas fa-tv"></i>
+                        <span>Display</span>
                     </a>
-                    <a href="#" class="settings-nav-item" data-target="help">
-                        <i class="far fa-life-ring"></i>
-                        <span>Help & Support</span>
+                    <a href="#" class="settings-nav-item" data-target="remote">
+                        <i class="fas fa-gamepad"></i>
+                        <span>Remote Description</span>
+                    </a>
+                    <a href="#" class="settings-nav-item" data-target="reset">
+                        <i class="fas fa-redo"></i>
+                        <span>Reset App</span>
+                    </a>
+                    <a href="#" class="settings-nav-item" data-target="about">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About App</span>
                     </a>
                 </nav>
             </aside>
 
             <!-- Main Content -->
             <main class="settings-main-content">
-                <!-- Account Section -->
-                <section id="account" class="settings-section active">
-                    <h2>Account</h2>
-                    <p class="settings-subtitle">Manage your subscription and billing details</p>
+                <!-- Parental Controls Section -->
+                <section id="parental" class="settings-section active">
+                    <div class="pc-content-panel">
+                        <h2>Parental Controls</h2>
+                        <p class="settings-subtitle">Manage content restriction and PIN settings for your device</p>
 
-                    <div class="settings-card">
-                        <div class="setting-item">
-                            <div class="setting-header">
-                                <div>
-                                    <label>Membership</label>
-                                    <p class="setting-desc">Standard Plan (HD)</p>
+                        <div class="pc-settings-cards">
+                            <!-- Enable Parental Controls Card -->
+                            <div class="pc-card">
+                                <div class="pc-card-content">
+                                    <div class="pc-card-info">
+                                        <h3 class="pc-card-title">Enable Parental Controls</h3>
+                                    </div>
+                                    <div class="pc-card-control">
+                                        <label class="pc-toggle-switch">
+                                            <input type="checkbox" id="enableParental" checked>
+                                            <span class="pc-toggle-slider"></span>
+                                        </label>
+                                    </div>
                                 </div>
-                                <button class="btn btn-secondary small">Manage</button>
                             </div>
-                        </div>
-                        <div class="setting-item">
-                            <label>Email</label>
-                            <p class="setting-desc">alex.doe@example.com</p>
-                        </div>
-                        <div class="setting-item">
-                            <label>Password</label>
-                            <p class="setting-desc">********</p>
-                        </div>
-                        <div class="setting-item">
-                            <label>Phone Number</label>
-                            <p class="setting-desc">+1 (555) 123-4567</p>
+
+                            <!-- Set PIN Card -->
+                            <div class="pc-card">
+                                <div class="pc-card-content">
+                                    <div class="pc-card-info">
+                                        <h3 class="pc-card-title">Set PIN</h3>
+                                        <p class="pc-card-description">A PIN required to change settings and bypass restrictions.</p>
+                                    </div>
+                                    <div class="pc-card-control">
+                                        <button class="pc-action-btn">Change</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Content Rating Card -->
+                            <div class="pc-card">
+                                <div class="pc-card-content">
+                                    <div class="pc-card-info">
+                                        <h3 class="pc-card-title">Content Rating</h3>
+                                        <p class="pc-card-description">Restrict Movies and TV shows on their rating</p>
+                                    </div>
+                                    <div class="pc-card-control">
+                                        <button class="pc-action-btn">Set Rating</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- App Restriction Card -->
+                            <div class="pc-card">
+                                <div class="pc-card-content">
+                                    <div class="pc-card-info">
+                                        <h3 class="pc-card-title">App Restriction</h3>
+                                        <p class="pc-card-description">Block access to specific app</p>
+                                    </div>
+                                    <div class="pc-card-control">
+                                        <button class="pc-action-btn">Manage</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
 
                 <!-- Display Section -->
                 <section id="display" class="settings-section">
-                    <h2>Display & Audio</h2>
-                    <p class="settings-subtitle">Adjust streaming quality and interface preferences</p>
-
-                    <div class="settings-card">
-                        <div class="setting-item-row">
-                            <div class="setting-info">
-                                <label>Streaming Quality</label>
-                                <p class="setting-desc">Adjust video quality based on your internet connection</p>
-                            </div>
-                            <select class="settings-dropdown">
-                                <option>Auto (Recommended)</option>
-                                <option>High (4K Ultra HD)</option>
-                                <option>High (1080p Full HD)</option>
-                                <option>Medium (720p HD)</option>
-                                <option>Low (480p SD)</option>
-                                <option>Data Saver (360p)</option>
-                            </select>
-                        </div>
-
-                        <div class="setting-item-row">
-                            <div class="setting-info">
-                                <label>Auto-Play Trailers</label>
-                                <p class="setting-desc">Play trailers automatically while browsing</p>
-                            </div>
-                            <label class="switch">
-                                <input type="checkbox" checked>
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
-
-                        <div class="setting-item-row">
-                            <div class="setting-info">
-                                <label>Theme</label>
-                                <p class="setting-desc">Switch between Dark and Light mode</p>
-                            </div>
-                            <label class="switch">
-                                <input type="checkbox" id="settings-theme-toggle">
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
-
-                        <div class="setting-item-row">
-                            <div class="setting-info">
-                                <label>Audio Language</label>
-                                <p class="setting-desc">Default language for audio playback</p>
-                            </div>
-                            <select class="settings-dropdown">
-                                <option>English (Original)</option>
-                                <option>Hindi</option>
-                                <option>Kannada</option>
-                                <option>Telugu</option>
-                                <option>Tamil</option>
-                                <option>Malayalam</option>
-                                <option>Bengali</option>
-                                <option>Marathi</option>
-                                <option>Gujarati</option>
-                                <option>Punjabi</option>
-                                <option>Spanish</option>
-                                <option>French</option>
-                                <option>German</option>
-                                <option>Italian</option>
-                                <option>Japanese</option>
-                                <option>Korean</option>
-                                <option>Mandarin Chinese</option>
-                            </select>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Profiles Section (Placeholder) -->
-                <section id="profiles" class="settings-section">
-                    <h2>Profiles</h2>
-                    <p class="settings-subtitle">Manage who can watch</p>
+                    <h2>Display</h2>
+                    <p class="settings-subtitle">Display settings</p>
                     <div class="settings-card">
                         <div class="setting-item" style="text-align: center; padding: 40px;">
-                            <a href="manage-profiles.html" class="btn btn-primary">Go to Manage Profiles</a>
+                            <p style="color: #b0b0b0;">Display settings coming soon</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- Parental Section (Placeholder) -->
-                <section id="parental" class="settings-section">
-                    <h2>Parental Controls</h2>
-                    <p class="settings-subtitle">Restrict content and set PIN</p>
+                <!-- Remote Description Section -->
+                <section id="remote" class="settings-section">
+                    <h2>Remote Description</h2>
+                    <p class="settings-subtitle">Remote control information</p>
                     <div class="settings-card">
                         <div class="setting-item" style="text-align: center; padding: 40px;">
-                            <p style="color: #888;">Enter PIN to access controls</p>
+                            <p style="color: #b0b0b0;">Remote description coming soon</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- Network Section -->
-                <section id="network" class="settings-section">
-                    <h2>Network</h2>
-                    <p class="settings-subtitle">Check your connection status and speed</p>
+                <!-- Reset App Section -->
+                <section id="reset" class="settings-section">
+                    <h2>Reset App</h2>
+                    <p class="settings-subtitle">Reset application settings</p>
                     <div class="settings-card">
-                        <div class="setting-item-row">
-                            <div class="setting-info">
-                                <label>Connection Status</label>
-                                <p class="setting-desc" id="network-status-text">Checking...</p>
-                            </div>
-                            <div id="network-status-indicator" style="color: var(--success-color); font-weight: bold;">
-                                Connected <i class="fas fa-check-circle"></i>
-                            </div>
-                        </div>
-                        <div class="setting-item-row">
-                            <div class="setting-info">
-                                <label>Network Speed</label>
-                                <p class="setting-desc">Last check: Just now</p>
-                            </div>
-                            <button class="btn btn-secondary small">Check Network</button>
-                        </div>
-                        <div class="setting-item-row">
-                            <div class="setting-info">
-                                <label>Wi-Fi Only Downloads</label>
-                                <p class="setting-desc">Save data by downloading on Wi-Fi only</p>
-                            </div>
-                            <label class="switch">
-                                <input type="checkbox" checked>
-                                <span class="slider round"></span>
-                            </label>
+                        <div class="setting-item" style="text-align: center; padding: 40px;">
+                            <p style="color: #b0b0b0;">Reset options coming soon</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- Help Section (Placeholder) -->
-                <section id="help" class="settings-section">
-                    <h2>Help & Support</h2>
-                    <p class="settings-subtitle">Get help with your account and streaming issues</p>
+                <!-- About App Section -->
+                <section id="about" class="settings-section">
+                    <h2>About App</h2>
+                    <p class="settings-subtitle">Application information</p>
                     <div class="settings-card">
-                        <div class="setting-item">
-                            <label>Help Center</label>
-                            <p class="setting-desc">Visit our help center for FAQs</p>
-                        </div>
-                        <div class="setting-item">
-                            <label>Contact Us</label>
-                            <p class="setting-desc">Get in touch with customer support</p>
+                        <div class="setting-item" style="text-align: center; padding: 40px;">
+                            <p style="color: #b0b0b0;">About information coming soon</p>
                         </div>
                     </div>
                 </section>
@@ -275,61 +218,84 @@
             });
         });
 
-        // Handle Hash Navigation (e.g. settings.html#network)
+        // Handle Hash Navigation
         window.addEventListener('load', () => {
             const hash = window.location.hash.replace('#', '');
             if (hash) {
                 switchSection(hash);
             }
+        });
 
-            // Update Network Status if on network page
-            if (hash === 'network') {
-                updateNetworkUI();
+        // TV Remote Navigation Support
+        let currentFocusIndex = 0;
+        const focusableElements = [];
+
+        function initRemoteNavigation() {
+            // Gather all focusable elements
+            const buttons = document.querySelectorAll('.pc-action-btn, .settings-nav-item, .settings-icon-btn');
+            const toggles = document.querySelectorAll('.pc-toggle-switch input');
+            
+            focusableElements.length = 0;
+            focusableElements.push(...buttons, ...toggles);
+            
+            if (focusableElements.length > 0) {
+                currentFocusIndex = 0;
+                focusableElements[0].focus();
+            }
+        }
+
+        function moveFocus(direction) {
+            if (focusableElements.length === 0) return;
+            
+            currentFocusIndex += direction;
+            
+            if (currentFocusIndex < 0) {
+                currentFocusIndex = focusableElements.length - 1;
+            } else if (currentFocusIndex >= focusableElements.length) {
+                currentFocusIndex = 0;
+            }
+            
+            focusableElements[currentFocusIndex].focus();
+        }
+
+        // Keyboard navigation for TV remote
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowDown':
+                    e.preventDefault();
+                    moveFocus(1);
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault();
+                    moveFocus(-1);
+                    break;
+                case 'Enter':
+                    // Let default behavior handle clicks
+                    break;
             }
         });
 
-        function updateNetworkUI() {
-            const statusIndicator = document.getElementById('network-status-indicator');
-            const statusText = document.getElementById('network-status-text');
-            if (navigator.onLine) {
-                statusIndicator.innerHTML = 'Connected <i class="fas fa-check-circle"></i>';
-                statusIndicator.style.color = 'var(--success-color)';
-                statusText.innerText = 'You are connected to the internet';
-            } else {
-                statusIndicator.innerHTML = 'Offline <i class="fas fa-times-circle"></i>';
-                statusIndicator.style.color = 'var(--danger-color)';
-                statusText.innerText = 'No internet connection';
-            }
-        }
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            initRemoteNavigation();
+        });
 
-        // Theme Toggle Logic for Settings Page
-        const settingsThemeToggle = document.getElementById('settings-theme-toggle');
+        // Re-initialize when section changes
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                setTimeout(initRemoteNavigation, 100);
+            });
+        });
 
-        function syncSettingsToggle() {
-            const currentTheme = localStorage.getItem('bbnl-theme');
-            if (settingsThemeToggle) {
-                settingsThemeToggle.checked = currentTheme !== 'light'; // Checked = Dark
-            }
-        }
-
-        if (settingsThemeToggle) {
-            syncSettingsToggle();
-
-            settingsThemeToggle.addEventListener('change', (e) => {
-                const isDark = e.target.checked;
-                const body = document.body;
-
-                if (isDark) {
-                    body.classList.remove('light-mode');
-                    body.classList.add('dark-mode');
-                    localStorage.setItem('bbnl-theme', 'dark');
-                } else {
-                    body.classList.remove('dark-mode');
-                    body.classList.add('light-mode');
-                    localStorage.setItem('bbnl-theme', 'light');
+        // Toggle switch keyboard support
+        document.querySelectorAll('.pc-toggle-switch input').forEach(toggle => {
+            toggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggle.checked = !toggle.checked;
                 }
             });
-        }
+        });
     </script>
 </body>
 

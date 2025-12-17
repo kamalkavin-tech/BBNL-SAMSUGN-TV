@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BBNL - Login</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Base Styles -->
+    <link rel="stylesheet" href="css/base/variable.css">
+    <link rel="stylesheet" href="css/base/reset.css">
+    <!-- Component Styles -->
+    <link rel="stylesheet" href="css/componentes/buttons.css">
+    <link rel="stylesheet" href="css/componentes/forms.css">
+    <link rel="stylesheet" href="css/componentes/cards.css">
+    <!-- Page Styles -->
+    <link rel="stylesheet" href="css/pages/auth.css">
     <script src="js/script.js"></script>
     <style>
         .phone-input-container {
@@ -26,17 +34,17 @@
             align-items: center;
             gap: 8px;
             padding: 10px;
-            border: 1px solid var(--border-color);
+            border: 1px solid #30363d;
             border-radius: 8px;
             cursor: pointer;
-            background-color: var(--input-bg);
+            background-color: #0d1117;
         }
         .country-list-container {
             position: absolute;
             top: calc(100% + 5px);
             left: 0;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
+            background-color: #161b22;
+            border: 1px solid #30363d;
             border-radius: 8px;
             padding: 10px;
             z-index: 10;
@@ -52,18 +60,18 @@
             align-items: center;
             gap: 8px;
             padding: 8px;
-            border: 1px solid var(--border-color);
+            border: 1px solid #30363d;
             border-radius: 8px;
             margin-bottom: 10px;
         }
         .search-box svg {
-            stroke: var(--text-secondary);
+            stroke: #b0bec5;
         }
         .search-box input {
             background: transparent;
             border: none;
             outline: none;
-            color: var(--text-primary);
+            color: #ffffff;
             width: 100%;
         }
         .country-list {
@@ -79,7 +87,7 @@
             border-radius: 6px;
         }
         .country-list li:hover, .country-list li.selected {
-            background-color: var(--input-bg);
+            background-color: #0d1117;
         }
     </style>
 </head>

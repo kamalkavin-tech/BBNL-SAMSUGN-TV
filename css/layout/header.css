@@ -40,6 +40,19 @@
     cursor: pointer;
 }
 
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dark-mode-toggle span {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
 /* Settings Top Header */
 .settings-top-header {
     display: flex;
@@ -67,7 +80,7 @@
 /* Top Header (General Layout) */
 .top-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 20px 30px;
     background: var(--card-bg);
@@ -75,12 +88,16 @@
     position: sticky;
     top: 0;
     z-index: 100;
+    gap: 20px;
+    position: relative;
 }
 
 .header-controls {
     display: flex;
     align-items: center;
     gap: 15px;
+    position: absolute;
+    right: 30px;
 }
 
 .user-avatar {
@@ -106,7 +123,7 @@
 
 .profile-menu:hover img {
     transform: scale(1.05);
-    box-shadow: 0 0 0 2px var(--primary-color);
+    box-shadow: 0 0 0 2px #007bff;
 }
 
 .profile-menu {
@@ -185,7 +202,7 @@
 }
 
 .profile-dropdown-badge {
-    background: var(--primary-color);
+    background: #007bff;
     color: white;
     font-size: 10px;
     padding: 2px 8px;
@@ -194,13 +211,13 @@
 }
 
 .profile-check {
-    color: var(--primary-color);
+    color: #007bff;
     flex-shrink: 0;
     display: none;
 }
 
 .profile-dropdown-footer {
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid #30363d;
     padding: 8px 0;
 }
 
@@ -209,7 +226,7 @@
     align-items: center;
     gap: 12px;
     padding: 12px 20px;
-    color: var(--text-secondary);
+    color: #b0bec5;
     text-decoration: none;
     font-size: 14px;
     transition: all 0.2s ease;

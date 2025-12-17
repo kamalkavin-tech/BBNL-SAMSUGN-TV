@@ -1,52 +1,46 @@
-// ============================================
-// BBNL STREAMING PLATFORM - GLOBAL JAVASCRIPT
-// ============================================
+// ========================================================
+// BBNL STREAMING PLATFORM - GLOBAL JAVASCRIPT (ES5 TIZEN SAFE)
+// ========================================================
 
-// Theme Management - Global Sync Across All Pages
+// -------------------- THEME MANAGER --------------------
 function initializeTheme() {
-    const savedTheme = localStorage.getItem('bbnl-theme') || 'dark';
-    const body = document.body;
+    var savedTheme = localStorage.getItem('bbnl-theme') || 'dark';
+    var body = document.body;
 
     if (savedTheme === 'light') {
-        body.classList.remove('dark-mode');
         body.classList.add('light-mode');
+        body.classList.remove('dark-mode');
     } else {
         body.classList.add('dark-mode');
         body.classList.remove('light-mode');
     }
 
-    // Update all toggle switches on the page
-    const themeToggles = document.querySelectorAll('.theme-toggle-input');
-    themeToggles.forEach(toggle => {
-        toggle.checked = savedTheme === 'dark';
+    var toggles = document.querySelectorAll('.theme-toggle-input');
+    Array.prototype.forEach.call(toggles, function (t) {
+        t.checked = (savedTheme === 'dark');
     });
 }
 
 function setupThemeToggle() {
-    // Listen to changes on any theme toggle input
-    const themeToggles = document.querySelectorAll('.theme-toggle-input');
+    var toggles = document.querySelectorAll('.theme-toggle-input');
 
-    themeToggles.forEach(toggle => {
-        toggle.addEventListener('change', (e) => {
-            const isDark = e.target.checked;
-            const body = document.body;
-            const newTheme = isDark ? 'dark' : 'light';
+    Array.prototype.forEach.call(toggles, function (toggle) {
+        toggle.addEventListener('change', function (e) {
+            var isDark = e.target.checked;
+            var body = document.body;
+            var theme = isDark ? 'dark' : 'light';
 
-            // Apply class
             if (isDark) {
-                body.classList.remove('light-mode');
                 body.classList.add('dark-mode');
+                body.classList.remove('light-mode');
             } else {
-                body.classList.remove('dark-mode');
                 body.classList.add('light-mode');
+                body.classList.remove('dark-mode');
             }
 
-            // Save preference
-            localStorage.setItem('bbnl-theme', newTheme);
+            localStorage.setItem('bbnl-theme', theme);
 
-            // Sync other toggles on the page if any
-            const allToggles = document.querySelectorAll('.theme-toggle-input');
-            allToggles.forEach(t => {
+            Array.prototype.forEach.call(toggles, function (t) {
                 if (t !== e.target) {
                     t.checked = isDark;
                 }
@@ -55,183 +49,147 @@ function setupThemeToggle() {
     });
 }
 
-// Initialize on DOM load
-document.addEventListener('DOMContentLoaded', function () {
-    initializeTheme();
-    setupThemeToggle();
-});
 
-// Initialize immediately for instant theme application
-initializeTheme();
-
-
-// ============================================
-// FAVORITES MANAGER
-// ============================================
-const FavoritesManager = {
-    // Key for localStorage
+// -------------------- FAVORITES MANAGER --------------------
+var FavoritesManager = {
     STORAGE_KEY: 'bbnl-favorites',
 
-    // Get all favorites
     getFavorites: function () {
-        const stored = localStorage.getItem(this.STORAGE_KEY);
+        var stored = localStorage.getItem(this.STORAGE_KEY);
         return stored ? JSON.parse(stored) : [];
     },
 
-    // Add a favorite item
     addFavorite: function (item) {
-        const favorites = this.getFavorites();
-        // Check if already exists
-        if (!favorites.some(fav => fav.id === item.id)) {
-            favorites.push(item);
-            localStorage.setItem(this.STORAGE_KEY, JSON.stringify(favorites));
+        var list = this.getFavorites();
+        var exists = false;
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].id === item.id) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) {
+            list.push(item);
+            localStorage.setItem(this.STORAGE_KEY, JSON.stringify(list));
             this.updateUI();
-            console.log('Added favorite:', item.title);
             return true;
         }
         return false;
     },
 
-    // Remove a favorite item by ID
     removeFavorite: function (id) {
-        let favorites = this.getFavorites();
-        favorites = favorites.filter(fav => fav.id !== id);
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(favorites));
+        var list = this.getFavorites();
+        var newList = [];
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].id !== id) {
+                newList.push(list[i]);
+            }
+        }
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(newList));
         this.updateUI();
-        console.log('Removed favorite with ID:', id);
     },
 
-    // Check if item is favorite
     isFavorite: function (id) {
-        const favorites = this.getFavorites();
-        return favorites.some(fav => fav.id === id);
+        var list = this.getFavorites();
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].id === id) {
+                return true;
+            }
+        }
+        return false;
     },
 
-    // Toggle favorite state
     toggleFavorite: function (item) {
         if (this.isFavorite(item.id)) {
             this.removeFavorite(item.id);
-            return false; // Removed
+            return false;
         } else {
             this.addFavorite(item);
-            return true; // Added
+            return true;
         }
     },
 
-    // Update UI elements (heart icons) across the page
     updateUI: function () {
-        // Update all heart buttons based on current state
-        const heartBtns = document.querySelectorAll('.favorite-btn, .btn-add, .favorite-icon-overlay');
+        var self = this;
+        var buttons = document.querySelectorAll('.favorite-btn, .favorite-icon-overlay');
 
-        heartBtns.forEach(btn => {
-            const id = btn.dataset.id;
-            if (id) {
-                const isFav = this.isFavorite(id);
-                const icon = btn.querySelector('i');
+        Array.prototype.forEach.call(buttons, function (btn) {
+            var id = btn.getAttribute('data-id');
+            if (!id) {
+                return;
+            }
 
-                if (isFav) {
-                    btn.classList.add('active');
-                    if (icon) {
-                        icon.classList.remove('far'); // Regular (outline)
-                        icon.classList.add('fas');    // Solid (filled)
-                        // If it's the specific favorite overlay in cards
-                        if (btn.classList.contains('favorite-icon-overlay')) {
-                            // icon.style.color = 'white'; // Remove this override so it can turn red? 
-                            // Actually plan said "Keep white inside red circle" is usually valid but active favorites usually turn red. 
-                            // The instruction in implementation plan was to fix targeting.
-                            // But wait, the existing code:
-                            /* 
-                            if (btn.classList.contains('favorite-icon-overlay')) {
-                                icon.style.color = 'white'; // Keep white inside red circle
-                            } else {
-                                icon.style.color = '#ff0000';
-                            }
-                            */
+            var icon = btn.querySelector('i');
+            var active = self.isFavorite(id);
 
-                            // If I want it to be white, then it won't look "active" via color.
-                            // Maybe the background should change? The background is hardcoded red in HTML style attribute.
-                            // I should rely on CSS classes and remove inline styles in homepage.html.
+            if (active) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
 
-                            // For now, let's just make sure the JS adds the class.
-                            icon.style.color = 'white';
-                        } else {
-                            // Normal buttons
-                            icon.style.color = '#ff0000';
-                        }
-                    }
+            if (icon) {
+                if (active) {
+                    icon.className = 'fas fa-heart';
+                    icon.style.color = '#ff0000';
                 } else {
-                    btn.classList.remove('active');
-                    if (icon) {
-                        icon.classList.remove('fas');
-                        icon.classList.add('far'); // Back to outline if possible, or just style reset
-                        icon.style.color = ''; // Reset color
-                    }
+                    icon.className = 'far fa-heart';
+                    icon.style.color = '';
                 }
             }
         });
 
-        // If we are on favorites page, re-render the grid
-        if (window.location.pathname.includes('favorites.html')) {
+        if (window.location.pathname.indexOf('favorites.html') !== -1) {
             renderFavoritesPage();
         }
     }
 };
 
-// Global function to render favorites page (exposed for inline script)
+
+// -------------------- RENDER FAVORITES PAGE --------------------
 function renderFavoritesPage() {
-    const grid = document.getElementById('favorites-grid');
-    if (!grid) return;
-
-    const favorites = FavoritesManager.getFavorites();
-    grid.innerHTML = '';
-
-    if (favorites.length === 0) {
-        grid.innerHTML = `
-            <div class="empty-state" style="width: 100%; text-align: center; padding: 40px; color: #888;">
-                <i class="far fa-heart" style="font-size: 48px; margin-bottom: 20px; opacity: 0.5;"></i>
-                <h3>No Favorites Yet</h3>
-                <p>Click the heart icon on any movie or channel to add it here.</p>
-            </div>
-        `;
+    var grid = document.getElementById('favorites-grid');
+    if (!grid) {
         return;
     }
 
-    favorites.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'channel-card';
-        card.innerHTML = `
-            <div class="channel-logo-box">
-                <img src="${item.image}" alt="${item.title}">
-                <div class="favorite-icon-overlay" onclick="FavoritesManager.removeFavorite('${item.id}')">
-                    <i class="fas fa-heart"></i>
-                </div>
-            </div>
-            <div class="channel-info">
-                <h3>${item.title}</h3>
-                <p>${item.subtitle || 'Live Channel'}</p>
-            </div>
-        `;
-        grid.appendChild(card);
-    });
+    var list = FavoritesManager.getFavorites();
+    grid.innerHTML = '';
+
+    if (!list.length) {
+        grid.innerHTML = '' +
+            '<div style="text-align:center; padding:40px; color:#888;">' +
+            '<i class="far fa-heart" style="font-size:48px; opacity:.5;"></i>' +
+            '<h3>No Favorites Yet</h3>' +
+            '<p>Click the heart icon to add favorites.</p>' +
+            '</div>';
+        return;
+    }
+
+    for (var i = 0; i < list.length; i++) {
+        var item = list[i];
+        var div = document.createElement('div');
+        div.className = 'channel-card';
+
+        div.innerHTML =
+            '<div class="channel-logo-box">' +
+                '<img src="' + item.image + '" alt="' + (item.title || '') + '">' +
+                '<div class="favorite-icon-overlay" data-id="' + item.id + '" onclick="FavoritesManager.removeFavorite(\'' + item.id + '\')">' +
+                    '<i class="fas fa-heart"></i>' +
+                '</div>' +
+            '</div>' +
+            '<div class="channel-info">' +
+                '<h3>' + item.title + '</h3>' +
+                '<p>' + (item.subtitle || 'Live Channel') + '</p>' +
+            '</div>';
+
+        grid.appendChild(div);
+    }
 }
 
-// Initial UI Update on Load
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Favorites UI
-    if (typeof FavoritesManager !== 'undefined') {
-        FavoritesManager.updateUI();
-    }
 
-    // Initialize Connectivity Manager
-    if (typeof ConnectivityManager !== 'undefined') {
-        ConnectivityManager.init();
-    }
-});
-
-// ============================================
-// NETWORK CONNECTIVITY MANAGER
-// ============================================
-const ConnectivityManager = {
+// -------------------- CONNECTIVITY MANAGER --------------------
+var ConnectivityManager = {
     init: function () {
         this.injectPopup();
         this.bindEvents();
@@ -239,36 +197,39 @@ const ConnectivityManager = {
     },
 
     injectPopup: function () {
-        if (document.getElementById('network-popup')) return;
+        if (document.getElementById('network-popup')) {
+            return;
+        }
 
-        const popupHTML = `
-            <div id="network-popup" class="network-popup-overlay">
-                <div class="network-popup-card">
-                    <div class="network-popup-image-container">
-                        <img src="images/network-error-1.png" alt="No Internet" id="network-popup-img">
-                    </div>
-                    <div class="network-popup-content">
-                        <h2 class="network-popup-title" id="network-popup-title">No Internet Connection</h2>
-                        <p class="network-popup-text" id="network-popup-msg">Please Check your network and try again</p>
-                        
-                        <div class="network-popup-actions">
-                            <button class="btn-popup-primary" onclick="ConnectivityManager.tryAgain()">Try Again</button>
-                            <button class="btn-popup-secondary" onclick="ConnectivityManager.openSettings()">Network Settings</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-        document.body.insertAdjacentHTML('beforeend', popupHTML);
+        var html =
+            '<div id="network-popup" class="network-popup-overlay">' +
+                '<div class="network-popup-card">' +
+                    '<div class="network-popup-image-container">' +
+                        '<img src="images/network-error-1.png" id="network-popup-img" alt="Network Error">' +
+                    '</div>' +
+                    '<div class="network-popup-content">' +
+                        '<h2 id="network-popup-title">No Internet Connection</h2>' +
+                        '<p id="network-popup-msg">Please check your network and try again</p>' +
+                        '<div class="network-popup-actions">' +
+                            '<button class="btn-popup-primary" onclick="ConnectivityManager.tryAgain()">Try Again</button>' +
+                            '<button class="btn-popup-secondary" id="popup-secondary-btn">Network Settings</button>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+
+        document.body.insertAdjacentHTML('beforeend', html);
     },
 
     bindEvents: function () {
-        window.addEventListener('online', () => {
-            this.hidePopup();
+        var self = this;
+
+        window.addEventListener('online', function () {
+            self.hidePopup();
         });
 
-        window.addEventListener('offline', () => {
-            this.showPopup();
+        window.addEventListener('offline', function () {
+            self.showPopup();
         });
     },
 
@@ -279,49 +240,67 @@ const ConnectivityManager = {
     },
 
     showPopup: function () {
-        const popup = document.getElementById('network-popup');
-        if (popup) {
-            // Randomize content for "wow" factor
-            const useVariant = Math.random() > 0.5;
-            const img = document.getElementById('network-popup-img');
-            const title = document.getElementById('network-popup-title');
-            const msg = document.getElementById('network-popup-msg');
-            const settingsBtn = document.querySelector('.btn-popup-secondary');
-
-            if (useVariant) {
-                img.src = 'images/network-error-2.png';
-                title.innerText = "You don't seem to be connected";
-                msg.innerText = "Something went wrong while trying to launch the channel";
-                settingsBtn.innerText = "Go back to Home";
-                settingsBtn.onclick = () => window.location.href = 'homepage.html';
-            } else {
-                img.src = 'images/network-error-1.png';
-                title.innerText = "No Internet Connection";
-                msg.innerText = "Please Check your network and try again";
-                settingsBtn.innerText = "Network Settings";
-                settingsBtn.onclick = () => ConnectivityManager.openSettings();
-            }
-
-            popup.style.display = 'flex';
+        var popup = document.getElementById('network-popup');
+        if (!popup) {
+            return;
         }
+
+        var img = document.getElementById('network-popup-img');
+        var title = document.getElementById('network-popup-title');
+        var msg = document.getElementById('network-popup-msg');
+        var btn = document.getElementById('popup-secondary-btn');
+
+        var variant = Math.random() > 0.5;
+
+        if (variant) {
+            img.src = 'images/network-error-2.png';
+            title.innerText = "You don't seem connected";
+            msg.innerText = "Something went wrong while launching the channel";
+            btn.innerText = "Go Back Home";
+            btn.onclick = function () {
+                window.location.href = 'homepage.html';
+            };
+        } else {
+            img.src = 'images/network-error-1.png';
+            title.innerText = "No Internet Connection";
+            msg.innerText = "Please check your network and try again";
+            btn.innerText = "Network Settings";
+            btn.onclick = function () {
+                ConnectivityManager.openSettings();
+            };
+        }
+
+        popup.style.display = 'flex';
     },
 
     hidePopup: function () {
-        const popup = document.getElementById('network-popup');
-        if (popup) popup.style.display = 'none';
+        var popup = document.getElementById('network-popup');
+        if (popup) {
+            popup.style.display = 'none';
+        }
     },
 
     tryAgain: function () {
         if (navigator.onLine) {
             this.hidePopup();
-        } else {
-            // Shake effect
-            const card = document.querySelector('.network-popup-card');
-            card.style.transition = 'transform 0.1s';
-            card.style.transform = 'translateX(10px)';
-            setTimeout(() => card.style.transform = 'translateX(-10px)', 100);
-            setTimeout(() => card.style.transform = 'translateX(0)', 200);
+            return;
         }
+
+        var card = document.querySelector('.network-popup-card');
+        if (!card) {
+            return;
+        }
+
+        card.style.transition = 'transform 0.1s';
+        card.style.transform = 'translateX(10px)';
+
+        setTimeout(function () {
+            card.style.transform = 'translateX(-10px)';
+        }, 100);
+
+        setTimeout(function () {
+            card.style.transform = 'translateX(0)';
+        }, 200);
     },
 
     openSettings: function () {
@@ -329,86 +308,102 @@ const ConnectivityManager = {
     }
 };
 
-// ============================================
-// PROFILE MANAGER
-// ============================================
-const ProfileManager = {
+
+// -------------------- PROFILE MANAGER --------------------
+var ProfileManager = {
     init: function () {
         this.loadProfile();
         this.bindEvents();
     },
 
     loadProfile: function () {
-        const savedProfile = localStorage.getItem('bbnl-current-profile') || 'alex';
-        const savedAvatar = localStorage.getItem('bbnl-current-avatar') || 'https://i.pravatar.cc/150?u=alex';
+        var name = localStorage.getItem('bbnl-current-profile') || 'alex';
+        var avatar = localStorage.getItem('bbnl-current-avatar') || 'https://i.pravatar.cc/150?u=alex';
 
-        const avatarImg = document.getElementById('current-profile-avatar');
-        if (avatarImg) {
-            avatarImg.src = savedAvatar;
+        var img = document.getElementById('current-profile-avatar');
+        if (img) {
+            img.src = avatar;
         }
 
-        this.updateActiveProfileUI(savedProfile);
+        this.updateActiveProfileUI(name);
     },
 
-    updateActiveProfileUI: function (profileName) {
-        const profileItems = document.querySelectorAll('.profile-dropdown-item');
-        profileItems.forEach(item => {
-            const badge = item.querySelector('.profile-dropdown-badge');
-            const check = item.querySelector('.profile-check');
+    updateActiveProfileUI: function (name) {
+        var items = document.querySelectorAll('.profile-dropdown-item');
 
-            if (item.dataset.profile === profileName) {
+        Array.prototype.forEach.call(items, function (item) {
+            var isActive = item.getAttribute('data-profile') === name;
+            var badge = item.querySelector('.profile-dropdown-badge');
+            var check = item.querySelector('.profile-check');
+
+            if (isActive) {
                 if (!badge) {
-                    const newBadge = document.createElement('span');
-                    newBadge.className = 'profile-dropdown-badge';
-                    newBadge.textContent = 'Active';
-                    item.querySelector('.profile-dropdown-info').appendChild(newBadge);
+                    var info = item.querySelector('.profile-dropdown-info');
+                    var b = document.createElement('span');
+                    b.className = 'profile-dropdown-badge';
+                    b.innerHTML = 'Active';
+                    if (info) {
+                        info.appendChild(b);
+                    }
                 }
-                if (check) check.style.display = 'block';
+                if (check) {
+                    check.style.display = 'block';
+                }
             } else {
-                if (badge) badge.remove();
-                if (check) check.style.display = 'none';
+                if (badge && badge.parentNode) {
+                    badge.parentNode.removeChild(badge);
+                }
+                if (check) {
+                    check.style.display = 'none';
+                }
             }
         });
     },
 
     bindEvents: function () {
-        const menuContainer = document.querySelector('.profile-menu'); // Use class as some pages might lack ID
-        const dropdown = document.getElementById('profile-dropdown');
+        var self = this;
+        var menu = document.querySelector('.profile-menu');
+        var dropdown = document.getElementById('profile-dropdown');
 
-        if (menuContainer && dropdown) {
-            menuContainer.addEventListener('click', (e) => {
+        if (menu && dropdown) {
+            menu.addEventListener('click', function (e) {
                 e.stopPropagation();
-                const isVisible = dropdown.style.display === 'flex' || dropdown.style.display === 'block';
-                dropdown.style.display = isVisible ? 'none' : 'block'; // 'block' is safer for general dropdowns, check CSS
+                var isVisible = dropdown.style.display === 'block';
+                dropdown.style.display = isVisible ? 'none' : 'block';
             });
         }
 
-        const profileItems = document.querySelectorAll('.profile-dropdown-item');
-        profileItems.forEach(item => {
-            item.addEventListener('click', (e) => {
+        var profileItems = document.querySelectorAll('.profile-dropdown-item');
+
+        Array.prototype.forEach.call(profileItems, function (item) {
+            item.addEventListener('click', function (e) {
                 e.stopPropagation();
-                const profileName = item.dataset.profile;
-                const avatarUrl = item.dataset.avatar;
 
-                // Save
-                localStorage.setItem('bbnl-current-profile', profileName);
-                localStorage.setItem('bbnl-current-avatar', avatarUrl);
+                var name = item.getAttribute('data-profile');
+                var avatar = item.getAttribute('data-avatar');
 
-                // Update UI
-                const avatarImg = document.getElementById('current-profile-avatar');
-                if (avatarImg) avatarImg.src = avatarUrl;
+                localStorage.setItem('bbnl-current-profile', name);
+                localStorage.setItem('bbnl-current-avatar', avatar);
 
-                this.updateActiveProfileUI(profileName);
+                var img = document.getElementById('current-profile-avatar');
+                if (img) {
+                    img.src = avatar;
+                }
 
-                // Close dropdown
-                if (dropdown) dropdown.style.display = 'none';
+                self.updateActiveProfileUI(name);
+
+                if (dropdown) {
+                    dropdown.style.display = 'none';
+                }
             });
         });
 
-        // Close on outside click
-        document.addEventListener('click', (e) => {
-            if (dropdown && dropdown.style.display !== 'none') {
-                if (!dropdown.contains(e.target) && (!menuContainer || !menuContainer.contains(e.target))) {
+        document.addEventListener('click', function (e) {
+            if (dropdown && dropdown.style.display === 'block') {
+                var clickInsideDropdown = dropdown.contains(e.target);
+                var clickInsideMenu = menu && menu.contains(e.target);
+
+                if (!clickInsideDropdown && !clickInsideMenu) {
                     dropdown.style.display = 'none';
                 }
             }
@@ -416,9 +411,120 @@ const ProfileManager = {
     }
 };
 
-// Initialize ProfileManager
-document.addEventListener('DOMContentLoaded', () => {
-    if (typeof ProfileManager !== 'undefined') {
-        ProfileManager.init();
-    }
+
+// -------------------- INIT ALL MANAGERS --------------------
+document.addEventListener('DOMContentLoaded', function () {
+    initializeTheme();
+    setupThemeToggle();
+    FavoritesManager.updateUI();
+    ConnectivityManager.init();
+    ProfileManager.init();
+});
+
+// -------------------- SAMSUNG TV REMOTE CONTROL MANAGER --------------------
+document.addEventListener('DOMContentLoaded', function () {
+    // Register all common Samsung TV remote keys
+    var samsungKeys = [
+        "ColorF0Red", "ColorF1Green", "ColorF2Yellow", "ColorF3Blue",
+        "MediaPlay", "MediaPause", "MediaStop", "MediaRewind", "MediaFastForward",
+        "ChannelUp", "ChannelDown", "VolumeUp", "VolumeDown", "Mute",
+        "Exit", "Return", "Enter", "Info", "Menu", "Guide", "Tools",
+        "PictureSize", "Teletext", "Soccer", "Extra"
+    ];
+
+    samsungKeys.forEach(function(key) {
+        try {
+            tizen.tvinputdevice.registerKey(key);
+        } catch (e) {
+            console.error("Failed to register key:", key, e);
+        }
+    });
+
+    // Handle all remote key events
+    document.addEventListener('keydown', function (e) {
+        switch (e.keyCode) {
+            case 37: // LEFT
+                console.log("Left arrow pressed");
+                break;
+            case 38: // UP
+                console.log("Up arrow pressed");
+                break;
+            case 39: // RIGHT
+                console.log("Right arrow pressed");
+                break;
+            case 40: // DOWN
+                console.log("Down arrow pressed");
+                break;
+            case 13: // ENTER/OK
+                console.log("OK button pressed");
+                break;
+            case 10009: // RETURN/BACK
+                console.log("Back button pressed");
+                break;
+            case 403: // RED
+                console.log("Red button pressed");
+                break;
+            case 404: // GREEN
+                console.log("Green button pressed");
+                break;
+            case 405: // YELLOW
+                console.log("Yellow button pressed");
+                break;
+            case 406: // BLUE
+                console.log("Blue button pressed");
+                break;
+            case 415: // PLAY
+                console.log("Play button pressed");
+                break;
+            case 19: // PAUSE
+                console.log("Pause button pressed");
+                break;
+            case 412: // STOP
+                console.log("Stop button pressed");
+                break;
+            case 413: // REWIND
+                console.log("Rewind button pressed");
+                break;
+            case 417: // FAST FORWARD
+                console.log("Fast forward button pressed");
+                break;
+            case 427: // CHANNEL UP
+                console.log("Channel up pressed");
+                break;
+            case 428: // CHANNEL DOWN
+                console.log("Channel down pressed");
+                break;
+            case 447: // VOLUME UP
+                console.log("Volume up pressed");
+                break;
+            case 448: // VOLUME DOWN
+                console.log("Volume down pressed");
+                break;
+            case 449: // MUTE
+                console.log("Mute button pressed");
+                break;
+            case 10182: // EXIT
+                console.log("Exit button pressed");
+                break;
+            case 10131: // INFO
+                console.log("Info button pressed");
+                break;
+            case 10129: // MENU
+                console.log("Menu button pressed");
+                break;
+            case 10140: // PICTURE SIZE
+                console.log("Picture size button pressed");
+                break;
+            case 10200: // TELETEXT
+                console.log("Teletext button pressed");
+                break;
+            case 10228: // SOCCER
+                console.log("Soccer button pressed");
+                break;
+            case 10253: // EXTRA
+                console.log("Extra button pressed");
+                break;
+            // Add more cases for other keys as needed
+        }
+    });
 });

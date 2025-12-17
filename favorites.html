@@ -5,7 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BBNL - Favorites</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Base Styles -->
+    <link rel="stylesheet" href="css/base/variable.css">
+    <link rel="stylesheet" href="css/base/reset.css">
+    <!-- Layout Styles -->
+    <link rel="stylesheet" href="css/layout/header.css">
+    <link rel="stylesheet" href="css/layout/sidebar.css">
+    <!-- Component Styles -->
+    <link rel="stylesheet" href="css/componentes/buttons.css">
+    <link rel="stylesheet" href="css/componentes/cards.css">
+    <!-- Page Styles -->
+    <link rel="stylesheet" href="css/pages/favorites.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
@@ -20,11 +30,10 @@
             <input type="text" placeholder="Search Channels">
         </div>
         <div class="header-right">
-            <button class="header-pill-btn" id="network-btn"><i class="fas fa-wifi"></i> Network</button>
-            <button class="header-icon-btn" onclick="window.location.href='settings.html'"><i
-                    class="fas fa-cog"></i></button>
+            <button class="header-icon-btn" onclick="window.location.href='homepage.html'"><i class="fas fa-home"></i></button>
+            <button class="header-icon-btn" onclick="window.location.href='notifications.html'"><i class="fas fa-bell"></i></button>
             <div class="profile-menu">
-                <img src="https://i.pravatar.cc/150?u=alex" alt="User"
+                <img src="https://i.pravatar.cc/150?u=alex" alt="User" id="current-profile-avatar"
                     style="width: 32px; height: 32px; border-radius: 50%;">
             </div>
         </div>

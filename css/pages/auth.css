@@ -76,7 +76,7 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--text-secondary);
+    background: #b0bec5;
     transition: all 0.3s ease;
 }
 
@@ -85,7 +85,7 @@
 }
 
 .tab-btn.active .indicator {
-    background: var(--primary-color);
+    background: #007bff;
     transform: scale(1.5);
 }
 
@@ -122,7 +122,7 @@
 
 .otp-input:focus {
     outline: none;
-    border-bottom-color: var(--primary-color);
+    border-bottom-color: #007bff;
     background: rgba(255, 255, 255, 0.02);
 }
 
@@ -148,7 +148,7 @@
 }
 
 .otp-timer a {
-    color: var(--accent-color);
+    color: #ffc107;
     text-decoration: none;
     font-weight: 600;
 }
@@ -158,12 +158,12 @@
 }
 
 .otp-timer span {
-    color: var(--accent-color);
+    color: #ffc107;
 }
 
 /* Device Verification */
 .verify-code-box {
-    background: var(--card-bg);
+    background: #161b22;
     border: 1px solid rgba(255, 255, 255, 0.03);
     border-radius: 12px;
     padding: 28px;
@@ -192,13 +192,13 @@
 }
 
 .expire-timer {
-    color: var(--accent-color);
+    color: #ffc107;
     font-size: 14px;
     margin: 20px 0;
 }
 
 .help-link {
-    color: var(--primary-color);
+    color: #007bff;
     text-decoration: none;
     font-size: 14px;
 }

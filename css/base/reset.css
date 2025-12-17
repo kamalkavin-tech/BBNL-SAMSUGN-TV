@@ -56,14 +56,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--card-bg);
+    background: #161b22;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--border-color);
+    background: #30363d;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary-color);
+    background: #6c757d;
 }

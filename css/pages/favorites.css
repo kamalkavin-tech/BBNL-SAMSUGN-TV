@@ -13,10 +13,20 @@
 /* Filter Pills Container */
 .filter-pills-container {
     display: flex;
-    gap: 15px;
-    margin-bottom: 40px;
+    gap: 12px;
+    margin-bottom: 30px;
     overflow-x: auto;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    flex-wrap: wrap;
+}
+
+.filter-pills-container::-webkit-scrollbar {
+    height: 4px;
+}
+
+.filter-pills-container::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
 }
 
 /* Favorites Grid */

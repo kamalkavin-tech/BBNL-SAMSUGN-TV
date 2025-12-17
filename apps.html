@@ -5,7 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BBNL - Apps</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Base Styles -->
+    <link rel="stylesheet" href="css/base/variable.css">
+    <link rel="stylesheet" href="css/base/reset.css">
+    <!-- Layout Styles -->
+    <link rel="stylesheet" href="css/layout/header.css">
+    <link rel="stylesheet" href="css/layout/sidebar.css">
+    <!-- Component Styles -->
+    <link rel="stylesheet" href="css/componentes/buttons.css">
+    <link rel="stylesheet" href="css/componentes/cards.css">
+    <!-- Page Styles -->
+    <link rel="stylesheet" href="css/pages/apps.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
@@ -45,17 +55,16 @@
         <main class="main-content">
             <!-- Top Header -->
             <header class="top-header">
-                <div class="search-box">
+                <div class="search-container">
                     <i class="fas fa-search search-icon"></i>
                     <input type="text" placeholder="Search Apps">
                 </div>
 
                 <div class="header-controls">
-                    <button class="header-pill-btn" id="network-btn"><i class="fas fa-wifi"></i> Network</button>
-                    <button class="header-icon-btn" onclick="window.location.href='settings.html'"><i
-                            class="fas fa-cog"></i></button>
+                    <button class="header-icon-btn" onclick="window.location.href='homepage.html'"><i class="fas fa-home"></i></button>
+                    <button class="header-icon-btn" onclick="window.location.href='notifications.html'"><i class="fas fa-bell"></i></button>
                     <div class="profile-menu">
-                        <img src="https://i.pravatar.cc/150?u=alex" alt="User"
+                        <img src="https://i.pravatar.cc/150?u=alex" alt="User" id="current-profile-avatar"
                             style="width: 32px; height: 32px; border-radius: 50%;">
                     </div>
                 </div>
@@ -72,15 +81,15 @@
                 </div>
 
                 <!-- Filter Pills -->
-                <div class="apps-filter-pills">
-                    <button class="app-filter-pill active">All</button>
-                    <button class="app-filter-pill">Subscribed</button>
-                    <button class="app-filter-pill">Entertainment</button>
-                    <button class="app-filter-pill">Sports</button>
-                    <button class="app-filter-pill">News</button>
-                    <button class="app-filter-pill">Kids</button>
+                <div class="filter-pills-container">
+                    <button class="pill-btn active">All</button>
+                    <button class="pill-btn">Subscribed</button>
+                    <button class="pill-btn">Entertainment</button>
+                    <button class="pill-btn">Sports</button>
+                    <button class="pill-btn">News</button>
+                    <button class="pill-btn">Kids</button>
                     <div class="language-dropdown-container">
-                        <button class="app-filter-pill" id="language-dropdown-btn">Language <i
+                        <button class="pill-btn" id="language-dropdown-btn">Language <i
                                 class="fas fa-chevron-down" style="font-size: 10px; margin-left: 5px;"></i></button>
                         <div class="language-dropdown-menu" id="language-dropdown-list">
                             <button class="language-option" data-lang="all">All Languages</button>
@@ -96,6 +105,7 @@
 
                 <!-- OTT Apps Grid (Default View) -->
                 <section id="ott" class="apps-section active">
+                    <h2>OTT Apps</h2>
                     <div class="apps-grid-view">
                         <!-- App Card: JioHotstar -->
                         <div class="new-app-card" data-languages="english,hindi,tamil,telugu,malayalam,kannada">
@@ -161,6 +171,7 @@
 
                 <!-- Social Media Apps Grid (Hidden by Default) -->
                 <section id="social" class="apps-section" style="display: none;">
+                    <h2>Social Media Apps</h2>
                     <div class="apps-grid-view">
                         <div class="new-app-card" data-languages="english">
                             <div class="app-logo-box">
@@ -199,6 +210,7 @@
 
                 <!-- Games Grid (Hidden by Default) -->
                 <section id="games" class="apps-section" style="display: none;">
+                    <h2>Games</h2>
                     <div class="apps-grid-view">
                         <div class="new-app-card" data-languages="english">
                             <div class="app-logo-box">
@@ -246,7 +258,7 @@
         });
 
         // Filter Pill Selection Logic (Updated to ignore Language button)
-        const pills = document.querySelectorAll('.app-filter-pill:not(#language-dropdown-btn)');
+        const pills = document.querySelectorAll('.pill-btn:not(#language-dropdown-btn)');
         pills.forEach(pill => {
             pill.addEventListener('click', () => {
                 pills.forEach(p => p.classList.remove('active'));

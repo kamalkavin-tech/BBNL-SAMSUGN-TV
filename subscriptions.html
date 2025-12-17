@@ -5,11 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BBNL - Subscriptions</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Base Styles -->
+    <link rel="stylesheet" href="css/base/variable.css">
+    <link rel="stylesheet" href="css/base/reset.css">
+    <!-- Layout Styles -->
+    <link rel="stylesheet" href="css/layout/header.css">
+    <link rel="stylesheet" href="css/layout/sidebar.css">
+    <!-- Component Styles -->
+    <link rel="stylesheet" href="css/componentes/buttons.css">
+    <!-- Page Styles -->
+    <link rel="stylesheet" href="css/pages/subscription.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="js/script.js"></script>
 </head>
 
-<body>
+<body class="subscription-page-body">
     <div class="app-container">
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
@@ -19,11 +29,11 @@
 
             <nav class="sidebar-nav">
                 <a href="homepage.html" class="nav-item">
-                    <i class="icon">🏠</i>
+                    <i class="fas fa-home"></i>
                     <span>Home</span>
                 </a>
                 <a href="subscriptions.html" class="nav-item active">
-                    <i class="icon">💎</i>
+                    <i class="fas fa-gem"></i>
                     <span>Subscription</span>
                 </a>
             </nav>
@@ -33,13 +43,16 @@
         <main class="main-content">
             <!-- Top Header -->
             <header class="top-header">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+
                 <div class="header-controls">
-                    <button class="header-pill-btn" id="network-btn"><i class="fas fa-wifi"></i> Network</button>
-                    <button class="header-icon-btn" onclick="window.location.href='settings.html'"><i
-                            class="fas fa-cog"></i></button>
+                    <button class="header-icon-btn" onclick="window.location.href='homepage.html'"><i class="fas fa-home"></i></button>
+                    <button class="header-icon-btn" onclick="window.location.href='notifications.html'"><i class="fas fa-bell"></i></button>
                     <div class="profile-menu">
-                        <img src="https://i.pravatar.cc/150?u=alex" alt="User"
-                            style="width: 32px; height: 32px; border-radius: 50%;">
+                        <img src="https://i.pravatar.cc/150?u=alex" alt="User" id="current-profile-avatar" style="width: 32px; height: 32px; border-radius: 50%;">
                     </div>
                 </div>
             </header>
@@ -47,206 +60,113 @@
             <!-- Subscription Section -->
             <section class="content-section">
                 <h2>Subscription and Billing</h2>
-                <p style="color: var(--text-secondary); margin-bottom: 30px;">Here Your subscription Detailes</p>
+                <p class="page-subtitle">Here your subscription details</p>
 
-                <div class="payment-layout">
-                    <!-- Left Sidebar -->
-                    <div class="payment-sidebar">
-                        <a href="#" class="payment-nav-item active">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="2" y="5" width="20" height="14" rx="2" />
-                                <line x1="2" y1="10" x2="22" y2="10" />
-                            </svg>
-                            <span>Make Payment</span>
-                        </a>
-                        <a href="#" class="payment-nav-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="3" y="3" width="18" height="18" rx="2" />
-                                <path d="m9 11 3 3L22 4" />
-                            </svg>
-                            <span>Expiring channels</span>
-                        </a>
-                        <a href="#" class="payment-nav-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                            </svg>
-                            <span>Payment History</span>
-                        </a>
+                <div class="subscription-wrapper">
+                    <!-- Make Payment Section -->
+                    <h3 class="section-title">Make Payment</h3>
+                    
+                    <div class="payment-cards-row">
+                        <!-- Premium Plan Card -->
+                        <div class="premium-plan-card">
+                            <h4 class="card-heading">Premium Plan</h4>
+                            <p class="card-subtitle">Next billing date: 27 Dec 2025</p>
+                            <p class="card-price">$19.99/Month</p>
+                            <button class="btn btn-primary full-width">Make Payment Now</button>
+                            <a href="#" class="manage-link">Manage Subscription</a>
+                        </div>
+
+                        <!-- Payment Method Card -->
+                        <div class="payment-methods-card">
+                            <h4 class="card-heading">Select Payment Method</h4>
+                            <div class="methods-list">
+                                <div class="method-item">
+                                    <i class="fas fa-credit-card method-icon"></i>
+                                    <span class="method-name">Debit Card</span>
+                                    <i class="fas fa-chevron-right arrow-icon"></i>
+                                </div>
+                                <div class="method-item">
+                                    <i class="fas fa-credit-card method-icon"></i>
+                                    <span class="method-name">Credit Card</span>
+                                    <i class="fas fa-chevron-right arrow-icon"></i>
+                                </div>
+                                <div class="method-item">
+                                    <i class="fas fa-mobile-alt method-icon"></i>
+                                    <span class="method-name">UPI Method</span>
+                                    <i class="fas fa-chevron-right arrow-icon"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Main Payment Content -->
-                    <div class="payment-main-content">
-                        <h3 style="font-size: 24px; margin-bottom: 30px;">Make Payment</h3>
-
-                        <div class="payment-details-grid">
-                            <!-- Premium Plan -->
-                            <div class="payment-plan-card">
-                                <h4 style="font-size: 16px; margin-bottom: 10px;">Premium Plan</h4>
-                                <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 8px;">Next
-                                    billing date: 27 Dec 2025</p>
-                                <p style="color: var(--accent-color); font-size: 18px; font-weight: 600;">$19.
-                                    99/Month
-                                </p>
-                                <button class="btn btn-primary" style="width: 100%; margin-top: 15px;">Make Payment
-                                    Now</button>
-                                <a href="#"
-                                    style="color: var(--text-secondary); font-size: 13px; margin-top: 12px; display: block; text-decoration: none;">Manage
-                                    Subscription</a>
+                    <!-- Explore More Options -->
+                    <div class="explore-section">
+                        <h3 class="section-title">Explore more channel options</h3>
+                        <div class="channel-options-row">
+                            <div class="channel-option-box">
+                                <i class="fas fa-layer-group option-icon"></i>
+                                <p class="option-label">Package Channel Selection</p>
                             </div>
+                            <div class="channel-option-box">
+                                <i class="fas fa-tv option-icon"></i>
+                                <p class="option-label">Single Channel Selection</p>
+                            </div>
+                            <div class="channel-option-box">
+                                <i class="fas fa-globe option-icon"></i>
+                                <p class="option-label">Group Selection</p>
+                            </div>
+                        </div>
+                    </div>
 
-                            <!-- Payment Method -->
-                            <div class="payment-method-card">
-                                <h4 style="font-size: 16px; margin-bottom: 15px;">Select Payment Method</h4>
-                                <div class="payment-method-options">
-                                    <div class="payment-method-option">
-                                        <div class="payment-method-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" s-
-                                                strstroke-width="2" oke-linecap="round" stroke-linejoin="round">
-                                                <rect x="2" y="5" width="20" height="14" rx="2" />
-                                                <line x1="2" y1="10" x2="22" y2="10" />
-                                            </svg>
-                                        </div>
-                                        <span>Debit Card</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" sty l e="margin-left: auto;">
-                                            <path d="m9 18 6-6-6-6" />
-                                        </svg>
-                                    </div>
-                                    <div class="payment-method-option">
-                                        <div class="payment-method-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" s-
-                                                stroke-linewidth="2" stroke-cap="round" stroke-linejoin="round">
-                                                <rect x="2" y="5" width="20" height="14" rx="2" />
-                                                <line x1="2" y1="10" x2="22" y2="10" />
-                                            </svg>
-                                        </div>
-                                        <span>Credit Card</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" sty l e="margin-left: auto;">
-                                            <path d="m9 18 6-6-6-6" />
-                                        </svg>
-                                    </div>
-                                    <div class="payment-method-option">
-                                        <div class="payment-method-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" str
-                                                stroke-linewidth="2" stroke-cap="round" stroke-linejoin="round">
-                                                <path d="M20 6 9 17l-5-5" />
-                                            </svg>
-                                        </div>
-                                        <span>UPI method</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" sty l e="margin-left: auto;">
-                                            <path d="m9 18 6-6-6-6" />
-                                        </svg>
-                                    </div>
-                                </div>
+                    <!-- Expiring Channels -->
+                    <div class="expiring-section">
+                        <h3 class="section-title">Expiring Channels</h3>
+
+                        <!-- Colors TV -->
+                        <div class="channel-row">
+                            <div class="channel-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                C
+                            </div>
+                            <div class="channel-info">
+                                <h5 class="channel-name">Colors TV</h5>
+                                <p class="channel-expiry">Expires in 3 days</p>
+                            </div>
+                            <button class="btn btn-secondary">Cancel</button>
+                        </div>
+
+                        <!-- QR Code Section -->
+                        <div class="qr-section">
+                            <div class="qr-box">
+                                <i class="fas fa-qrcode qr-icon"></i>
+                            </div>
+                            <div class="qr-info">
+                                <h5 class="qr-title">Renew Colors TV for $9.99</h5>
+                                <p class="qr-desc">Scan the QR Code with your mobile device's camera or a payment app to complete the renewal</p>
                             </div>
                         </div>
 
-                        <!-- Explore More Options -->
-                        <div style="margin-top: 40px;">
-                            <h4 style="font-size: 18px; margin-bottom: 20px;">Explore more channel options</h4>
-                            <div class="channel-options-grid">
-                                <div class="channel-option-card">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" vie w42
-                                        viewBox="0f0i24l24" l="none" stroke="currentColor" stroke-width="2" st
-                                        stroke-linejoincap="round" stroke-line="round">
-                                        <rect x="2" y="7" width="20" height="15" rx="2" ry="2" />
-                                        <polyline points="17 2 12 7 7 2" />
-                                    </svg>
-                                    <p style="margin-top: 10px; font-size: 13px;">Package Channel Selection</p>
-                                </div>
-                                <div class="channel-option-card">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" vie w42
-                                        viewBox="0f0i24l24" l="none" stroke="currentColor" stroke-width="2" stn
-                                        stroke-linejoincap="round" stroke-line="round">
-                                        <rect x="2" y="7" width="20" height="15" rx="2" ry="2" />
-                                        <polyline points="17 2 12 7 7 2" />
-                                    </svg>
-                                    <p style="margin-top: 10px; font-size: 13px;">Single Channel Selection</p>
-                                </div>
-                                <div class="channel-option-card">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" vie w42
-                                        viewBox="0f0i24l24" l="none" stroke="currentColor" stroke-width="2" str
-                                        strstroke-linecap="round" oke-linejoin="round">
-                                        <circle cx="12" cy="12" r="10" />
-                                        <circle cx="12" cy="12" r="3" />
-                                    </svg>
-                                    <p style="margin-top: 10px; font-size: 13px;">Glocal Selection</p>
-                                </div>
+                        <!-- Gemini TV -->
+                        <div class="channel-row">
+                            <div class="channel-avatar" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                                G
                             </div>
+                            <div class="channel-info">
+                                <h5 class="channel-name">Gemini TV</h5>
+                                <p class="channel-expiry">Expires in 6 days</p>
+                            </div>
+                            <button class="btn btn-primary">Renew</button>
                         </div>
 
-                        <!-- Expiring Channels -->
-                        <div style="margin-top: 40px;">
-                            <h4 style="font-size: 18px; margin-bottom: 20px;">Expiring Channels</h4>
-
-                            <div class="expiring-channel-item">
-                                <div class="expiring-channel-icon"
-                                    style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                                    <span style="font-size: 20px; font-weight: 700; color: white;">C</span>
-                                </div>
-                                <div style="flex: 1;">
-                                    <h5 style="font-size: 15px; margin-bottom: 4px;">Colors TV</h5>
-                                    <p style="color: var(--text-secondary); font-size: 12px;">Expires in 3 days</p>
-                                </div>
-                                <button class="btn btn-secondary" style="padding: 8px 20px;">Cancel</button>
+                        <!-- Udhaya TV -->
+                        <div class="channel-row">
+                            <div class="channel-avatar" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                                U
                             </div>
-
-                            <div class="expiring-qr-section">
-                                <div class="qr-code-placeholder">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <rect x="3" y="3" width="7" height="7" />
-                                        <rect x="14" y="3" width="7" height="7" />
-                                        <rect x="14" y="14" width="7" height="7" />
-                                        <rect x="3" y="14" width="7" height="7" />
-                                    </svg>
-                                </div>
-                                <div style="flex: 1;">
-                                    <h5 style="font-size: 15px; margin-bottom: 8px;">Renew Colors TV for $9.99</h5>
-                                    <p style="color: var(--text-secondary); font-size: 13px; line-height: 1.5;">Scan the
-                                        QR Code with your mobile device's camera or a payment app to complete the
-                                        renewal</p>
-                                </div>
+                            <div class="channel-info">
+                                <h5 class="channel-name">Udhaya TV</h5>
+                                <p class="channel-expiry">Expires in 9 days</p>
                             </div>
-
-                            <div class="expiring-channel-item">
-                                <div class="expiring-channel-icon"
-                                    style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                                    <span style="font-size: 20px; font-weight: 700; color: white;">G</span>
-                                </div>
-                                <div style="flex: 1;">
-                                    <h5 style="font-size: 15px; margin-bottom: 4px;">Gemini TV</h5>
-                                    <p style="color: var(--text-secondary); font-size: 12px;">Expires in 6 days</p>
-                                </div>
-                                <button class="btn btn-primary" style="padding: 8px 20px;">Renew</button>
-                            </div>
-
-                            <div class="expiring-channel-item">
-                                <div class="expiring-channel-icon"
-                                    style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
-                                    <span style="font-size: 20px; font-weight: 700; color: white;">U</span>
-                                </div>
-                                <div style="flex: 1;">
-                                    <h5 style="font-size: 15px; margin-bottom: 4px;">Udhaya TV</h5>
-                                    <p style="color: var(--text-secondary); font-size: 12px;">Expires in 9 days</p>
-                                </div>
-                                <button class="btn btn-primary" style="padding: 8px 20px;">Renew</button>
-                            </div>
+                            <button class="btn btn-primary">Renew</button>
                         </div>
                     </div>
                 </div>

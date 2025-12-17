@@ -15,7 +15,7 @@
 .channel-card:hover,
 .app-card-icon:hover {
     transform: translateY(-5px);
-    border-color: var(--primary-color);
+    border-color: #007bff;
 }
 
 .app-card img,
@@ -82,7 +82,7 @@
 }
 
 .profile-card:hover .profile-avatar {
-    border-color: var(--primary-color);
+    border-color: #007bff;
 }
 
 .profile-avatar.add {

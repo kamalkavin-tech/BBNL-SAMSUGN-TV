@@ -16,7 +16,7 @@
 }
 
 .btn-primary {
-    background: var(--primary-color);
+    background: #007bff;
     color: white;
     width: 100%;
 }
@@ -27,7 +27,7 @@
 }
 
 .btn-secondary {
-    background: var(--secondary-color);
+    background: #6c757d;
     color: white;
     border: 1px solid var(--border-color);
 }
@@ -37,7 +37,7 @@
 }
 
 .btn-danger {
-    background: var(--danger-color);
+    background: #dc3545;
     color: white;
 }
 
@@ -219,30 +219,78 @@
 /* Pill Buttons (Filter/Tabs) */
 .pill-btn {
     background: transparent;
-    border: 1px solid #444;
-    color: #aeaeae;
-    padding: 8px 24px;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 10px 24px;
     border-radius: 50px;
     font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
     white-space: nowrap;
     transition: all 0.3s ease;
 }
 
 .pill-btn:hover {
-    border-color: #fff;
-    color: #fff;
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .pill-btn.active {
-    background: #fff;
-    color: #000;
+    background: var(--text-primary);
+    color: var(--dark-bg);
+    border-color: var(--text-primary);
     font-weight: 600;
-    border-color: #fff;
 }
 
 .pill-btn.dropdown {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+/* Filter Pills Container */
+.filter-pills-container {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    flex-wrap: wrap;
+}
+
+.filter-pills-container::-webkit-scrollbar {
+    height: 4px;
+}
+
+.filter-pills-container::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+/* Header Icon Button (Settings) - Clean Style */
+.header-icon-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.header-icon-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(90deg);
+}
+
+.header-icon-btn i {
+    font-size: 18px;
 }

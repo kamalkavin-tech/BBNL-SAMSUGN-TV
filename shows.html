@@ -5,7 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BBNL - Shows</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Base Styles -->
+    <link rel="stylesheet" href="css/base/variable.css">
+    <link rel="stylesheet" href="css/base/reset.css">
+    <!-- Layout Styles -->
+    <link rel="stylesheet" href="css/layout/header.css">
+    <link rel="stylesheet" href="css/layout/sidebar.css">
+    <!-- Component Styles -->
+    <link rel="stylesheet" href="css/componentes/buttons.css">
+    <link rel="stylesheet" href="css/componentes/cards.css">
+    <!-- Page Styles -->
+    <link rel="stylesheet" href="css/pages/homepages.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="js/script.js"></script>
 </head>
@@ -20,34 +30,34 @@
 
             <nav class="sidebar-nav">
                 <a href="homepage.html" class="nav-item">
-                    <i class="icon"><i class="fas fa-home"></i></i>
+                    <i class="fas fa-home"></i>
                     <span>Home</span>
                 </a>
                 <a href="tv-channels.html" class="nav-item">
-                    <i class="icon"><i class="fas fa-tv"></i></i>
+                    <i class="fas fa-tv"></i>
                     <span>Live Channels</span>
                 </a>
                 <a href="movies.html" class="nav-item">
-                    <i class="icon"><i class="fas fa-film"></i></i>
+                    <i class="fas fa-film"></i>
                     <span>Movies</span>
                 </a>
                 <a href="shows.html" class="nav-item active">
-                    <i class="icon"><i class="fas fa-video"></i></i>
+                    <i class="fas fa-video"></i>
                     <span>Shows</span>
                 </a>
                 <a href="subscriptions.html" class="nav-item">
-                    <i class="icon"><i class="fas fa-gem"></i></i>
+                    <i class="fas fa-gem"></i>
                     <span>Subscription</span>
                 </a>
             </nav>
 
             <div class="sidebar-footer">
                 <a href="favorites.html" class="nav-item">
-                    <i class="icon"><i class="fas fa-heart"></i></i>
+                    <i class="fas fa-heart"></i>
                     <span>Favorites</span>
                 </a>
                 <a href="notifications.html" class="nav-item">
-                    <i class="icon"><i class="fas fa-bell"></i></i>
+                    <i class="fas fa-bell"></i>
                     <span>Notification</span>
                 </a>
             </div>
@@ -57,17 +67,16 @@
         <main class="main-content">
             <!-- Top Header -->
             <header class="top-header">
-                <div class="search-box">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
                     <input type="text" placeholder="Search Shows">
-                    <i class="search-icon"><i class="fas fa-search"></i></i>
                 </div>
 
                 <div class="header-controls">
-                    <button class="header-pill-btn" id="network-btn"><i class="fas fa-wifi"></i> Network</button>
-                    <button class="header-icon-btn" onclick="window.location.href='settings.html'"><i
-                            class="fas fa-cog"></i></button>
+                    <button class="header-icon-btn" onclick="window.location.href='homepage.html'"><i class="fas fa-home"></i></button>
+                    <button class="header-icon-btn" onclick="window.location.href='notifications.html'"><i class="fas fa-bell"></i></button>
                     <div class="profile-menu">
-                        <img src="https://i.pravatar.cc/150?u=alex" alt="User"
+                        <img src="https://i.pravatar.cc/150?u=alex" alt="User" id="current-profile-avatar"
                             style="width: 32px; height: 32px; border-radius: 50%;">
                     </div>
                 </div>
@@ -77,12 +86,12 @@
             <section class="content-section">
                 <h2 class="section-title">TV Shows</h2>
 
-                <div class="filter-tabs">
-                    <button class="filter-btn active">All</button>
-                    <button class="filter-btn">Reality</button>
-                    <button class="filter-btn">News</button>
-                    <button class="filter-btn">Drama</button>
-                    <button class="filter-btn">Kids</button>
+                <div class="filter-pills-container">
+                    <button class="pill-btn active">All</button>
+                    <button class="pill-btn">Reality</button>
+                    <button class="pill-btn">News</button>
+                    <button class="pill-btn">Drama</button>
+                    <button class="pill-btn">Kids</button>
                 </div>
 
                 <h3>Trending Shows</h3>
@@ -148,7 +157,7 @@
 
     <script>
         // Filter functionality
-        const filterBtns = document.querySelectorAll('.filter-btn');
+        const filterBtns = document.querySelectorAll('.pill-btn');
         const contentItems = document.querySelectorAll('.media-item');
 
         filterBtns.forEach(btn => {

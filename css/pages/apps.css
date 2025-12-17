@@ -1,23 +1,19 @@
 /* Apps Page Content */
 .apps-page-content {
-    padding: 30px 40px;
+    padding: 40px 60px;
     height: calc(100vh - 70px);
     overflow-y: auto;
 }
 
 /* Tabs Navigation */
 .apps-category-tabs {
-    display: flex;
-    gap: 30px;
-    margin-bottom: 30px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
+    display: none;
 }
 
 .apps-tab-btn {
     background: none;
     border: none;
-    color: var(--text-secondary);
+    color: #b0bec5;
     font-size: 24px;
     font-weight: 700;
     cursor: pointer;
@@ -45,37 +41,32 @@
 .apps-filter-pills {
     display: flex;
     gap: 12px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    overflow-x: auto;
     flex-wrap: wrap;
 }
 
 .app-filter-pill {
-    background: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    padding: 8px 24px;
-    border-radius: 20px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    /* Deprecated - use .pill-btn instead */
 }
 
-.app-filter-pill:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--text-secondary);
+/* Apps Section */
+.apps-section {
+    margin-bottom: 60px;
 }
 
-.app-filter-pill.active {
-    background: var(--text-primary);
-    color: var(--dark-bg);
-    border-color: var(--text-primary);
-    font-weight: 600;
+.apps-section h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 30px;
+    letter-spacing: 0.5px;
 }
 
 /* Apps Grid */
 .apps-grid-view {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 30px;
-    padding-bottom: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 35px;
+    padding-bottom: 40px;
 }
