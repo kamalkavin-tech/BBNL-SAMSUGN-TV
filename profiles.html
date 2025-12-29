@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="css/base/reset.css">
     <!-- Component Styles -->
     <link rel="stylesheet" href="css/componentes/buttons.css">
-    <link rel="stylesheet" href="css/componentes/cards.css">
+    <link rel="stylesheet" href="css/componentes/remote.css">
     <!-- Page Styles -->
     <link rel="stylesheet" href="css/pages/profile.css">
-    <script src="js/script.js"></script>
+    <!-- Remote Control -->
+    <script src="js/remote.js"></script>
 </head>
 <body>
     <div class="profile-container">
@@ -94,21 +95,22 @@
     </div>
 
     <script>
-        const viewProfiles = document.getElementById('view-profiles');
-        const viewAddProfile = document.getElementById('view-add-profile');
-        const addProfileBtn = document.getElementById('add-profile-btn');
-        const backToProfilesBtn = document.getElementById('back-to-profiles');
-        const cancelAddProfileBtn = document.getElementById('cancel-add-profile');
-        const profileForm = document.querySelector('.profile-form');
-        const profilesGrid = document.querySelector('.profiles-grid');
-        const addProfileCard = document.getElementById('add-profile-btn');
-        const profileNameInput = document.getElementById('profile-name');
+        // ES5 Compatible Profile Management
+        var viewProfiles = document.getElementById('view-profiles');
+        var viewAddProfile = document.getElementById('view-add-profile');
+        var addProfileBtn = document.getElementById('add-profile-btn');
+        var backToProfilesBtn = document.getElementById('back-to-profiles');
+        var cancelAddProfileBtn = document.getElementById('cancel-add-profile');
+        var profileForm = document.querySelector('.profile-form');
+        var profilesGrid = document.querySelector('.profiles-grid');
+        var addProfileCard = document.getElementById('add-profile-btn');
+        var profileNameInput = document.getElementById('profile-name');
 
         // Avatar Carousel
-        const avatarOptionsContainer = document.querySelector('.avatar-options');
-        const prevAvatarBtn = document.querySelector('.avatar-arrow.prev');
-        const nextAvatarBtn = document.querySelector('.avatar-arrow.next');
-        const avatars = [
+        var avatarOptionsContainer = document.querySelector('.avatar-options');
+        var prevAvatarBtn = document.querySelector('.avatar-arrow.prev');
+        var nextAvatarBtn = document.querySelector('.avatar-arrow.next');
+        var avatars = [
             'https://i.pravatar.cc/150?u=new1',
             'https://i.pravatar.cc/150?u=new2',
             'https://i.pravatar.cc/150?u=new3',
@@ -116,35 +118,38 @@
             'https://i.pravatar.cc/150?u=new5',
             'https://i.pravatar.cc/150?u=new6'
         ];
-        let currentAvatarIndex = 1;
+        var currentAvatarIndex = 1;
 
         function updateAvatarSelection() {
             avatarOptionsContainer.innerHTML = '';
-            const visibleAvatars = [];
-            for (let i = 0; i < 3; i++) {
-                const index = (currentAvatarIndex - 1 + i + avatars.length) % avatars.length;
+            var visibleAvatars = [];
+            for (var i = 0; i < 3; i++) {
+                var index = (currentAvatarIndex - 1 + i + avatars.length) % avatars.length;
                 visibleAvatars.push(avatars[index]);
             }
 
-            visibleAvatars.forEach((src, i) => {
-                const isSelected = i === 1;
-                const avatarOption = document.createElement('div');
-                avatarOption.className = `avatar-option ${isSelected ? 'selected' : ''}`;
-                avatarOption.innerHTML = `<img src="${src}" alt="Avatar">`;
-                avatarOption.addEventListener('click', () => {
-                    currentAvatarIndex = (currentAvatarIndex + i - 1 + avatars.length) % avatars.length;
-                    updateAvatarSelection();
-                });
-                avatarOptionsContainer.appendChild(avatarOption);
-            });
+            for (var j = 0; j < visibleAvatars.length; j++) {
+                (function(idx) {
+                    var src = visibleAvatars[idx];
+                    var isSelected = idx === 1;
+                    var avatarOption = document.createElement('div');
+                    avatarOption.className = 'avatar-option' + (isSelected ? ' selected' : '');
+                    avatarOption.innerHTML = '<img src="' + src + '" alt="Avatar">';
+                    avatarOption.addEventListener('click', function() {
+                        currentAvatarIndex = (currentAvatarIndex + idx - 1 + avatars.length) % avatars.length;
+                        updateAvatarSelection();
+                    });
+                    avatarOptionsContainer.appendChild(avatarOption);
+                })(j);
+            }
         }
 
-        prevAvatarBtn.addEventListener('click', () => {
+        prevAvatarBtn.addEventListener('click', function() {
             currentAvatarIndex = (currentAvatarIndex - 1 + avatars.length) % avatars.length;
             updateAvatarSelection();
         });
 
-        nextAvatarBtn.addEventListener('click', () => {
+        nextAvatarBtn.addEventListener('click', function() {
             currentAvatarIndex = (currentAvatarIndex + 1) % avatars.length;
             updateAvatarSelection();
         });
@@ -162,7 +167,7 @@
             resetAddProfileForm();
         }
 
-        addProfileBtn.addEventListener('click', () => {
+        addProfileBtn.addEventListener('click', function() {
             viewProfiles.style.display = 'none';
             viewAddProfile.style.display = 'block';
             resetAddProfileForm();
@@ -171,21 +176,19 @@
         backToProfilesBtn.addEventListener('click', showProfileView);
         cancelAddProfileBtn.addEventListener('click', showProfileView);
 
-        profileForm.addEventListener('submit', (e) => {
+        profileForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const profileName = profileNameInput.value.trim();
+            var profileName = profileNameInput.value.trim();
             if (profileName) {
-                const selectedAvatarSrc = avatars[currentAvatarIndex];
+                var selectedAvatarSrc = avatars[currentAvatarIndex];
                 
-                const newProfileCard = document.createElement('div');
+                var newProfileCard = document.createElement('div');
                 newProfileCard.className = 'profile-card';
-                newProfileCard.innerHTML = `
-                    <div class="profile-avatar">
-                        <img src="${selectedAvatarSrc}" alt="${profileName}">
-                    </div>
-                    <p class="profile-name">${profileName}</p>
-                `;
-                newProfileCard.addEventListener('click', () => {
+                newProfileCard.innerHTML = '<div class="profile-avatar">' +
+                        '<img src="' + selectedAvatarSrc + '" alt="' + profileName + '">' +
+                    '</div>' +
+                    '<p class="profile-name">' + profileName + '</p>';
+                newProfileCard.addEventListener('click', function() {
                     window.location.href = 'homepage.html';
                 });
 
@@ -196,6 +199,16 @@
 
         // Initial setup
         updateAvatarSelection();
+        
+        // Initialize remote control
+        document.addEventListener('DOMContentLoaded', function() {
+            RemoteControl.init({
+                focusableSelector: '.profile-card, button, input, a',
+                wrapNavigation: true,
+                autoFocus: false,
+                debug: false
+            });
+        });
     </script>
 </body>
 </html>

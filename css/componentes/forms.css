@@ -1,8 +1,20 @@
 /* Forms */
 .form-group {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
-    gap: 8px;
+}
+
+.form-group > * {
+    margin-bottom: 8px;
+}
+
+.form-group > *:last-child {
+    margin-bottom: 0;
 }
 
 .form-group label {
@@ -23,7 +35,7 @@
 
 .form-group input:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #3b82f6;
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
 }
 
@@ -53,35 +65,37 @@
 }
 
 .search-icon {
-    color: #b0bec5;
-    font-size: 16px;
+    color: #6b7280;
+    font-size: 14px;
 }
 
 /* Search Container in Header */
 .search-container {
     position: relative;
-    width: 450px;
-    max-width: 500px;
+    width: 280px;
+    max-width: 350px;
 }
 
 .search-container .search-icon {
     position: absolute;
-    left: 16px;
+    left: 14px;
     top: 50%;
+    -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    color: #b0bec5;
-    font-size: 16px;
+    color: #6b7280;
+    font-size: 14px;
     pointer-events: none;
 }
 
 .search-container input {
     width: 100%;
-    padding: 12px 16px 12px 44px;
-    background: #0d1117;
-    border: 1px solid #30363d;
-    border-radius: 24px;
+    padding: 10px 16px 10px 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
     color: #ffffff;
-    font-size: 14px;
+    font-size: 13px;
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     -webkit-appearance: none;
@@ -91,25 +105,54 @@
 
 .search-container input:focus {
     outline: none;
-    border-color: #ffc107;
-    background: #161b22;
+    border-color: #3b82f6;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.search-container input::-webkit-input-placeholder {
+    color: #6b7280;
+}
+
+.search-container input::-moz-placeholder {
+    color: #6b7280;
+}
+
+.search-container input:-ms-input-placeholder {
+    color: #6b7280;
 }
 
 .search-container input::placeholder {
-    color: #b0bec5;
-    opacity: 0.7;
+    color: #6b7280;
 }
 
 .search-container input:hover {
-    border-color: #40464d;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.light-mode .search-container input {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #0b1113;
+}
+
+body.light-mode .search-container input::-webkit-input-placeholder {
+    color: #9ca3af;
+}
+
+body.light-mode .search-container input::placeholder {
+    color: #9ca3af;
+}
+
+body.light-mode .search-container .search-icon {
+    color: #9ca3af;
 }
 
 /* Toggle Switch */
 .switch {
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 26px;
+    width: 44px;
+    height: 24px;
 }
 
 .switch input {
@@ -125,27 +168,30 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #6c757d;
-    transition: 0.4s;
+    background-color: #374151;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
 }
 
 .slider:before {
     position: absolute;
     content: "";
-    height: 20px;
-    width: 20px;
+    height: 18px;
+    width: 18px;
     left: 3px;
     bottom: 3px;
     background-color: white;
-    transition: 0.4s;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
 }
 
 input:checked+.slider {
-    background-color: #007bff;
+    background-color: #3b82f6;
 }
 
 input:checked+.slider:before {
-    transform: translateX(24px);
+    -webkit-transform: translateX(20px);
+    transform: translateX(20px);
 }
 
 .slider.round {
@@ -194,7 +240,7 @@ input:checked+.slider:before {
 }
 
 input:checked+.toggle-slider {
-    background-color: #007bff;
+    background-color: #3b82f6;
 }
 
 input:checked+.toggle-slider:before {
@@ -215,7 +261,7 @@ input:checked+.toggle-slider:before {
 
 .settings-dropdown:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #3b82f6;
 }
 
 .settings-dropdown option {

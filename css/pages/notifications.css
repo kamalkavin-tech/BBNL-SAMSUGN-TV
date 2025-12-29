@@ -24,22 +24,46 @@
 
 /* Notification List Items */
 .notification-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
-    gap: 20px;
     max-width: 900px;
     text-align: left;
     /* Reset text align from container */
     margin: 0 auto;
 }
 
+.notification-list > * {
+    margin-bottom: 20px;
+}
+
+.notification-list > *:last-child {
+    margin-bottom: 0;
+}
+
 .notification-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
-    gap: 20px;
     padding: 10px;
     border-radius: 8px;
+    -webkit-transition: background 0.3s;
     transition: background 0.3s;
+}
+
+.notification-item > * {
+    margin-right: 20px;
+}
+
+.notification-item > *:last-child {
+    margin-right: 0;
 }
 
 .notification-item:hover {

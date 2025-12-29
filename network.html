@@ -3,129 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BBNL - No Internet Connection</title>
-    <!-- Base Styles -->
-    <link rel="stylesheet" href="css/base/variable.css">
-    <link rel="stylesheet" href="css/base/reset.css">
-    <!-- Layout Styles -->
-    <link rel="stylesheet" href="css/layout/header.css">
-    <link rel="stylesheet" href="css/layout/sidebar.css">
-    <!-- Component Styles -->
-    <link rel="stylesheet" href="css/componentes/buttons.css">
-    <style>
-        .network-error-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background: #0d1117;
-            padding: 20px;
-        }
-        .network-error-card {
-            background: #1a1f26;
-            border-radius: 20px;
-            padding: 50px;
-            text-align: center;
-            max-width: 500px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-        .network-error-image {
-            width: 100%;
-            max-width: 300px;
-            margin-bottom: 30px;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-        }
-        .network-error-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 15px;
-        }
-        .network-error-message {
-            font-size: 14px;
-            color: #b0bec5;
-            margin-bottom: 35px;
-        }
-        .network-error-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-        .btn-retry {
-            background: #ffc107;
-            color: #0d1117;
-            padding: 12px 32px;
-            border-radius: 25px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-        .btn-retry:hover {
-            background: #ffb300;
-            transform: scale(1.05);
-        }
-        .btn-settings {
-            background: transparent;
-            color: #ffffff;
-            padding: 12px 32px;
-            border-radius: 25px;
-            font-weight: 600;
-            border: 2px solid #30363d;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-        .btn-settings:hover {
-            border-color: #ffffff;
-            background: rgba(255, 255, 255, 0.05);
-        }
-    </style>
+    <title>BBNL - Redirecting...</title>
+    <script>
+        // Network error page is now handled dynamically via popup
+        // Redirect to homepage
+        window.location.href = 'homepage.html';
+    </script>
 </head>
 <body>
-    <div class="network-error-container">
-        <div class="network-error-card">
-            <div class="network-error-image">
-                <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-                    <!-- TV/Monitor -->
-                    <rect x="50" y="40" width="200" height="120" rx="8" fill="#2c3e50" stroke="#34495e" stroke-width="3"/>
-                    <rect x="60" y="50" width="180" height="100" fill="#1a252f"/>
-                    
-                    <!-- Warning Triangle -->
-                    <path d="M150 70 L170 110 L130 110 Z" fill="#ffc107"/>
-                    <text x="150" y="105" font-size="20" font-weight="bold" fill="#2c3e50" text-anchor="middle">!</text>
-                    
-                    <!-- Characters -->
-                    <!-- Left Character (Orange) -->
-                    <ellipse cx="90" cy="130" rx="15" ry="20" fill="#ff9800"/>
-                    <circle cx="90" cy="150" r="18" fill="#ff9800"/>
-                    <ellipse cx="85" cy="148" rx="3" ry="5" fill="#fff"/>
-                    <ellipse cx="95" cy="148" rx="3" ry="5" fill="#fff"/>
-                    
-                    <!-- Right Character (Red) -->
-                    <ellipse cx="210" cy="130" rx="15" ry="20" fill="#f44336"/>
-                    <circle cx="210" cy="150" r="18" fill="#f44336"/>
-                    <ellipse cx="205" cy="148" rx="3" ry="5" fill="#fff"/>
-                    <ellipse cx="215" cy="148" rx="3" ry="5" fill="#fff"/>
-                    
-                    <!-- Disconnected WiFi Symbol -->
-                    <g transform="translate(140, 120)">
-                        <path d="M 0,-15 Q -10,-10 -15,0" stroke="#e74c3c" stroke-width="2" fill="none"/>
-                        <path d="M 0,-15 Q 10,-10 15,0" stroke="#e74c3c" stroke-width="2" fill="none"/>
-                        <line x1="-12" y1="-12" x2="12" y2="5" stroke="#e74c3c" stroke-width="3"/>
-                    </g>
-                </svg>
-            </div>
-            <h2 class="network-error-title">No Internet Connection</h2>
-            <p class="network-error-message">Please check your network and try again</p>
-            <div class="network-error-buttons">
-                <button class="btn-retry" onclick="window.location.reload()">Try Again</button>
-                <button class="btn-settings" onclick="window.location.href='settings.html'">Network Settings</button>
-            </div>
-        </div>
-    </div>
+    <p style="text-align: center; margin-top: 50px; color: #888;">Redirecting...</p>
 </body>
 </html>

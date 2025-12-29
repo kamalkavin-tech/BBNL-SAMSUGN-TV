@@ -13,11 +13,14 @@
 /* Filter Pills Container */
 .filter-pills-container {
     display: flex;
-    gap: 12px;
     margin-bottom: 30px;
     overflow-x: auto;
     padding-bottom: 5px;
     flex-wrap: wrap;
+}
+
+.filter-pills-container > * {
+    margin-right: 12px;
 }
 
 .filter-pills-container::-webkit-scrollbar {
@@ -25,6 +28,7 @@
 }
 
 .filter-pills-container::-webkit-scrollbar-thumb {
+    background: #30363d;
     background: var(--border-color);
     border-radius: 4px;
 }
@@ -33,7 +37,22 @@
 .favorites-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    margin: -15px;
+}
+
+.favorites-grid > * {
+    margin: 15px;
+}
+
+/* Channel Card */
+.favorites-grid .channel-card {
+    width: 160px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.favorites-grid .channel-card:hover {
+    transform: scale(1.05);
 }
 
 .channel-logo-box {
@@ -52,7 +71,6 @@
 .channel-logo-box img {
     max-width: 80%;
     max-height: 80%;
-    object-fit: contain;
 }
 
 .favorite-icon-overlay {

@@ -14,9 +14,12 @@
     <!-- Component Styles -->
     <link rel="stylesheet" href="css/componentes/buttons.css">
     <link rel="stylesheet" href="css/componentes/forms.css">
+    <link rel="stylesheet" href="css/componentes/remote.css">
     <!-- Page Styles -->
     <link rel="stylesheet" href="css/pages/parental-controls.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- Remote Control -->
+    <script src="js/remote.js"></script>
 </head>
 
 <body class="dark-mode">
@@ -142,6 +145,14 @@
 
     <!-- JavaScript for TV Remote Navigation -->
     <script src="js/parental-controls.js"></script>
-</body>
-
-</html>
+    <script>
+        // Initialize remote control
+        document.addEventListener('DOMContentLoaded', function() {
+            RemoteControl.init({
+                focusableSelector: '.pc-nav-item, .pc-action-btn, .pc-toggle-switch input, button, a, input',
+                wrapNavigation: true,
+                autoFocus: false,
+                debug: false
+            });
+        });
+    </script>

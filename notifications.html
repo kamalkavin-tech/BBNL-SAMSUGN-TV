@@ -13,10 +13,13 @@
     <link rel="stylesheet" href="css/layout/sidebar.css">
     <!-- Component Styles -->
     <link rel="stylesheet" href="css/componentes/buttons.css">
+    <link rel="stylesheet" href="css/componentes/remote.css">
     <!-- Page Styles -->
     <link rel="stylesheet" href="css/pages/notifications.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="js/script.js"></script>
+    <!-- Remote Control -->
+    <script src="js/remote.js"></script>
 </head>
 
 <body>
@@ -35,6 +38,14 @@
                 <a href="notifications.html" class="nav-item active">
                     <i class="fas fa-bell"></i>
                     <span>Notification</span>
+                </a>
+                <a href="give-feedback.html" class="nav-item">
+                    <i class="fas fa-comment-dots"></i>
+                    <span>Give Feedback</span>
+                </a>
+                <a href="help-desk.html" class="nav-item">
+                    <i class="fas fa-headset"></i>
+                    <span>Help Desk</span>
                 </a>
             </nav>
         </aside>
@@ -114,6 +125,18 @@
             </section>
         </main>
     </div>
+    
+    <script>
+        // Initialize remote control
+        document.addEventListener('DOMContentLoaded', function() {
+            RemoteControl.init({
+                focusableSelector: '.notification-item, .sidebar-menu-item, .tab-btn, button, a',
+                wrapNavigation: true,
+                autoFocus: false,
+                debug: false
+            });
+        });
+    </script>
 
 </body>
 

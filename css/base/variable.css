@@ -1,15 +1,29 @@
+/* ========================================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   Samsung Tizen TV Compatible
+   ======================================================== */
+
 :root {
-    --primary-color: #007bff;
+    /* Primary Colors */
+    --primary-color: #3b82f6;
     --secondary-color: #6c757d;
     --danger-color: #dc3545;
     --success-color: #28a745;
-    --dark-bg: #0d1117;
-    --card-bg: #161b22;
-    --text-primary: #ffffff;
-    --text-secondary: #b0bec5;
-    --border-color: #30363d;
-    --accent-color: #ffc107;
+    
+    /* Background Colors */
+    --dark-bg: #000000;
+    --card-bg: #12151a;
     --input-bg: #0d1117;
+    
+    /* Text Colors */
+    --text-primary: #ffffff;
+    --text-secondary: #6b7280;
+    
+    /* Border Colors */
+    --border-color: #30363d;
+    
+    /* Accent Colors */
+    --accent-color: #ffc107;
 }
 
 /* Light mode overrides */
@@ -18,7 +32,7 @@ body.light-mode {
     --card-bg: #ffffff;
     --text-primary: #0b1113;
     --text-secondary: #6c757d;
-    --border-color: rgba(11, 17, 19, 0.08);
+    --border-color: #e0e3e7;
     --accent-color: #d9a200;
     --input-bg: #f5f6f7;
 }
@@ -40,16 +54,6 @@ body.light-mode .header-pill-btn:hover {
     color: #0b1113;
 }
 
-body.light-mode .search-container input {
-    background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.1);
-    color: #0b1113;
-}
-
-body.light-mode .search-container .search-icon {
-    color: #6c757d;
-}
-
 body.light-mode .media-info h3 {
     color: #0b1113;
 }
@@ -59,7 +63,7 @@ body.light-mode .media-info p {
 }
 
 body.light-mode .media-item.active .media-icon-box {
-    border-color: #007bff;
+    border-color: #3b82f6;
 }
 
 body.light-mode .view-all-box {
@@ -76,11 +80,11 @@ body.light-mode .app-tile {
 
 body.light-mode .app-tile:hover {
     background: #f8f9fa;
-    border-color: #007bff;
+    border-color: #3b82f6;
 }
 
 body.light-mode .app-tile i {
-    color: #007bff;
+    color: #3b82f6;
 }
 
 body.light-mode .app-tile-content p {
@@ -214,7 +218,7 @@ body.light-mode .apps-section h2 {
 
 /* Light mode button fixes */
 body.light-mode .btn-primary {
-    background: #007bff;
+    background: #3b82f6;
     color: #ffffff;
 }
 
@@ -347,8 +351,8 @@ body.light-mode .sidebar-menu-item:hover {
 
 body.light-mode .sidebar-menu-item.active {
     background: rgba(0, 123, 255, 0.1);
-    color: #007bff;
-    border-left: 3px solid #007bff;
+    color: #3b82f6;
+    border-left: 3px solid #3b82f6;
 }
 
 body.light-mode .sidebar-menu-item i {
@@ -356,7 +360,7 @@ body.light-mode .sidebar-menu-item i {
 }
 
 body.light-mode .sidebar-menu-item.active i {
-    color: #007bff;
+    color: #3b82f6;
 }
 
 body.light-mode .sidebar-menu-footer {

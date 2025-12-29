@@ -695,3 +695,87 @@ select:focus {
 * {
     transition: outline 0.2s ease, box-shadow 0.2s ease;
 }
+/* About App Info Card Styles */
+.about-info-card {
+    padding: 24px 28px;
+}
+
+.about-section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 20px 0;
+}
+
+.about-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #303030;
+}
+
+.about-info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.about-label {
+    font-size: 15px;
+    color: #808080;
+}
+
+.about-value {
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* Select Dropdown Styles */
+.pc-select-btn {
+    background: #2a2a2a;
+    border: 1px solid #505050;
+    border-radius: 8px;
+    color: #b0b0b0;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 36px 10px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23b0b0b0' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.pc-select-btn:hover {
+    background-color: #353535;
+    border-color: #707070;
+    color: #ffffff;
+}
+
+.pc-select-btn:focus {
+    outline: 2px solid #1e90ff;
+    outline-offset: 2px;
+    border-color: #1e90ff;
+}
+
+.pc-select-btn option {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
+/* Danger Button Style */
+.pc-danger-btn {
+    border-color: #ff4444;
+    color: #ff4444;
+}
+
+.pc-danger-btn:hover {
+    background: rgba(255, 68, 68, 0.1);
+    border-color: #ff6666;
+    color: #ff6666;
+}

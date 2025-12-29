@@ -10,9 +10,12 @@
     <!-- Component Styles -->
     <link rel="stylesheet" href="css/componentes/buttons.css">
     <link rel="stylesheet" href="css/componentes/cards.css">
+    <link rel="stylesheet" href="css/componentes/remote.css">
     <!-- Page Styles -->
     <link rel="stylesheet" href="css/pages/auth.css">
     <script src="js/script.js"></script>
+    <!-- Remote Control -->
+    <script src="js/remote.js"></script>
 </head>
 <body>
     <div class="auth-container">
@@ -34,12 +37,12 @@
                 
                 <form class="auth-form" action="profiles.html" method="get">
                     <div class="otp-input-group">
-                        <input name="otp1" type="text" class="otp-input" maxlength="1" inputmode="numeric">
-                        <input name="otp2" type="text" class="otp-input" maxlength="1" inputmode="numeric">
-                        <input name="otp3" type="text" class="otp-input" maxlength="1" inputmode="numeric">
-                        <input name="otp4" type="text" class="otp-input" maxlength="1" inputmode="numeric">
-                        <input name="otp5" type="text" class="otp-input" maxlength="1" inputmode="numeric">
-                        <input name="otp6" type="text" class="otp-input" maxlength="1" inputmode="numeric">
+                        <input name="otp1" type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                        <input name="otp2" type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                        <input name="otp3" type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                        <input name="otp4" type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                        <input name="otp5" type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                        <input name="otp6" type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
                     </div>
                     <p class="otp-timer">Didn't receive the code? <span style="color:#ffc107;">00:59</span></p>
                 </form>
@@ -47,24 +50,38 @@
         </div>
     </div>
     <script>
-        const otpInputs = document.querySelectorAll('.otp-input');
-        const form = document.querySelector('.auth-form');
+        // ES5 Compatible OTP Input handling
+        var otpInputs = document.querySelectorAll('.otp-input');
+        var form = document.querySelector('.auth-form');
 
-        otpInputs.forEach((input, index) => {
-            input.addEventListener('input', (e) => {
-                if (input.value) {
-                    if (index < otpInputs.length - 1) {
-                        otpInputs[index + 1].focus();
-                    } else {
-                        form.submit();
+        for (var oi = 0; oi < otpInputs.length; oi++) {
+            (function(index) {
+                var input = otpInputs[index];
+                input.addEventListener('input', function(e) {
+                    if (input.value) {
+                        if (index < otpInputs.length - 1) {
+                            otpInputs[index + 1].focus();
+                        } else {
+                            form.submit();
+                        }
                     }
-                }
-            });
+                });
 
-            input.addEventListener('keydown', (e) => {
-                if (e.key === 'Backspace' && !input.value && index > 0) {
-                    otpInputs[index - 1].focus();
-                }
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && !input.value && index > 0) {
+                        otpInputs[index - 1].focus();
+                    }
+                });
+            })(oi);
+        }
+        
+        // Initialize remote control
+        document.addEventListener('DOMContentLoaded', function() {
+            RemoteControl.init({
+                focusableSelector: '.otp-input, button, a',
+                wrapNavigation: true,
+                autoFocus: false,
+                debug: false
             });
         });
     </script>

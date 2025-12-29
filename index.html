@@ -11,176 +11,129 @@
     <link rel="stylesheet" href="css/componentes/buttons.css">
     <link rel="stylesheet" href="css/componentes/forms.css">
     <link rel="stylesheet" href="css/componentes/cards.css">
+    <link rel="stylesheet" href="css/componentes/remote.css">
     <!-- Page Styles -->
     <link rel="stylesheet" href="css/pages/auth.css">
+    <!-- Axios Library -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.0/dist/axios.min.js"></script>
     <script src="js/script.js"></script>
-    <style>
-        .phone-input-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            width: 100%;
-        }
-        .phone-input-container input[type="tel"] {
-            flex-grow: 1;
-            width: auto;
-        }
-        .country-code-picker {
-            position: relative;
-            flex-shrink: 0;
-        }
-        .selected-country {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            cursor: pointer;
-            background-color: #0d1117;
-        }
-        .country-list-container {
-            position: absolute;
-            top: calc(100% + 5px);
-            left: 0;
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 10px;
-            z-index: 10;
-            display: none; /* Hidden by default */
-            width: 250px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .country-code-picker.open .country-list-container {
-            display: block;
-        }
-        .search-box {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-        .search-box svg {
-            stroke: #b0bec5;
-        }
-        .search-box input {
-            background: transparent;
-            border: none;
-            outline: none;
-            color: #ffffff;
-            width: 100%;
-        }
-        .country-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            max-height: 150px;
-            overflow-y: auto;
-        }
-        .country-list li {
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 6px;
-        }
-        .country-list li:hover, .country-list li.selected {
-            background-color: #0d1117;
-        }
-    </style>
+    <!-- Remote Control -->
+    <script src="js/remote.js"></script>
+    <!-- API Files -->
+    <script src="api/config.js"></script>
+    <script src="api/auth.js"></script>
 </head>
 <body>
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-content">
-                <h2>Welcome Back</h2>
-                <p>Sign in to continue to your profile</p>
+                <h2 class="auth-title">Welcome Back</h2>
+                <p class="auth-subtitle">Sign in to continue to your profile</p>
                 
-                <div class="auth-tabs">
-                    <button class="tab-btn active" data-tab="phone">
-                        <span class="indicator"></span>
-                        Phone
-                    </button>
-                    <button class="tab-btn" data-tab="verify">
-                        <span class="indicator"></span>
-                        Verify
-                    </button>
+                <!-- Step Indicator -->
+                <div class="step-indicator">
+                    <div class="step active">
+                        <span class="step-dot"></span>
+                        <span class="step-label">Phone</span>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step">
+                        <span class="step-dot"></span>
+                        <span class="step-label">Verify</span>
+                    </div>
                 </div>
                 
-                <form class="auth-form" action="verify.html" method="get">
+                <form class="auth-form" id="login-form" onsubmit="return false;">
                     <div class="form-group">
-                        <label>Phone Number</label>
-                        <div class="phone-input-container">
-                            <div class="country-code-picker">
-                                <div class="selected-country">
-                                    <span id="selected-country-code">+91</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                                </div>
-                                <div class="country-list-container">
-                                    <div class="search-box">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                                        <input type="text" id="country-search" placeholder="Search for your country">
-                                    </div>
-                                    <ul class="country-list">
-                                        <li data-code="+44">United Kingdom (+44)</li>
-                                        <li data-code="+91" class="selected">India (+91)</li>
-                                        <li data-code="+1">Canada (+1)</li>
-                                    </ul>
-                                </div>
+                        <label class="form-label">Phone Number</label>
+                        <div class="phone-input-wrapper">
+                            <div class="country-code-select">
+                                <span class="country-code">+91</span>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                             </div>
-                            <input name="phone" type="tel" placeholder="Enter 10 Digit Number" maxlength="10" pattern="[0-9]{10}" inputmode="numeric" required title="Enter 10 digit phone number">
+                            <input name="mobile" id="phoneNumberInput" type="tel" placeholder="Enter 10 Digit Number" maxlength="10" pattern="[0-9]{10}" inputmode="numeric" required class="phone-input" autocomplete="off">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Get OTP</button>
+                    <div id="error-message" class="error-message"></div>
+                    <button type="submit" class="btn btn-primary btn-get-otp" id="get-otp-btn">Get OTP</button>
+                    <div id="loading-spinner" class="loading-spinner">
+                        <span>Sending OTP...</span>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
     <script>
-        const countryCodePicker = document.querySelector('.country-code-picker');
-        const selectedCountry = document.querySelector('.selected-country');
-        const countryListContainer = document.querySelector('.country-list-container');
-        const countrySearch = document.getElementById('country-search');
-        const countryList = document.querySelector('.country-list');
-        const selectedCountryCode = document.getElementById('selected-country-code');
-
-        selectedCountry.addEventListener('click', (e) => {
-            e.stopPropagation();
-            countryCodePicker.classList.toggle('open');
-        });
-
-        countryList.addEventListener('click', (e) => {
-            if (e.target.tagName === 'LI') {
-                const newCode = e.target.dataset.code;
-                selectedCountryCode.textContent = newCode;
-                
-                // Update selected class
-                countryList.querySelector('.selected').classList.remove('selected');
-                e.target.classList.add('selected');
-                
-                countryCodePicker.classList.remove('open');
+        // Show error message
+        function showError(message) {
+            var errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(function() {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Handle login form submission
+        function submitLoginForm() {
+            var mobile = document.getElementById('phoneNumberInput').value.trim();
+            
+            if (!mobile) {
+                showError('Please enter your mobile number');
+                return;
             }
-        });
-
-        countrySearch.addEventListener('input', () => {
-            const filter = countrySearch.value.toLowerCase();
-            const countries = countryList.querySelectorAll('li');
-            countries.forEach(country => {
-                const text = country.textContent.toLowerCase();
-                if (text.includes(filter)) {
-                    country.style.display = '';
+            
+            if (mobile.length !== 10 || !/^[0-9]{10}$/.test(mobile)) {
+                showError('Please enter a valid 10-digit mobile number');
+                return;
+            }
+            
+            var btn = document.getElementById('get-otp-btn');
+            var spinner = document.getElementById('loading-spinner');
+            
+            btn.disabled = true;
+            spinner.style.display = 'block';
+            
+            // Store mobile for verify page
+            sessionStorage.setItem('bbnl_mobile', mobile);
+            
+            // Per API docs: userid from config, mobile from user input
+            var userid = API_CONFIG.USER_CREDENTIALS.userid;
+            AuthAPI.requestOTP(userid, mobile).then(function(result) {
+                btn.disabled = false;
+                spinner.style.display = 'none';
+                
+                if (result.success) {
+                    // OTP sent successfully
+                    window.location.href = 'verify.html';
                 } else {
-                    country.style.display = 'none';
+                    showError(result.message);
+                    console.error('API Error:', result);
                 }
+            }).catch(function(error) {
+                btn.disabled = false;
+                spinner.style.display = 'none';
+                console.error('Request failed:', error);
+                showError(error.message || 'Network error. Please check your connection.');
             });
+        }
+        
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitLoginForm();
         });
-
-        document.addEventListener('click', (e) => {
-            if (!countryCodePicker.contains(e.target)) {
-                countryCodePicker.classList.remove('open');
-            }
+        
+        // Initialize remote control
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize remote with auto-focus disabled
+            RemoteControl.init({
+                focusableSelector: 'input, button:not([disabled]), .btn',
+                wrapNavigation: true,
+                autoFocus: false,
+                debug: false
+            });
         });
     </script>
 </body>

@@ -14,10 +14,13 @@
     <!-- Component Styles -->
     <link rel="stylesheet" href="css/componentes/buttons.css">
     <link rel="stylesheet" href="css/componentes/cards.css">
+    <link rel="stylesheet" href="css/componentes/remote.css">
     <!-- Page Styles -->
     <link rel="stylesheet" href="css/pages/homepages.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="js/script.js"></script>
+    <!-- Remote Control -->
+    <script src="js/remote.js"></script>
 </head>
 
 <body>
@@ -59,6 +62,14 @@
                 <a href="notifications.html" class="nav-item">
                     <i class="fas fa-bell"></i>
                     <span>Notification</span>
+                </a>
+                <a href="give-feedback.html" class="nav-item">
+                    <i class="fas fa-comment-dots"></i>
+                    <span>Give Feedback</span>
+                </a>
+                <a href="help-desk.html" class="nav-item">
+                    <i class="fas fa-headset"></i>
+                    <span>Help Desk</span>
                 </a>
             </div>
         </aside>
@@ -156,47 +167,61 @@
     </div>
 
     <script>
-        // Filter functionality
-        const filterBtns = document.querySelectorAll('.pill-btn');
-        const contentItems = document.querySelectorAll('.media-item');
+        // Filter functionality (ES5 Compatible)
+        var filterBtns = document.querySelectorAll('.pill-btn');
+        var contentItems = document.querySelectorAll('.media-item');
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
+        for (var i = 0; i < filterBtns.length; i++) {
+            filterBtns[i].addEventListener('click', function(e) {
                 // Remove active class from all buttons
-                filterBtns.forEach(b => b.classList.remove('active'));
+                for (var j = 0; j < filterBtns.length; j++) {
+                    filterBtns[j].classList.remove('active');
+                }
                 // Add active class to clicked button
-                btn.classList.add('active');
+                e.target.classList.add('active');
 
-                const filterValue = btn.innerText.trim().toLowerCase();
+                var filterValue = e.target.innerText.trim().toLowerCase();
 
-                contentItems.forEach(item => {
-                    const genreTag = item.querySelector('.media-info p');
+                for (var k = 0; k < contentItems.length; k++) {
+                    var item = contentItems[k];
+                    var genreTag = item.querySelector('.media-info p');
                     if (genreTag) {
-                        const genre = genreTag.innerText.toLowerCase();
+                        var genre = genreTag.innerText.toLowerCase();
 
                         if (filterValue === 'all') {
                             item.style.display = ''; // Reset
-                        } else if (genre.includes(filterValue)) {
+                        } else if (genre.indexOf(filterValue) !== -1) {
                             item.style.display = '';
                         } else {
                             item.style.display = 'none';
                         }
                     }
-                });
+                }
             });
-        });
+        }
 
         // Make Media Items Clickable (Navigate to Player)
-        const mediaItems = document.querySelectorAll('.media-item');
-        mediaItems.forEach(item => {
-            item.style.cursor = 'pointer';
-            item.addEventListener('click', (e) => {
+        var mediaItems = document.querySelectorAll('.media-item');
+        for (var m = 0; m < mediaItems.length; m++) {
+            mediaItems[m].style.cursor = 'pointer';
+            mediaItems[m].addEventListener('click', function(e) {
                 // Prevent if clicking the favorite heart
                 if (e.target.closest('.favorite-icon-overlay') || e.target.classList.contains('fa-heart')) {
                     return;
                 }
-                const title = item.querySelector('h3') ? item.querySelector('h3').innerText : 'Unknown Title';
-                window.location.href = `player.html?title=${encodeURIComponent(title)}`;
+                var titleEl = this.querySelector('h3');
+                var title = titleEl ? titleEl.innerText : 'Unknown Title';
+                window.location.href = 'player.html?title=' + encodeURIComponent(title);
+            });
+        }
+        
+        // Initialize remote control
+        document.addEventListener('DOMContentLoaded', function() {
+            RemoteControl.init({
+                focusableSelector: '.media-item, .sidebar-menu-item, .pill-btn, button, a, input',
+                wrapNavigation: true,
+                autoFocus: false,
+                debug: false
             });
         });
     </script>

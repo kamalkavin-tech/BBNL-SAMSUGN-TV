@@ -29,27 +29,51 @@
 }
 
 .profiles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    margin-bottom: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: -10px -10px 40px -10px;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }
 
+.profiles-grid > * {
+    width: calc(25% - 20px);
+    min-width: 150px;
+    margin: 10px;
+}
+
 .profiles-grid.manage-mode {
-    grid-template-columns: repeat(4, 1fr);
     max-width: 500px;
     margin-bottom: 60px;
 }
 
+.profiles-grid.manage-mode > * {
+    width: calc(25% - 20px);
+    min-width: 100px;
+}
+
 .profile-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    gap: 30px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     margin: 40px 0;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+}
+
+.profile-footer > * {
+    margin-right: 30px;
+}
+
+.profile-footer > *:last-child {
+    margin-right: 0;
 }
 
 .profile-footer a {
@@ -85,10 +109,21 @@
 }
 
 .profile-edit-card {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    gap: 30px;
     margin-bottom: 30px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+}
+
+.profile-edit-card > * {
+    margin-right: 30px;
+}
+
+.profile-edit-card > *:last-child {
+    margin-right: 0;
 }
 
 .edit-form h3 {
@@ -102,9 +137,20 @@
 }
 
 .edit-actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    gap: 15px;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
     justify-content: flex-end;
+}
+
+.edit-actions > * {
+    margin-right: 15px;
+}
+
+.edit-actions > *:last-child {
+    margin-right: 0;
 }
 
 /* Profile Add/Edit Form (Modal or Page) */
@@ -132,11 +178,24 @@
 }
 
 .avatar-selection {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
-    gap: 20px;
     margin-bottom: 15px;
+}
+
+.avatar-selection > * {
+    margin-right: 20px;
+}
+
+.avatar-selection > *:last-child {
+    margin-right: 0;
 }
 
 .avatar-arrow {
@@ -148,13 +207,22 @@
 }
 
 .avatar-arrow:hover {
-    color: #007bff;
+    color: #3b82f6;
     transform: scale(1.1);
 }
 
 .avatar-options {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    gap: 25px;
+}
+
+.avatar-options > * {
+    margin-right: 25px;
+}
+
+.avatar-options > *:last-child {
+    margin-right: 0;
 }
 
 .avatar-option img {
@@ -167,7 +235,7 @@
 }
 
 .avatar-option.selected img {
-    border-color: #007bff;
+    border-color: #3b82f6;
     transform: scale(1.1);
     opacity: 1;
 }
@@ -210,9 +278,18 @@
 }
 
 .form-actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    gap: 15px;
     margin-top: 30px;
+}
+
+.form-actions > * {
+    margin-right: 15px;
+}
+
+.form-actions > *:last-child {
+    margin-right: 0;
 }
 
 .form-actions .btn {

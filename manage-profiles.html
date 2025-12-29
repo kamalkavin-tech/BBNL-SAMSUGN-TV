@@ -11,8 +11,11 @@
     <!-- Component Styles -->
     <link rel="stylesheet" href="css/componentes/buttons.css">
     <link rel="stylesheet" href="css/componentes/cards.css">
+    <link rel="stylesheet" href="css/componentes/remote.css">
     <!-- Page Styles -->
     <link rel="stylesheet" href="css/pages/profile.css">
+    <!-- Remote Control -->
+    <script src="js/remote.js"></script>
     <style>
         .profile-container {
             display: flex;
@@ -218,7 +221,7 @@
         }
 
         .btn-primary {
-            background-color: #007bff;
+            background-color: #3b82f6;
             color: white;
         }
     </style>
@@ -527,77 +530,83 @@
     </style>
     </div>
     <script>
-        const manageProfilesView = document.querySelector('.profile-management');
-        const addProfileView = document.querySelector('.add-profile-section');
-        const addProfileButton = document.querySelector('.add-profile');
-        const backButton = document.querySelector('.back-btn');
-        const profileCards = document.querySelectorAll('.profiles-grid .profile-card.small:not(.add-profile)');
+        // ES5 Compatible Profile Management
+        var manageProfilesView = document.querySelector('.profile-management');
+        var addProfileView = document.querySelector('.add-profile-section');
+        var addProfileButton = document.querySelector('.add-profile');
+        var backButton = document.querySelector('.back-btn');
+        var profileCards = document.querySelectorAll('.profiles-grid .profile-card.small:not(.add-profile)');
 
-        addProfileButton.addEventListener('click', () => {
+        addProfileButton.addEventListener('click', function() {
             manageProfilesView.style.display = 'none';
             addProfileView.style.display = 'block';
         });
 
-        backButton.addEventListener('click', () => {
+        backButton.addEventListener('click', function() {
             addProfileView.style.display = 'none';
             manageProfilesView.style.display = 'block';
         });
 
-        profileCards.forEach(card => {
-            card.addEventListener('click', () => {
-                profileCards.forEach(c => c.classList.remove('active'));
-                card.classList.add('active');
+        for (var pc = 0; pc < profileCards.length; pc++) {
+            profileCards[pc].addEventListener('click', function(e) {
+                for (var pcc = 0; pcc < profileCards.length; pcc++) {
+                    profileCards[pcc].classList.remove('active');
+                }
+                e.currentTarget.classList.add('active');
             });
-        });
+        }
 
-        const avatarOptions = document.querySelectorAll('.avatar-option');
-        avatarOptions.forEach(avatar => {
-            avatar.addEventListener('click', () => {
-                avatarOptions.forEach(a => a.classList.remove('active'));
-                avatar.classList.add('active');
+        var avatarOptions = document.querySelectorAll('.avatar-option');
+        for (var ao = 0; ao < avatarOptions.length; ao++) {
+            avatarOptions[ao].addEventListener('click', function(e) {
+                for (var aoo = 0; aoo < avatarOptions.length; aoo++) {
+                    avatarOptions[aoo].classList.remove('active');
+                }
+                e.currentTarget.classList.add('active');
             });
-        });
+        }
 
         // --- Edit Profile Functionality ---
-        const changeAvatarBtn = document.getElementById('change-avatar-btn');
-        const avatarUpload = document.getElementById('avatar-upload');
-        const editProfileImg = document.getElementById('edit-profile-img');
-        const editProfileName = document.getElementById('edit-profile-name');
-        const deleteBtn = document.getElementById('delete-profile-btn');
-        const cancelBtn = document.getElementById('cancel-profile-btn');
-        const updateBtn = document.getElementById('update-profile-btn');
-        // The active profile logic needs to target the DOM explicitly
+        var changeAvatarBtn = document.getElementById('change-avatar-btn');
+        var avatarUpload = document.getElementById('avatar-upload');
+        var editProfileImg = document.getElementById('edit-profile-img');
+        var editProfileName = document.getElementById('edit-profile-name');
+        var deleteBtn = document.getElementById('delete-profile-btn');
+        var cancelBtn = document.getElementById('cancel-profile-btn');
+        var updateBtn = document.getElementById('update-profile-btn');
 
         // 1. Handle Profile Selection (Populate Form)
-        profileCards.forEach(card => {
-            card.addEventListener('click', () => {
+        for (var pf = 0; pf < profileCards.length; pf++) {
+            profileCards[pf].addEventListener('click', function(e) {
                 // Update Active State
-                profileCards.forEach(c => c.classList.remove('active'));
-                card.classList.add('active');
+                for (var pfc = 0; pfc < profileCards.length; pfc++) {
+                    profileCards[pfc].classList.remove('active');
+                }
+                e.currentTarget.classList.add('active');
 
                 // Get Data from Card
-                const currentImg = card.querySelector('img').src;
-                const currentName = card.querySelector('.profile-name').innerText;
+                var currentImg = e.currentTarget.querySelector('img').src;
+                var currentName = e.currentTarget.querySelector('.profile-name').innerText;
 
                 // Populate Form
                 editProfileImg.src = currentImg;
                 editProfileName.value = currentName;
             });
-        });
+        }
 
         // 2. Change Avatar (File Input)
         if (changeAvatarBtn && avatarUpload) {
-            changeAvatarBtn.addEventListener('click', () => {
+            changeAvatarBtn.addEventListener('click', function() {
                 avatarUpload.click();
             });
 
-            avatarUpload.addEventListener('change', (e) => {
-                const file = e.target.files[0];
+            avatarUpload.addEventListener('change', function(e) {
+                var file = e.target.files[0];
                 if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        editProfileImg.src = e.target.result;
-                    }
+                    var reader = new FileReader();
+                    reader.onload = function(evt) {
+                        editProfileImg.src = evt.target.result;
+                    };
                     reader.readAsDataURL(file);
                 }
             });
@@ -605,31 +614,31 @@
 
         // 3. Update Profile
         if (updateBtn) {
-            updateBtn.addEventListener('click', () => {
-                const activeCard = document.querySelector('.profile-card.small.active');
+            updateBtn.addEventListener('click', function() {
+                var activeCard = document.querySelector('.profile-card.small.active');
                 if (activeCard) {
-                    const newName = editProfileName.value;
-                    const newImg = editProfileImg.src;
+                    var newName = editProfileName.value;
+                    var newImg = editProfileImg.src;
 
                     // Update Card
                     activeCard.querySelector('.profile-name').innerText = newName;
                     activeCard.querySelector('img').src = newImg;
 
                     // Optional: Visual feedback
-                    const originalText = updateBtn.innerText;
+                    var originalText = updateBtn.innerText;
                     updateBtn.innerText = "Updated!";
-                    setTimeout(() => updateBtn.innerText = originalText, 1500);
+                    setTimeout(function() { updateBtn.innerText = originalText; }, 1500);
                 }
             });
         }
 
         // 4. Cancel (Reset Form)
         if (cancelBtn) {
-            cancelBtn.addEventListener('click', () => {
-                const activeCard = document.querySelector('.profile-card.small.active');
+            cancelBtn.addEventListener('click', function() {
+                var activeCard = document.querySelector('.profile-card.small.active');
                 if (activeCard) {
-                    const currentImg = activeCard.querySelector('img').src;
-                    const currentName = activeCard.querySelector('.profile-name').innerText;
+                    var currentImg = activeCard.querySelector('img').src;
+                    var currentName = activeCard.querySelector('.profile-name').innerText;
 
                     editProfileImg.src = currentImg;
                     editProfileName.value = currentName;
@@ -639,13 +648,13 @@
 
         // 5. Delete Profile
         if (deleteBtn) {
-            deleteBtn.addEventListener('click', () => {
-                const activeCard = document.querySelector('.profile-card.small.active');
+            deleteBtn.addEventListener('click', function() {
+                var activeCard = document.querySelector('.profile-card.small.active');
                 if (activeCard) {
                     if (confirm("Are you sure you want to delete this profile?")) {
                         activeCard.remove();
                         // Select the next available profile or clear form
-                        const nextProfile = document.querySelector('.profile-card.small:not(.add-profile)');
+                        var nextProfile = document.querySelector('.profile-card.small:not(.add-profile)');
                         if (nextProfile) {
                             nextProfile.click(); // Select it
                         } else {
@@ -659,19 +668,19 @@
         }
 
         // --- Add Profile Functionality ---
-        const createProfileBtn = document.getElementById('create-profile-btn');
-        const cancelCreateBtn = document.getElementById('cancel-create-btn');
-        const carouselPrev = document.getElementById('carousel-prev');
-        const carouselNext = document.getElementById('carousel-next');
-        const carouselMainImg = document.getElementById('carousel-main-img');
-        const carouselLeftImg = document.getElementById('carousel-left-img');
-        const carouselRightImg = document.getElementById('carousel-right-img');
-        const newProfileName = document.getElementById('new-profile-name');
-        const addProfileUploadBtn = document.getElementById('add-profile-upload-btn');
-        const addProfileFileInput = document.getElementById('add-profile-file-input');
+        var createProfileBtn = document.getElementById('create-profile-btn');
+        var cancelCreateBtn = document.getElementById('cancel-create-btn');
+        var carouselPrev = document.getElementById('carousel-prev');
+        var carouselNext = document.getElementById('carousel-next');
+        var carouselMainImg = document.getElementById('carousel-main-img');
+        var carouselLeftImg = document.getElementById('carousel-left-img');
+        var carouselRightImg = document.getElementById('carousel-right-img');
+        var newProfileName = document.getElementById('new-profile-name');
+        var addProfileUploadBtn = document.getElementById('add-profile-upload-btn');
+        var addProfileFileInput = document.getElementById('add-profile-file-input');
 
         // Avatar Data Mock
-        const avatarList = [
+        var avatarList = [
             "https://i.pravatar.cc/150?u=new1",
             "https://i.pravatar.cc/150?u=new2",
             "https://i.pravatar.cc/150?u=new3",
@@ -679,13 +688,13 @@
             "https://i.pravatar.cc/150?u=new5",
             "https://i.pravatar.cc/150?u=new6"
         ];
-        let currentAvatarIndex = 0;
+        var currentAvatarIndex = 0;
 
         function updateCarousel() {
             // Calculate indices for circular carousel
-            const len = avatarList.length;
-            const leftIndex = (currentAvatarIndex - 1 + len) % len;
-            const rightIndex = (currentAvatarIndex + 1) % len;
+            var len = avatarList.length;
+            var leftIndex = (currentAvatarIndex - 1 + len) % len;
+            var rightIndex = (currentAvatarIndex + 1) % len;
 
             if (carouselMainImg) carouselMainImg.src = avatarList[currentAvatarIndex];
             if (carouselLeftImg) carouselLeftImg.src = avatarList[leftIndex];
@@ -693,14 +702,14 @@
         }
 
         if (carouselPrev) {
-            carouselPrev.addEventListener('click', () => {
+            carouselPrev.addEventListener('click', function() {
                 currentAvatarIndex = (currentAvatarIndex - 1 + avatarList.length) % avatarList.length;
                 updateCarousel();
             });
         }
 
         if (carouselNext) {
-            carouselNext.addEventListener('click', () => {
+            carouselNext.addEventListener('click', function() {
                 currentAvatarIndex = (currentAvatarIndex + 1) % avatarList.length;
                 updateCarousel();
             });
@@ -708,20 +717,20 @@
 
         // Upload Photo for New Profile
         if (addProfileUploadBtn && addProfileFileInput) {
-            addProfileUploadBtn.addEventListener('click', () => {
+            addProfileUploadBtn.addEventListener('click', function() {
                 addProfileFileInput.click();
             });
 
-            addProfileFileInput.addEventListener('change', (e) => {
-                const file = e.target.files[0];
+            addProfileFileInput.addEventListener('change', function(e) {
+                var file = e.target.files[0];
                 if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
+                    var reader = new FileReader();
+                    reader.onload = function(evt) {
                         // Add uploaded image to the list and select it
-                        avatarList.splice(currentAvatarIndex + 1, 0, e.target.result);
+                        avatarList.splice(currentAvatarIndex + 1, 0, evt.target.result);
                         currentAvatarIndex++; // Move to new image
                         updateCarousel();
-                    }
+                    };
                     reader.readAsDataURL(file);
                 }
             });
@@ -729,18 +738,18 @@
 
         // Create Profile
         if (createProfileBtn) {
-            createProfileBtn.addEventListener('click', () => {
-                const name = newProfileName.value.trim();
+            createProfileBtn.addEventListener('click', function() {
+                var name = newProfileName.value.trim();
                 if (!name) {
                     alert("Please enter a profile name");
                     return;
                 }
 
-                const imgSrc = carouselMainImg.src;
+                var imgSrc = carouselMainImg.src;
 
                 // Save to localStorage
-                let profiles = JSON.parse(localStorage.getItem('bbnl-profiles') || '[]');
-                const newProfile = {
+                var profiles = JSON.parse(localStorage.getItem('bbnl-profiles') || '[]');
+                var newProfile = {
                     id: Date.now().toString(),
                     name: name,
                     avatar: imgSrc
@@ -749,21 +758,21 @@
                 localStorage.setItem('bbnl-profiles', JSON.stringify(profiles));
 
                 // Create HTML for new card
-                const newCardDiv = document.createElement('div');
+                var newCardDiv = document.createElement('div');
                 newCardDiv.className = 'profile-card small';
                 newCardDiv.setAttribute('data-profile', name);
                 newCardDiv.setAttribute('data-avatar', imgSrc);
-                newCardDiv.innerHTML = `
-                    <div class="profile-avatar">
-                        <img src="${imgSrc}" alt="${name}">
-                    </div>
-                    <p class="profile-name">${name}</p>
-                `;
+                newCardDiv.innerHTML = '<div class="profile-avatar">' +
+                        '<img src="' + imgSrc + '" alt="' + name + '">' +
+                    '</div>' +
+                    '<p class="profile-name">' + name + '</p>';
 
                 // Add click listener to new card
-                newCardDiv.addEventListener('click', () => {
-                    const allCards = document.querySelectorAll('.profiles-grid .profile-card.small:not(.add-profile)');
-                    allCards.forEach(c => c.classList.remove('active'));
+                newCardDiv.addEventListener('click', function() {
+                    var allCards = document.querySelectorAll('.profiles-grid .profile-card.small:not(.add-profile)');
+                    for (var ac = 0; ac < allCards.length; ac++) {
+                        allCards[ac].classList.remove('active');
+                    }
                     newCardDiv.classList.add('active');
 
                     editProfileImg.src = imgSrc;
@@ -771,8 +780,8 @@
                 });
 
                 // Insert before the "Add Profile" button
-                const profilesGrid = document.querySelector('.profiles-grid');
-                const addProfileCard = document.querySelector('.profile-card.small.add-profile');
+                var profilesGrid = document.querySelector('.profiles-grid');
+                var addProfileCard = document.querySelector('.profile-card.small.add-profile');
                 profilesGrid.insertBefore(newCardDiv, addProfileCard);
 
                 // Reset and Go Back
@@ -789,12 +798,22 @@
 
         // Cancel Creation
         if (cancelCreateBtn) {
-            cancelCreateBtn.addEventListener('click', () => {
+            cancelCreateBtn.addEventListener('click', function() {
                 newProfileName.value = "";
                 addProfileView.style.display = 'none';
                 manageProfilesView.style.display = 'block';
             });
         }
+        
+        // Initialize remote control
+        document.addEventListener('DOMContentLoaded', function() {
+            RemoteControl.init({
+                focusableSelector: '.profile-card, .avatar-option, button, a, input',
+                wrapNavigation: true,
+                autoFocus: false,
+                debug: false
+            });
+        });
     </script>
     <script src="js/script.js"></script>
 </body>

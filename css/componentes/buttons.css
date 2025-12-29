@@ -6,24 +6,44 @@
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
-    gap: 8px;
     text-decoration: none;
     /* Ensure links look like buttons if class applied */
 }
 
+.btn > * {
+    margin-right: 8px;
+}
+
+.btn > *:last-child {
+    margin-right: 0;
+}
+
 .btn-primary {
-    background: #007bff;
+    background: #3b82f6;
     color: white;
     width: 100%;
 }
 
 .btn-primary:hover {
-    background: #0056cc;
-    transform: translateY(-2px);
+    background: #2563eb;
+}
+
+body.light-mode .btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+body.light-mode .btn-primary:hover {
+    background: #2563eb;
 }
 
 .btn-secondary {
@@ -58,11 +78,12 @@
     cursor: pointer;
     padding: 8px 12px;
     border-radius: 6px;
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
 .icon-btn:hover {
-    background: rgba(0, 123, 255, 0.1);
+    background: rgba(59, 130, 246, 0.1);
 }
 
 /* Header control buttons specific styling for network and theme toggles */
@@ -76,22 +97,64 @@
 }
 
 .header-pill-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    color: var(--text-secondary);
-    border-radius: 50px;
-    padding: 8px 16px;
-    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #9ca3af;
+    border-radius: 20px;
+    padding: 8px 14px;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
-    gap: 8px;
-    font-size: 14px;
+    font-size: 13px;
     cursor: pointer;
-    transition: all 0.3s ease;
+}
+
+.header-pill-btn > * {
+    margin-right: 8px;
+}
+
+.header-pill-btn > *:last-child {
+    margin-right: 0;
 }
 
 .header-pill-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
     color: white;
+}
+
+body.light-mode .header-pill-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #6b7280;
+}
+
+body.light-mode .header-pill-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #0b1113;
+}
+
+.header-icon-btn {
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.header-icon-btn:hover {
+    color: #fff;
+}
+
+body.light-mode .header-icon-btn {
+    color: #6b7280;
+}
+
+body.light-mode .header-icon-btn:hover {
+    color: #0b1113;
 }
 
 .btn-popup-primary {
@@ -244,19 +307,36 @@
 }
 
 .pill-btn.dropdown {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
-    gap: 8px;
+}
+
+.pill-btn.dropdown > * {
+    margin-right: 8px;
+}
+
+.pill-btn.dropdown > *:last-child {
+    margin-right: 0;
 }
 
 /* Filter Pills Container */
 .filter-pills-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    gap: 12px;
     margin-bottom: 30px;
     overflow-x: auto;
     padding-bottom: 5px;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+}
+
+.filter-pills-container > * {
+    margin-right: 12px;
 }
 
 .filter-pills-container::-webkit-scrollbar {
@@ -293,4 +373,15 @@
 
 .header-icon-btn i {
     font-size: 18px;
+}
+
+/* Light Mode Support for Popup Buttons */
+body.light-mode .btn-popup-secondary {
+    color: #0b1113;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .btn-popup-secondary:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: #0b1113;
 }
