@@ -1,43 +1,25 @@
 /* ========================================================
-   CSS CUSTOM PROPERTIES (VARIABLES)
-   Samsung Tizen TV Compatible
+   CSS COLOR DEFINITIONS
+   Samsung Tizen TV Compatible - No CSS Variables
+   Direct color values for Tizen compatibility
    ======================================================== */
 
-:root {
-    /* Primary Colors */
-    --primary-color: #3b82f6;
-    --secondary-color: #6c757d;
-    --danger-color: #dc3545;
-    --success-color: #28a745;
-    
-    /* Background Colors */
-    --dark-bg: #000000;
-    --card-bg: #12151a;
-    --input-bg: #0d1117;
-    
-    /* Text Colors */
-    --text-primary: #ffffff;
-    --text-secondary: #6b7280;
-    
-    /* Border Colors */
-    --border-color: #30363d;
-    
-    /* Accent Colors */
-    --accent-color: #ffc107;
-}
+/* 
+   COLOR REFERENCE (for developers):
+   Primary Color: #3b82f6
+   Secondary Color: #6c757d
+   Danger Color: #dc3545
+   Success Color: #28a745
+   Dark Background: #000000
+   Card Background: #12151a
+   Input Background: #0d1117
+   Text Primary: #ffffff
+   Text Secondary: #6b7280
+   Border Color: #30363d
+   Accent Color: #ffc107
+*/
 
-/* Light mode overrides */
-body.light-mode {
-    --dark-bg: #f5f6f7;
-    --card-bg: #ffffff;
-    --text-primary: #0b1113;
-    --text-secondary: #6c757d;
-    --border-color: #e0e3e7;
-    --accent-color: #d9a200;
-    --input-bg: #f5f6f7;
-}
-
-/* Specific Light Mode overrides for components that need direct style changes beyond vars */
+/* Light mode overrides - use direct class selectors */
 body.light-mode .main-header {
     background: #ffffff;
     border-bottom: 1px solid rgba(11, 17, 19, 0.08);

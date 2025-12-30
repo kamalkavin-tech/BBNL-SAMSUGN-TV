@@ -2,27 +2,27 @@
 .sidebar {
     background: rgba(15, 15, 30, 0.75);
     border-right: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 30px 20px;
+    padding: 1.875rem 1.25rem;
     overflow-y: auto;
     position: fixed;
     left: 0;
     top: 0;
-    width: 250px;
+    width: 15.625rem;
     height: 100vh;
     display: none;
-    box-shadow: 4px 0 32px rgba(0, 0, 0, 0.5),
+    box-shadow: 0.25rem 0 2rem rgba(0, 0, 0, 0.5),
                 0 0 0 1px rgba(255, 255, 255, 0.08),
                 inset -1px 0 0 rgba(255, 255, 255, 0.1);
 }
 
 .sidebar-header {
-    margin-bottom: 40px;
+    margin-bottom: 2.5rem;
 }
 
 .sidebar-nav {
     display: flex;
     flex-direction: column;
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
 }
 
 .nav-item {
@@ -30,11 +30,11 @@
     align-items: center;
     color: #b0bec5;
     text-decoration: none;
-    padding: 12px 15px;
-    border-radius: 8px;
+    padding: 0.75rem 0.9375rem;
+    border-radius: 0.5rem;
     transition: all 0.3s ease;
-    font-size: 14px;
-    margin-bottom: 15px;
+    font-size: 0.875rem;
+    margin-bottom: 0.9375rem;
 }
 
 .nav-item:last-child {
@@ -43,8 +43,8 @@
 
 .nav-item i,
 .nav-item .icon {
-    margin-right: 12px;
-    font-size: 18px;
+    margin-right: 0.75rem;
+    font-size: 1.125rem;
 }
 
 .nav-item:hover {
@@ -55,23 +55,23 @@
 .nav-item.active {
     color: #ffffff;
     background: rgba(0, 123, 255, 0.2);
-    border-left: 3px solid #3b82f6;
+    border-left: 0.1875rem solid #3b82f6;
 }
 
 .nav-item .icon {
-    font-size: 18px;
+    font-size: 1.125rem;
 }
 
 .sidebar-footer {
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
+    margin-top: 2.5rem;
     border-top: 1px solid rgba(48, 48, 48, 0.5);
-    padding-top: 20px;
+    padding-top: 1.25rem;
 }
 
 .sidebar-footer > * {
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem;
 }
 
 .sidebar-footer > *:last-child {
@@ -108,8 +108,8 @@
 .sidebar-content {
     position: absolute;
     top: 0;
-    left: -280px;
-    width: 280px;
+    left: -17.5rem;
+    width: 17.5rem;
     height: 100%;
     /* Solid background for Tizen compatibility (backdrop-filter not supported) */
     background: rgba(15, 15, 25, 0.97);
@@ -124,9 +124,9 @@
     -ms-flex-direction: column;
     flex-direction: column;
     overflow-y: auto;
-    -webkit-box-shadow: 4px 0 40px rgba(0, 0, 0, 0.4),
+    -webkit-box-shadow: 0.25rem 0 2.5rem rgba(0, 0, 0, 0.4),
                 0 0 0 1px rgba(255, 255, 255, 0.08);
-    box-shadow: 4px 0 40px rgba(0, 0, 0, 0.4),
+    box-shadow: 0.25rem 0 2.5rem rgba(0, 0, 0, 0.4),
                 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
@@ -138,7 +138,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 1.25rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -146,7 +146,7 @@
     background: transparent;
     border: none;
     color: #ffffff;
-    font-size: 20px;
+    font-size: 1.25rem;
     cursor: pointer;
     padding: 8px;
     display: flex;

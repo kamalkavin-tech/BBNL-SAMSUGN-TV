@@ -3,8 +3,6 @@
     display: block;
     min-height: 100vh;
     background: #000000;
-    background-color: #000000;
-    background-color: var(--dark-bg);
 }
 
 .main-content {
@@ -14,7 +12,7 @@
 }
 
 .content-area {
-    padding-top: 70px;
+    padding-top: 4.375rem;
     /* Header height */
     overflow-y: auto;
     -webkit-box-flex: 1;
@@ -24,15 +22,17 @@
 }
 
 body.light-mode .content-area {
-    background: var(--dark-bg);
+    background: #000000;
 }
 
 /* Homepage Hero */
 .home-hero-section {
     position: relative;
-    height: 450px;
-    width: calc(100% - 80px);
-    margin: 0 40px 30px;
+    height: 50vh;
+    min-height: 18rem;
+    max-height: 35rem;
+    width: calc(100% - 5rem);
+    margin: 0 2.5rem 1.875rem;
 
     background-size: cover;
     display: -webkit-box;
@@ -41,7 +41,7 @@ body.light-mode .content-area {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    border-radius: 20px;
+    border-radius: 1.25rem;
     overflow: hidden;
 }
 
@@ -59,41 +59,41 @@ body.light-mode .content-area {
 .home-hero-section .hero-content {
     position: relative;
     z-index: 2;
-    padding-left: 50px;
-    max-width: 500px;
+    padding-left: 3.125rem;
+    max-width: 35rem;
 }
 
 .home-hero-section h1 {
-    font-size: 48px;
+    font-size: 3rem;
     font-weight: 800;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
     color: white;
 }
 
 .home-hero-section .subtitle {
-    font-size: 16px;
+    font-size: 1rem;
     color: #e0e0e0;
     font-weight: 500;
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem;
 }
 
 .home-hero-section .description {
-    font-size: 13px;
+    font-size: 0.8125rem;
     color: #9ca3af;
     line-height: 1.6;
-    margin-bottom: 20px;
-    max-width: 400px;
+    margin-bottom: 1.25rem;
+    max-width: 25rem;
 }
 
 .home-hero-section .tags {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    margin-bottom: 25px;
+    margin-bottom: 1.5625rem;
 }
 
 .home-hero-section .tags > * {
-    margin-right: 10px;
+    margin-right: 0.625rem;
 }
 
 .home-hero-section .tags > *:last-child {
@@ -103,9 +103,9 @@ body.light-mode .content-area {
 .home-hero-section .tag {
     background: transparent;
     border: 1px solid #4a4a4a;
-    padding: 5px 14px;
-    border-radius: 16px;
-    font-size: 12px;
+    padding: 0.3125rem 0.875rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
     color: #d1d5db;
 }
 
@@ -119,7 +119,7 @@ body.light-mode .content-area {
 }
 
 .home-hero-section .hero-actions > * {
-    margin-right: 12px;
+    margin-right: 0.75rem;
 }
 
 .home-hero-section .hero-actions > *:last-child {
@@ -130,9 +130,9 @@ body.light-mode .content-area {
     background: #22c55e;
     color: #fff;
     border: none;
-    padding: 12px 28px;
-    border-radius: 25px;
-    font-size: 14px;
+    padding: 0.75rem 1.75rem;
+    border-radius: 1.5625rem;
+    font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
     display: -webkit-inline-box;
@@ -141,10 +141,12 @@ body.light-mode .content-area {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    -webkit-transition: background 0.2s ease;
+    transition: background 0.2s ease;
 }
 
 .home-hero-section .btn-watch > * {
-    margin-right: 8px;
+    margin-right: 0.5rem;
 }
 
 .home-hero-section .btn-watch > *:last-child {
@@ -156,13 +158,13 @@ body.light-mode .content-area {
 }
 
 .home-hero-section .btn-add {
-    width: 44px;
-    height: 44px;
+    width: 2.75rem;
+    height: 2.75rem;
     border-radius: 50%;
     background: transparent;
     border: 2px solid #4b5563;
     color: #fff;
-    font-size: 18px;
+    font-size: 1.125rem;
     cursor: pointer;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -173,6 +175,8 @@ body.light-mode .content-area {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .home-hero-section .btn-add:hover {
@@ -182,22 +186,22 @@ body.light-mode .content-area {
 
 /* Content Sections */
 .content-carousel {
-    padding: 20px 40px 30px;
+    padding: 1.25rem 2.5rem 1.875rem;
 }
 
 .content-section {
-    padding: 20px 40px;
+    padding: 1.25rem 2.5rem;
 }
 
 .section-title {
-    font-size: 22px;
+    font-size: 1.375rem;
     font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 20px;
+    color: #ffffff;
+    margin-bottom: 1.25rem;
 }
 
 .content-carousel h2 {
-    font-size: 22px;
+    font-size: 1.375rem;
     font-weight: 700;
     margin-bottom: 20px;
     letter-spacing: 0.3px;
@@ -205,7 +209,7 @@ body.light-mode .content-area {
 }
 
 body.light-mode .content-carousel h2 {
-    color: var(--text-primary);
+    color: #ffffff;
 }
 
 .media-scroll-container {
@@ -327,12 +331,12 @@ body.light-mode .content-carousel h2 {
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
-    font-size: 13px;
+    font-size: 0.8125rem;
     font-weight: 500;
 }
 
 .view-all-box > * {
-    margin-right: 8px;
+    margin-right: 0.5rem;
 }
 
 .view-all-box > *:last-child {
@@ -340,32 +344,32 @@ body.light-mode .content-carousel h2 {
 }
 
 .view-all-box i {
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 .media-info {
-    padding-left: 4px;
+    padding-left: 0.25rem;
 }
 
 .media-info h3 {
-    font-size: 13px;
+    font-size: 0.8125rem;
     color: white;
-    margin: 0 0 4px 0;
+    margin: 0 0 0.25rem 0;
     font-weight: 600;
 }
 
 .media-info p {
-    font-size: 11px;
+    font-size: 0.6875rem;
     color: #6b7280;
     margin: 0;
 }
 
 body.light-mode .media-info h3 {
-    color: var(--text-primary);
+    color: #ffffff;
 }
 
 body.light-mode .media-info p {
-    color: var(--text-secondary);
+    color: #6b7280;
 }
 
 /* Applications Grid on Home - Using Flexbox */
@@ -375,13 +379,13 @@ body.light-mode .media-info p {
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin: -10px;
+    margin: -0.625rem;
 }
 
 .apps-grid-container > * {
-    width: calc(20% - 20px);
-    min-width: 180px;
-    margin: 10px;
+    width: calc(20% - 1.25rem);
+    min-width: 11.25rem;
+    margin: 0.625rem;
 }
 
 /* Movie Poster Style Override */
@@ -446,7 +450,7 @@ body.light-mode .media-info p {
 }
 
 .network-popup-text {
-    color: var(--text-secondary);
+    color: #6b7280;
     font-size: 14px;
     margin-bottom: 30px;
 }
@@ -489,8 +493,8 @@ body.light-mode .media-info p {
 }
 
 .network-modal-content {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
+    background: #12151a;
+    border: 1px solid #30363d;
     border-radius: 16px;
     width: 100%;
     max-width: 380px;
@@ -503,13 +507,13 @@ body.light-mode .media-info p {
     justify-content: space-between;
     align-items: center;
     padding: 20px 24px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid #30363d;
 }
 
 .network-modal-header h3 {
     font-size: 18px;
     font-weight: 600;
-    color: var(--text-primary);
+    color: #ffffff;
     margin: 0;
 }
 
@@ -521,7 +525,7 @@ body.light-mode .media-info p {
     -ms-flex-align: center;
     align-items: center;
     padding: 20px 24px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid #30363d;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
     cursor: pointer;
@@ -562,20 +566,20 @@ body.light-mode .media-info p {
 .network-option-content h4 {
     font-size: 15px;
     font-weight: 500;
-    color: var(--text-primary);
+    color: #ffffff;
     margin: 0 0 4px 0;
 }
 
 .network-option-content p {
     font-size: 13px;
-    color: var(--text-secondary);
+    color: #6b7280;
     margin: 0;
 }
 
 .network-option-btn {
     background: transparent;
     border: none;
-    color: var(--text-secondary);
+    color: #6b7280;
     cursor: pointer;
     padding: 4px;
     display: flex;
@@ -585,7 +589,7 @@ body.light-mode .media-info p {
 }
 
 .network-option-btn:hover {
-    color: var(--text-primary);
+    color: #ffffff;
 }
 
 /* Light Mode Support for Network Popup */

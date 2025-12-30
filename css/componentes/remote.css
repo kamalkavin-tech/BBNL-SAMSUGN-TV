@@ -6,10 +6,10 @@
 
 /* Global focus outline for all focusable elements */
 .remote-focused {
-    outline: 3px solid var(--primary-color, #3b82f6) !important;
-    outline-offset: 2px !important;
-    -webkit-box-shadow: 0 0 15px rgba(59, 130, 246, 0.5) !important;
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5) !important;
+    outline: 0.1875rem solid #3b82f6 !important;
+    outline-offset: 0.125rem !important;
+    -webkit-box-shadow: 0 0 0.9375rem rgba(59, 130, 246, 0.5) !important;
+    box-shadow: 0 0 0.9375rem rgba(59, 130, 246, 0.5) !important;
     -webkit-transition: all 0.2s ease !important;
     transition: all 0.2s ease !important;
 }
@@ -27,14 +27,14 @@ button.remote-focused,
 .btn-secondary.remote-focused {
     -webkit-transform: scale(1.05);
     transform: scale(1.05);
-    background-color: var(--primary-color, #3b82f6) !important;
-    border-color: var(--primary-color, #3b82f6) !important;
+    background-color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
     color: #ffffff !important;
 }
 
 .btn-outline.remote-focused {
-    background-color: var(--primary-color, #3b82f6) !important;
-    border-color: var(--primary-color, #3b82f6) !important;
+    background-color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
     color: #ffffff !important;
 }
 
@@ -43,14 +43,14 @@ button.remote-focused,
 input.remote-focused,
 textarea.remote-focused,
 select.remote-focused {
-    border-color: var(--primary-color, #3b82f6) !important;
+    border-color: #3b82f6 !important;
     -webkit-box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3) !important;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3) !important;
 }
 
 /* OTP Input Focus */
 .otp-input.remote-focused {
-    border-color: var(--primary-color, #3b82f6) !important;
+    border-color: #3b82f6 !important;
     background-color: rgba(59, 130, 246, 0.1) !important;
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
@@ -59,7 +59,7 @@ select.remote-focused {
 /* Phone Input Focus */
 .phone-input-wrapper.remote-focused .phone-input,
 .phone-input.remote-focused {
-    border-color: var(--primary-color, #3b82f6) !important;
+    border-color: #3b82f6 !important;
     -webkit-box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3) !important;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3) !important;
 }
@@ -73,8 +73,8 @@ select.remote-focused {
 .show-card.remote-focused {
     -webkit-transform: scale(1.08);
     transform: scale(1.08);
-    -webkit-box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4) !important;
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4) !important;
+    -webkit-box-shadow: 0 0.5rem 1.5625rem rgba(59, 130, 246, 0.4) !important;
+    box-shadow: 0 0.5rem 1.5625rem rgba(59, 130, 246, 0.4) !important;
     z-index: 10;
 }
 
@@ -82,9 +82,9 @@ select.remote-focused {
 .channel-card.remote-focused {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
-    border-color: var(--primary-color, #3b82f6) !important;
-    -webkit-box-shadow: 0 5px 20px rgba(59, 130, 246, 0.5) !important;
-    box-shadow: 0 5px 20px rgba(59, 130, 246, 0.5) !important;
+    border-color: #3b82f6 !important;
+    -webkit-box-shadow: 0 0.3125rem 1.25rem rgba(59, 130, 246, 0.5) !important;
+    box-shadow: 0 0.3125rem 1.25rem rgba(59, 130, 246, 0.5) !important;
 }
 
 /* App Tiles */
@@ -92,9 +92,9 @@ select.remote-focused {
 .ott-app-card.remote-focused {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
-    border: 3px solid var(--primary-color, #3b82f6) !important;
-    -webkit-box-shadow: 0 0 20px rgba(59, 130, 246, 0.6) !important;
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6) !important;
+    border: 0.1875rem solid #3b82f6 !important;
+    -webkit-box-shadow: 0 0 1.25rem rgba(59, 130, 246, 0.6) !important;
+    box-shadow: 0 0 1.25rem rgba(59, 130, 246, 0.6) !important;
 }
 
 /* -------------------- NAVIGATION FOCUS STYLES -------------------- */
@@ -103,13 +103,13 @@ select.remote-focused {
 .sidebar-menu-item.remote-focused,
 .nav-item.remote-focused {
     background-color: rgba(59, 130, 246, 0.2) !important;
-    border-left: 4px solid var(--primary-color, #3b82f6) !important;
-    color: var(--primary-color, #3b82f6) !important;
+    border-left: 4px solid #3b82f6 !important;
+    color: #3b82f6 !important;
 }
 
 /* Link Focus */
 a.remote-focused {
-    color: var(--primary-color, #3b82f6) !important;
+    color: #3b82f6 !important;
     text-decoration: underline;
 }
 
@@ -129,11 +129,11 @@ a.remote-focused {
 .profile-item.remote-focused {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
-    border: 3px solid var(--primary-color, #3b82f6) !important;
+    border: 3px solid #3b82f6 !important;
 }
 
 .profile-avatar.remote-focused {
-    border-color: var(--primary-color, #3b82f6) !important;
+    border-color: #3b82f6 !important;
     -webkit-box-shadow: 0 0 15px rgba(59, 130, 246, 0.6) !important;
     box-shadow: 0 0 15px rgba(59, 130, 246, 0.6) !important;
 }
@@ -143,7 +143,7 @@ a.remote-focused {
 .settings-option.remote-focused,
 .setting-item.remote-focused {
     background-color: rgba(59, 130, 246, 0.1) !important;
-    border-left: 4px solid var(--primary-color, #3b82f6) !important;
+    border-left: 4px solid #3b82f6 !important;
 }
 
 /* Toggle Switch Focus */
@@ -159,7 +159,7 @@ a.remote-focused {
 .control-btn.remote-focused {
     -webkit-transform: scale(1.2);
     transform: scale(1.2);
-    color: var(--primary-color, #3b82f6) !important;
+    color: #3b82f6 !important;
 }
 
 .progress-bar.remote-focused {
@@ -178,7 +178,7 @@ a.remote-focused {
 
 .modal-btn.remote-focused,
 .popup-btn.remote-focused {
-    background-color: var(--primary-color, #3b82f6) !important;
+    background-color: #3b82f6 !important;
     color: #ffffff !important;
 }
 
@@ -186,22 +186,22 @@ a.remote-focused {
 .close-modal.remote-focused {
     -webkit-transform: scale(1.2);
     transform: scale(1.2);
-    color: var(--primary-color, #3b82f6) !important;
+    color: #3b82f6 !important;
 }
 
 /* -------------------- NOTIFICATION FOCUS STYLES -------------------- */
 
 .notification-item.remote-focused {
     background-color: rgba(59, 130, 246, 0.1) !important;
-    border-left: 4px solid var(--primary-color, #3b82f6) !important;
+    border-left: 4px solid #3b82f6 !important;
 }
 
 /* -------------------- TAB FOCUS STYLES -------------------- */
 
 .tab.remote-focused,
 .tab-btn.remote-focused {
-    border-bottom: 3px solid var(--primary-color, #3b82f6) !important;
-    color: var(--primary-color, #3b82f6) !important;
+    border-bottom: 3px solid #3b82f6 !important;
+    color: #3b82f6 !important;
 }
 
 /* -------------------- SUBSCRIPTION CARD FOCUS -------------------- */
@@ -210,7 +210,7 @@ a.remote-focused {
 .plan-card.remote-focused {
     -webkit-transform: scale(1.03);
     transform: scale(1.03);
-    border: 3px solid var(--primary-color, #3b82f6) !important;
+    border: 3px solid #3b82f6 !important;
     -webkit-box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3) !important;
     box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3) !important;
 }

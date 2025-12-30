@@ -11,19 +11,19 @@
     align-items: center;
     min-height: 100vh;
     background: #000000;
-    padding: 20px;
+    padding: 1.25rem;
 }
 
 /* Auth Card - Main container */
 .auth-card {
     background: #12151a;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 40px 48px;
+    border-radius: 1rem;
+    padding: 2.5rem 3rem;
     width: 100%;
-    max-width: 480px;
-    -webkit-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    max-width: 30rem;
+    -webkit-box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.4);
 }
 
 body.light-mode .auth-container {
@@ -43,11 +43,11 @@ body.light-mode .auth-card {
 }
 
 .auth-title {
-    font-size: 28px;
+    font-size: 1.75rem;
     font-weight: 700;
     font-style: italic;
     color: #ffffff;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
 }
 
 body.light-mode .auth-title {
@@ -56,8 +56,8 @@ body.light-mode .auth-title {
 
 .auth-subtitle {
     color: #6b7280;
-    font-size: 14px;
-    margin-bottom: 32px;
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
 }
 
 body.light-mode .auth-subtitle {
@@ -75,11 +75,11 @@ body.light-mode .auth-subtitle {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
 }
 
 .step-indicator > * {
-    margin-right: 12px;
+    margin-right: 0.75rem;
 }
 
 .step-indicator > *:last-child {
@@ -96,7 +96,7 @@ body.light-mode .auth-subtitle {
 }
 
 .step > * {
-    margin-right: 8px;
+    margin-right: 0.5rem;
 }
 
 .step > *:last-child {
@@ -104,8 +104,8 @@ body.light-mode .auth-subtitle {
 }
 
 .step-dot {
-    width: 10px;
-    height: 10px;
+    width: 0.625rem;
+    height: 0.625rem;
     border-radius: 50%;
     background: #4b5563;
     border: 2px solid #4b5563;
@@ -135,7 +135,7 @@ body.light-mode .step.completed .step-dot {
 }
 
 .step-label {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #6b7280;
     font-weight: 500;
 }
@@ -153,7 +153,7 @@ body.light-mode .step.active .step-label {
 }
 
 .step-line {
-    width: 60px;
+    width: 3.75rem;
     height: 0;
     border-top: 2px dashed #4b5563;
 }
@@ -174,7 +174,7 @@ body.light-mode .step-line {
 }
 
 .auth-form > * {
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
 }
 
 .auth-form > *:last-child {
@@ -187,10 +187,10 @@ body.light-mode .step-line {
 
 .form-label {
     display: block;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
     color: #ffffff;
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem;
 }
 
 body.light-mode .form-label {
@@ -435,18 +435,18 @@ body.light-mode .otp-timer a {
 .auth-header h1 {
     font-size: 32px;
     font-weight: 700;
-    color: var(--text-primary);
+    color: #ffffff;
 }
 
 /* Legacy Auth Content Styles */
 .auth-content h2:not(.auth-title) {
     font-size: 28px;
     margin-bottom: 10px;
-    color: var(--text-primary);
+    color: #ffffff;
 }
 
 .auth-content > p:not(.auth-subtitle) {
-    color: var(--text-secondary);
+    color: #6b7280;
     margin-bottom: 30px;
     font-size: 14px;
 }
@@ -457,7 +457,7 @@ body.light-mode .otp-timer a {
     display: -ms-flexbox;
     display: flex;
     margin-bottom: 30px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid #30363d;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
@@ -474,7 +474,7 @@ body.light-mode .otp-timer a {
 .tab-btn {
     background: none;
     border: none;
-    color: var(--text-secondary);
+    color: #6b7280;
     padding: 12px 0;
     font-size: 14px;
     cursor: pointer;
@@ -507,7 +507,7 @@ body.light-mode .otp-timer a {
 }
 
 .tab-btn.active {
-    color: var(--text-primary);
+    color: #ffffff;
 }
 
 .tab-btn.active .indicator {
@@ -567,7 +567,7 @@ body.light-mode .otp-timer a {
     text-align: center;
     font-size: 28px;
     font-weight: 700;
-    color: var(--text-primary);
+    color: #ffffff;
     -webkit-transition: border-color 0.2s ease, background 0.2s ease;
     transition: border-color 0.2s ease, background 0.2s ease;
     padding-bottom: 6px;
@@ -590,7 +590,7 @@ body.light-mode .otp-input:focus {
 }
 
 .otp-separator {
-    color: var(--text-primary);
+    color: #ffffff;
     font-size: 28px;
     padding: 0 8px;
 }
@@ -606,7 +606,7 @@ body.light-mode .otp-input:focus {
 .otp-timer {
     text-align: center;
     font-size: 14px;
-    color: var(--text-secondary);
+    color: #6b7280;
     margin-top: 20px;
 }
 
@@ -654,7 +654,7 @@ body.light-mode .otp-input:focus {
     font-size: 32px;
     font-weight: 700;
     letter-spacing: 10px;
-    color: var(--text-primary);
+    color: #ffffff;
 }
 
 .qr-box {

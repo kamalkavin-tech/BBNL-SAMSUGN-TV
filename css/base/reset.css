@@ -4,21 +4,25 @@
     box-sizing: border-box;
 }
 
+html {
+    /* Base font size - scales with TV resolution */
+    font-size: 16px;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: #0d1117;
-    background-color: var(--dark-bg);
+    background-color: #000000;
     color: #ffffff;
-    color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    font-size: 1rem;
 }
 
 /* Global Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(1.25rem);
     }
 
     to {
@@ -30,7 +34,7 @@ body {
 @keyframes slideInFromRight {
     from {
         opacity: 0;
-        transform: translateX(30px);
+        transform: translateX(1.875rem);
     }
 
     to {
@@ -42,7 +46,7 @@ body {
 @keyframes slideInFromTop {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-0.625rem);
     }
 
     to {
@@ -53,8 +57,8 @@ body {
 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 0.5rem;
+    height: 0.5rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -63,7 +67,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
     background: #30363d;
-    border-radius: 4px;
+    border-radius: 0.25rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {

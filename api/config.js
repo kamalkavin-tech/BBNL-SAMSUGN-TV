@@ -2,6 +2,8 @@
 // BBNL API CONFIGURATION - PRODUCTION (ES5 Compatible for Tizen)
 // Per API Documentation: api-documentation (5).md
 // ========================================================
+/* global axios */
+/* exported API_CONFIG, mapBBNLError, apiCall */
 
 var API_CONFIG = {
     // Backend proxy URL (handles all BBNL communication)
@@ -47,10 +49,20 @@ var API_CONFIG = {
 function apiCall(endpoint, payload) {
     payload = payload || {};
     
+    // Check network status first (ES5 compatible)
+    if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+        var networkError = new Error('No Internet Connection');
+        networkError.isNetworkError = true;
+        return Promise.reject(networkError);
+    }
+    
     return axios.post(
         API_CONFIG.PROXY_URL + '/' + endpoint,
         payload,
-        { headers: { 'Content-Type': 'application/json' } }
+        { 
+            headers: { 'Content-Type': 'application/json' },
+            timeout: 15000 // 15 second timeout
+        }
     ).then(function(response) {
         var data = response.data;
         var status = data.status || {};
@@ -66,15 +78,38 @@ function apiCall(endpoint, payload) {
         }
 
         return data;
-    }).catch(function(error) {
+    }, function(error) {
         var errorMsg = 'Unknown error';
-        if (error.response && error.response.data && error.response.data.status) {
+        var isNetworkError = false;
+        
+        // Detect network/connection errors
+        if (error.isNetworkError) {
+            errorMsg = error.message;
+            isNetworkError = true;
+        } else if (error.code === 'ECONNABORTED' || error.code === 'ETIMEDOUT') {
+            errorMsg = 'Connection timeout. Check your network.';
+            isNetworkError = true;
+        } else if (error.message && (
+            error.message.indexOf('Network Error') !== -1 ||
+            error.message.indexOf('net::ERR') !== -1 ||
+            error.message.indexOf('Failed to fetch') !== -1 ||
+            error.message.indexOf('ENOTFOUND') !== -1 ||
+            error.message.indexOf('ECONNREFUSED') !== -1
+        )) {
+            errorMsg = 'No Internet Connection';
+            isNetworkError = true;
+        } else if (error.response && error.response.data && error.response.data.status) {
             errorMsg = error.response.data.status.err_msg || error.message;
         } else if (error.message) {
             errorMsg = error.message;
         }
+        
         console.error('API Error [' + endpoint + ']: ' + errorMsg);
-        throw error;
+        
+        var newError = new Error(errorMsg);
+        newError.isNetworkError = isNetworkError;
+        newError.originalError = error;
+        throw newError;
     });
 }
 

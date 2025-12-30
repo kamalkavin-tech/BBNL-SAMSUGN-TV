@@ -43,10 +43,10 @@
                 
                 <form class="auth-form" id="otp-form" onsubmit="return false;">
                     <div class="otp-input-group">
-                        <input name="otp1" type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
-                        <input name="otp2" type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
-                        <input name="otp3" type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
-                        <input name="otp4" type="text" class="otp-input" maxlength="1" inputmode="numeric" autocomplete="off">
+                        <input name="otp1" type="text" class="otp-input" maxlength="1" autocomplete="off">
+                        <input name="otp2" type="text" class="otp-input" maxlength="1" autocomplete="off">
+                        <input name="otp3" type="text" class="otp-input" maxlength="1" autocomplete="off">
+                        <input name="otp4" type="text" class="otp-input" maxlength="1" autocomplete="off">
                     </div>
                     <div id="error-message" class="error-message"></div>
                     <div id="success-message" class="success-message"></div>
@@ -191,8 +191,7 @@
                         otpInputs[0].focus();
                         RemoteControl.setFocus(otpInputs[0]);
                     }
-                })
-                .catch(function(error) {
+                }, function(error) {
                     spinner.style.display = 'none';
                     showError('Verification failed. Please try again.');
                     console.error('OTP verification error:', error);
@@ -240,8 +239,7 @@
                     } else {
                         showError(result.message);
                     }
-                })
-                .catch(function(error) {
+                }, function(error) {
                     spinner.style.display = 'none';
                     showError('An unexpected error occurred. Please try again.');
                     console.error('Resend OTP error:', error);

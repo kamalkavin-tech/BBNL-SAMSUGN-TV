@@ -1,6 +1,7 @@
 // ========================================================
 // BBNL STREAMING PLATFORM - GLOBAL JAVASCRIPT (ES5 TIZEN SAFE)
 // ========================================================
+/* global AuthAPI, API_CONFIG, RemoteControl */
 
 // -------------------- THEME MANAGER --------------------
 function initializeTheme() {
@@ -471,7 +472,7 @@ function callLoginApi(mobile) {
                 console.error('OTP request failed:', result.message);
                 showErrorOnScreen(result.message || 'Failed to send OTP. Please try again.');
             }
-        }).catch(function(error) {
+        }, function(error) {
             console.error('Login error:', error);
             if (btn) { btn.disabled = false; }
             if (spinner) { spinner.style.display = 'none'; }

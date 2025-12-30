@@ -1,9 +1,9 @@
 /* Buttons */
 .btn {
-    padding: 12px 24px;
+    padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 0.5rem;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     display: -webkit-inline-box;
@@ -16,11 +16,13 @@
     -ms-flex-pack: center;
     justify-content: center;
     text-decoration: none;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
     /* Ensure links look like buttons if class applied */
 }
 
 .btn > * {
-    margin-right: 8px;
+    margin-right: 0.5rem;
 }
 
 .btn > *:last-child {
@@ -49,7 +51,7 @@ body.light-mode .btn-primary:hover {
 .btn-secondary {
     background: #6c757d;
     color: white;
-    border: 1px solid var(--border-color);
+    border: 1px solid #30363d;
 }
 
 .btn-secondary:hover {
@@ -66,18 +68,18 @@ body.light-mode .btn-primary:hover {
 }
 
 .btn-large {
-    padding: 16px 32px;
-    font-size: 18px;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
 }
 
 .icon-btn {
     background: none;
     border: none;
-    color: var(--text-primary);
-    font-size: 18px;
+    color: #ffffff;
+    font-size: 1.125rem;
     cursor: pointer;
-    padding: 8px 12px;
-    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
@@ -90,7 +92,7 @@ body.light-mode .btn-primary:hover {
 .icon-btn#network-btn,
 .icon-btn#theme-toggle {
     background: rgba(255, 255, 255, 0.02);
-    color: var(--text-primary);
+    color: #ffffff;
     border-radius: 999px;
     padding: 8px 10px;
     border: 1px solid transparent;
@@ -100,20 +102,22 @@ body.light-mode .btn-primary:hover {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #9ca3af;
-    border-radius: 20px;
-    padding: 8px 14px;
+    border-radius: 1.25rem;
+    padding: 0.5rem 0.875rem;
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    font-size: 13px;
+    font-size: 0.8125rem;
     cursor: pointer;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .header-pill-btn > * {
-    margin-right: 8px;
+    margin-right: 0.5rem;
 }
 
 .header-pill-btn > *:last-child {
@@ -140,9 +144,11 @@ body.light-mode .header-pill-btn:hover {
     background: transparent;
     border: none;
     color: #9ca3af;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
-    padding: 8px;
+    padding: 0.5rem;
+    -webkit-transition: color 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 .header-icon-btn:hover {
@@ -192,7 +198,7 @@ body.light-mode .header-icon-btn:hover {
 .close-modal {
     background: transparent;
     border: none;
-    color: var(--text-primary);
+    color: #ffffff;
     cursor: pointer;
     padding: 4px;
     display: flex;
@@ -282,8 +288,8 @@ body.light-mode .header-icon-btn:hover {
 /* Pill Buttons (Filter/Tabs) */
 .pill-btn {
     background: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
+    border: 1px solid #30363d;
+    color: #6b7280;
     padding: 10px 24px;
     border-radius: 50px;
     font-size: 14px;
@@ -294,15 +300,15 @@ body.light-mode .header-icon-btn:hover {
 }
 
 .pill-btn:hover {
-    border-color: var(--text-primary);
-    color: var(--text-primary);
+    border-color: #ffffff;
+    color: #ffffff;
     background: rgba(255, 255, 255, 0.05);
 }
 
 .pill-btn.active {
-    background: var(--text-primary);
-    color: var(--dark-bg);
-    border-color: var(--text-primary);
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
     font-weight: 600;
 }
 
@@ -344,7 +350,7 @@ body.light-mode .header-icon-btn:hover {
 }
 
 .filter-pills-container::-webkit-scrollbar-thumb {
-    background: var(--border-color);
+    background: #30363d;
     border-radius: 4px;
 }
 
@@ -352,7 +358,7 @@ body.light-mode .header-icon-btn:hover {
 .header-icon-btn {
     background: none;
     border: none;
-    color: var(--text-secondary);
+    color: #6b7280;
     font-size: 20px;
     cursor: pointer;
     padding: 8px;
@@ -366,7 +372,7 @@ body.light-mode .header-icon-btn:hover {
 }
 
 .header-icon-btn:hover {
-    color: var(--text-primary);
+    color: #ffffff;
     background: rgba(255, 255, 255, 0.1);
     transform: rotate(90deg);
 }

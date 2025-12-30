@@ -1,45 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets"
         xmlns:tizen="http://tizen.org/ns/widgets"
-        id="http://yourdomain/SAMSUGNMASTER"
+        id="http://yourdomain/samsugnmaster"
         version="1.0.0"
         viewmodes="maximized">
 
-    <tizen:application id="EyBxZxVYCG.SAMSUGNMASTER"
-                       package="EyBxZxVYCG"
-                       required_version="6.0"/>
+    <!-- REQUIRED for TV launch -->
+    <tizen:application
+        id="EyBxZxVYCG.SAMSUGNMASTER"
+        package="EyBxZxVYCG"
+        required_version="9.0"/>
 
+    <!-- Entry point -->
     <content src="index.html"/>
-    <feature name="http://tizen.org/feature/screen.size.normal.1080.1920"/>
 
-    <!-- Remote control privileges -->
-    <tizen:privilege name="http://tizen.org/privilege/keyevent"/>
-    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
+    <!-- TV PROFILE (MANDATORY) -->
+    <tizen:profile name="tv-samsung"/>
 
-    <!-- TV remote feature -->
+    <!-- Features -->
     <feature name="http://tizen.org/feature/tv.inputdevice"/>
 
-    <!-- Internet privilege for API -->
+    <!-- Privileges -->
     <tizen:privilege name="http://tizen.org/privilege/internet"/>
-
-    <!-- ✅ AVPLAY PRIVILEGES ADDED -->
-    <tizen:privilege name="http://developer.samsung.com/privilege/avplay"/>
+    <tizen:privilege name="http://tizen.org/privilege/keyevent"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
     <tizen:privilege name="http://tizen.org/privilege/tv.window"/>
     <tizen:privilege name="http://tizen.org/privilege/multimedia"/>
     <tizen:privilege name="http://tizen.org/privilege/mediastorage"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/avplay"/>
 
-    <!-- ✅ Correct tag for external access -->
-    <access origin="*" subdomains="true"></access>
+    <!-- Network -->
+    <access origin="*" subdomains="true"/>
 
-    <icon src="icon.png"/>
-    <tizen:metadata key="http://tizen.org/metadata/app_ui_type/base_screen_resolution"
-                    value="extensive"/>
+    <!-- App name -->
     <name>SAMSUGNMASTER</name>
-    <tizen:profile name="tv"/>
-    <tizen:setting screen-orientation="landscape"
-                   context-menu="enable"
-                   background-support="disable"
-                   encryption="disable"
-                   install-location="auto"
-                   hwkey-event="enable"/>
+
+    <!-- Settings -->
+    <tizen:setting
+        screen-orientation="landscape"
+        context-menu="enable"
+        background-support="disable"
+        hwkey-event="enable"/>
 </widget>

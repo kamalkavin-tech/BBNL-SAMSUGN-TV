@@ -2,6 +2,8 @@
 // BBNL AVPlay Video Player - Samsung Tizen TV Compatible
 // ES5 Syntax for Tizen WebEngine Compatibility
 // ========================================================
+/* global Hls, webapis, tizen */
+/* exported AVPlayer */
 
 var AVPlayer = (function() {
     'use strict';
@@ -504,8 +506,9 @@ var AVPlayer = (function() {
                     callbacks.onError('playback_error', eventType);
                 }
             },
-            onsubtitlechange: function(duration, text, data3, data4) {
-                log('Subtitle:', text);
+            onsubtitlechange: function(duration, text) {
+                // Note: data3 and data4 parameters available but not used
+                log('Subtitle:', text, 'duration:', duration);
             },
             ondrmevent: function(drmEvent, drmData) {
                 log('DRM event:', drmEvent, drmData);
@@ -565,7 +568,7 @@ var AVPlayer = (function() {
                     if (callbacks.onPlay) {
                         callbacks.onPlay();
                     }
-                }).catch(function(err) {
+                }, function(err) {
                     log('Autoplay prevented:', err);
                 });
             });
@@ -576,8 +579,21 @@ var AVPlayer = (function() {
                 if (data.fatal) {
                     switch (data.type) {
                         case Hls.ErrorTypes.NETWORK_ERROR:
-                            log('Network error, attempting recovery...');
-                            state.hlsPlayer.startLoad();
+                            // Check if it's a manifest load error (stream doesn't exist)
+                            if (data.details === 'manifestLoadError' || 
+                                data.details === 'manifestLoadTimeOut' ||
+                                data.details === 'manifestParsingError') {
+                                error('Failed to load stream - manifest error');
+                                state.hlsPlayer.destroy();
+                                state.error = data;
+                                
+                                if (callbacks.onError) {
+                                    callbacks.onError('stream_load_failed', 'Unable to load channel stream. The stream may be offline or unavailable.');
+                                }
+                            } else {
+                                log('Network error, attempting recovery...');
+                                state.hlsPlayer.startLoad();
+                            }
                             break;
                         case Hls.ErrorTypes.MEDIA_ERROR:
                             log('Media error, attempting recovery...');
@@ -589,7 +605,7 @@ var AVPlayer = (function() {
                             state.error = data;
                             
                             if (callbacks.onError) {
-                                callbacks.onError('fatal_error', data);
+                                callbacks.onError('fatal_error', 'Stream playback failed. Please try again.');
                             }
                             break;
                     }
@@ -627,7 +643,7 @@ var AVPlayer = (function() {
                     if (callbacks.onPlay) {
                         callbacks.onPlay();
                     }
-                }).catch(function(err) {
+                }, function(err) {
                     log('Autoplay prevented:', err);
                 });
             });
@@ -1047,15 +1063,15 @@ var AVPlayer = (function() {
          * @param {Object} cbs - Callback functions
          */
         setCallbacks: function(cbs) {
-            if (cbs.onPlay) callbacks.onPlay = cbs.onPlay;
-            if (cbs.onPause) callbacks.onPause = cbs.onPause;
-            if (cbs.onStop) callbacks.onStop = cbs.onStop;
-            if (cbs.onBufferingStart) callbacks.onBufferingStart = cbs.onBufferingStart;
-            if (cbs.onBufferingComplete) callbacks.onBufferingComplete = cbs.onBufferingComplete;
-            if (cbs.onBufferingProgress) callbacks.onBufferingProgress = cbs.onBufferingProgress;
-            if (cbs.onTimeUpdate) callbacks.onTimeUpdate = cbs.onTimeUpdate;
-            if (cbs.onError) callbacks.onError = cbs.onError;
-            if (cbs.onStreamComplete) callbacks.onStreamComplete = cbs.onStreamComplete;
+            if (cbs.onPlay) { callbacks.onPlay = cbs.onPlay; }
+            if (cbs.onPause) { callbacks.onPause = cbs.onPause; }
+            if (cbs.onStop) { callbacks.onStop = cbs.onStop; }
+            if (cbs.onBufferingStart) { callbacks.onBufferingStart = cbs.onBufferingStart; }
+            if (cbs.onBufferingComplete) { callbacks.onBufferingComplete = cbs.onBufferingComplete; }
+            if (cbs.onBufferingProgress) { callbacks.onBufferingProgress = cbs.onBufferingProgress; }
+            if (cbs.onTimeUpdate) { callbacks.onTimeUpdate = cbs.onTimeUpdate; }
+            if (cbs.onError) { callbacks.onError = cbs.onError; }
+            if (cbs.onStreamComplete) { callbacks.onStreamComplete = cbs.onStreamComplete; }
         },
 
         /**

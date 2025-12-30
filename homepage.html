@@ -197,6 +197,48 @@
         .ads-dot.active {
             background: #fff;
         }
+        /* Sidebar Submenu Styles */
+        .sidebar-menu-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar-menu-item.has-submenu {
+            position: relative;
+        }
+        .submenu-arrow {
+            margin-left: auto;
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        .sidebar-menu-item.has-submenu.active .submenu-arrow {
+            transform: rotate(180deg);
+        }
+        .sidebar-submenu {
+            display: none;
+            flex-direction: column;
+            padding-left: 20px;
+        }
+        .sidebar-submenu.show {
+            display: flex;
+        }
+        .sidebar-submenu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: #b0b0b0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .sidebar-submenu-item i {
+            margin-right: 12px;
+            font-size: 14px;
+            width: 20px;
+        }
+        .sidebar-submenu-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -227,7 +269,7 @@
         </div>
     </header>
 
-    <main class="content-area">
+    <div role="main" class="content-area">
         <!-- Hero Banner Section -->
         <section class="home-hero-section" id="ads-hero-section">
             <div class="hero-bg-overlay"></div>
@@ -380,7 +422,7 @@
                 </div>
             </div>
         </section>
-    </main>
+    </div>
 
     <!-- Sidebar Menu -->
     <div id="sidebar-menu" class="sidebar-menu">
@@ -442,70 +484,13 @@
         </div>
     </div>
 
-    <style>
-        /* Sidebar Submenu Styles */
-        .sidebar-menu-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .sidebar-menu-item.has-submenu {
-            position: relative;
-        }
-        
-        .submenu-arrow {
-            margin-left: auto;
-            font-size: 12px;
-            transition: transform 0.3s ease;
-        }
-        
-        .sidebar-menu-item.has-submenu.active .submenu-arrow {
-            transform: rotate(180deg);
-        }
-        
-        .sidebar-submenu {
-            display: none;
-            flex-direction: column;
-            padding-left: 20px;
-        }
-        
-        .sidebar-submenu.show {
-            display: flex;
-        }
-        
-        .sidebar-submenu-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
-            color: #b0b0b0;
-            text-decoration: none;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
-        
-        .sidebar-submenu-item i {
-            margin-right: 12px;
-            font-size: 14px;
-            width: 20px;
-        }
-        
-        .sidebar-submenu-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-        }
-    </style>
-
     <!-- Network Settings Modal -->
     <div id="network-modal" class="network-modal" style="display: none;">
         <div class="network-modal-content">
             <div class="network-modal-header">
                 <h3>Network Settings</h3>
                 <button class="close-modal" id="close-network-modal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
+                    <span style="font-size: 20px; font-weight: bold; color: currentColor;">&times;</span>
                 </button>
             </div>
 
@@ -741,7 +726,7 @@
                     console.warn('No channels from API, using fallback');
                     renderFallbackChannels(container);
                 }
-            }).catch(function(error) {
+            }, function(error) {
                 console.error('Failed to load channels:', error);
                 renderFallbackChannels(container);
             });
@@ -837,7 +822,7 @@
                     console.warn('No ads available, showing fallback');
                     showFallbackHero();
                 }
-            }).catch(function(error) {
+            }, function(error) {
                 console.error('Failed to load ads:', error);
                 showFallbackHero();
             });

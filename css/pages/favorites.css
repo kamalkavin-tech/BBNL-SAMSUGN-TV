@@ -29,7 +29,7 @@
 
 .filter-pills-container::-webkit-scrollbar-thumb {
     background: #30363d;
-    background: var(--border-color);
+
     border-radius: 4px;
 }
 

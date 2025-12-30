@@ -321,7 +321,7 @@
         </div>
     </div>
 
-    <main class="helpdesk-container">
+    <div role="main" class="helpdesk-container">
         <div class="helpdesk-header">
             <h1>Help Desk</h1>
             <p>Need assistance? Raise a complaint or check your recent activity. We're here to help you resolve any issues quickly.</p>
@@ -460,7 +460,7 @@
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
     <script src="js/script.js"></script>
     <script>
@@ -487,20 +487,21 @@
             // Add new complaint to activity list
             var newActivity = document.createElement('div');
             newActivity.className = 'activity-item';
-            newActivity.innerHTML =
-                <div class="activity-icon pending">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <div class="activity-details">
-                    <h4>${issue.substring(0, 50)}${issue.length > 50 ? '...' : ''}</h4>
-                    <p>User ID: ${userId}</p>
-                    <div class="activity-meta">
-                        <span><i class="far fa-calendar"></i> ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                        <span><i class="far fa-clock"></i> ${new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</span>
-                    </div>
-                </div>
-                <span class="status-badge pending">Pending</span>
-            `;
+            var issueText = issue.substring(0, 50) + (issue.length > 50 ? '...' : '');
+            var dateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            var timeStr = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+            newActivity.innerHTML = '<div class="activity-icon pending">' +
+                    '<i class="fas fa-clock"></i>' +
+                '</div>' +
+                '<div class="activity-details">' +
+                    '<h4>' + issueText + '</h4>' +
+                    '<p>User ID: ' + userId + '</p>' +
+                    '<div class="activity-meta">' +
+                        '<span><i class="far fa-calendar"></i> ' + dateStr + '</span>' +
+                        '<span><i class="far fa-clock"></i> ' + timeStr + '</span>' +
+                    '</div>' +
+                '</div>' +
+                '<span class="status-badge pending">Pending</span>';
             activityList.insertBefore(newActivity, activityList.firstChild);
 
             // Reset form
@@ -526,3 +527,6 @@
                 debug: false
             });
         });
+    </script>
+</body>
+</html>

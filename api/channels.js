@@ -1,7 +1,10 @@
 // ========================================================
 // BBNL CHANNELS API - PRODUCTION (ES5 Compatible for Tizen)
 // Per API Documentation: api-documentation (5).md
+// Requires: api/config.js and api/auth.js to be loaded first
 // ========================================================
+/* global API_CONFIG, apiCall, mapBBNLError, AuthAPI */
+/* exported ChannelsAPI */
 
 var ChannelsAPI = {
     /**
@@ -18,7 +21,8 @@ var ChannelsAPI = {
             return Promise.resolve({
                 success: false,
                 message: 'Login Required',
-                categories: []
+                categories: [],
+                errorType: 'login-required'
             });
         }
 
@@ -43,13 +47,28 @@ var ChannelsAPI = {
                 categories: categories,
                 data: data
             };
-        }).catch(function(error) {
+        }, function(error) {
             console.error('Failed to load categories:', error);
+            
+            // Determine error type
+            var errorType = 'load-failed';
+            var errorMsg = error.message || 'Failed to load categories';
+            
+            if (error.isNetworkError || 
+                errorMsg.toLowerCase().indexOf('no internet') !== -1 ||
+                errorMsg.toLowerCase().indexOf('network') !== -1 ||
+                errorMsg.toLowerCase().indexOf('connection') !== -1) {
+                errorType = 'no-internet';
+            } else if (errorMsg.toLowerCase().indexOf('login') !== -1) {
+                errorType = 'login-required';
+            }
+            
             return {
                 success: false,
-                message: mapBBNLError(error.message),
+                message: mapBBNLError(errorMsg),
                 categories: [],
-                error: error
+                error: error,
+                errorType: errorType
             };
         });
     },
@@ -68,7 +87,8 @@ var ChannelsAPI = {
             return Promise.resolve({
                 success: false,
                 message: 'Login Required',
-                channels: []
+                channels: [],
+                errorType: 'login-required'
             });
         }
 
@@ -89,13 +109,29 @@ var ChannelsAPI = {
                 channels: channels,
                 data: data
             };
-        }).catch(function(error) {
+        }, function(error) {
             console.error('Failed to load channels:', error);
+            
+            // Determine error type
+            var errorType = 'load-failed';
+            var errorMsg = error.message || 'Failed to load channels';
+            
+            if (error.isNetworkError || 
+                errorMsg.toLowerCase().indexOf('no internet') !== -1 ||
+                errorMsg.toLowerCase().indexOf('network') !== -1 ||
+                errorMsg.toLowerCase().indexOf('connection') !== -1 ||
+                errorMsg.toLowerCase().indexOf('timeout') !== -1) {
+                errorType = 'no-internet';
+            } else if (errorMsg.toLowerCase().indexOf('login') !== -1) {
+                errorType = 'login-required';
+            }
+            
             return {
                 success: false,
-                message: mapBBNLError(error.message),
+                message: mapBBNLError(errorMsg),
                 channels: [],
-                error: error
+                error: error,
+                errorType: errorType
             };
         });
     },
@@ -120,7 +156,9 @@ var ChannelsAPI = {
      * @returns {Array} Filtered channels
      */
     getChannelsByGrid: function(channels, grid) {
-        if (!grid || grid === '0') return channels; // "0" = All Channels
+        if (!grid || grid === '0') {
+            return channels; // "0" = All Channels
+        }
         return channels.filter(function(ch) {
             return ch.grid === grid;
         });

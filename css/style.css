@@ -5,6 +5,7 @@
 /* 1. Base (Variables, Reset, Typography) */
 @import 'base/variable.css';
 @import 'base/reset.css';
+@import 'base/responsive.css';
 
 /* 2. Layout (Header, Sidebar) */
 @import 'layout/header.css';

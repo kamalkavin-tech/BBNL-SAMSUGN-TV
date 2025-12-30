@@ -1,7 +1,9 @@
 // ========================================================
 // BBNL AUTHENTICATION API - PRODUCTION (ES5 Compatible for Tizen)
 // Per API Documentation: api-documentation (5).md
+// Requires: api/config.js to be loaded first
 // ========================================================
+/* global API_CONFIG, apiCall, mapBBNLError */
 
 var AuthAPI = {
     /**
@@ -54,7 +56,7 @@ var AuthAPI = {
                 message: statusMsg,
                 data: data
             };
-        }).catch(function(error) {
+        }, function(error) {
             console.error('OTP request failed:', error);
             
             // If API fails, fall back to demo OTP for testing
@@ -178,7 +180,7 @@ var AuthAPI = {
                     data: data
                 };
             }
-        }).catch(function(error) {
+        }, function(error) {
             console.error('OTP verification failed:', error);
             // IMPORTANT: On any error, return failure - never allow bypass
             return {

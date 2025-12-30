@@ -1,7 +1,10 @@
 // ========================================================
 // BBNL ADS API - PRODUCTION (ES5 Compatible for Tizen)
 // Per API Documentation: api-documentation (5).md
+// Requires: api/config.js and api/auth.js to be loaded first
 // ========================================================
+/* global API_CONFIG, apiCall, AuthAPI, mapBBNLError */
+/* exported AdsAPI */
 
 var AdsAPI = {
     /**
@@ -52,7 +55,7 @@ var AdsAPI = {
                 rawData: data.body,
                 data: data
             };
-        }).catch(function(error) {
+        }, function(error) {
             console.error('Failed to load ads:', error);
             return {
                 success: false,
@@ -152,11 +155,10 @@ var AdsAPI = {
         // Start auto-rotation
         var timer = setInterval(rotate, interval);
 
-        // Click handlers for dots
-        for (var k = 0; k < dots.length; k++) {
-            dots[k].addEventListener('click', function(e) {
-                var dotIndex = parseInt(e.target.getAttribute('data-index'));
-                currentIndex = dotIndex;
+        // Click handler function (defined outside loop for ES5 compatibility)
+        function createDotClickHandler(dotElement, index) {
+            dotElement.addEventListener('click', function() {
+                currentIndex = index;
                 slideImg.src = ads[currentIndex];
                 for (var m = 0; m < dots.length; m++) {
                     if (m === currentIndex) {
@@ -166,6 +168,11 @@ var AdsAPI = {
                     }
                 }
             });
+        }
+
+        // Click handlers for dots
+        for (var k = 0; k < dots.length; k++) {
+            createDotClickHandler(dots[k], k);
         }
 
         return { timer: timer, rotate: rotate };

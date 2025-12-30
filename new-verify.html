@@ -196,8 +196,7 @@
                 } else {
                     showError(data.status.err_msg);
                 }
-            })
-            .catch(function(error) {
+            }, function(error) {
                 spinner.style.display = 'none';
                 console.error('OTP error:', error);
                 showError('Network error. Please check your connection and try again.');

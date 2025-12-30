@@ -2,6 +2,8 @@
 // BBNL REMOTE CONTROL HANDLER - Samsung Tizen TV Compatible
 // ES5 Syntax for Tizen WebEngine Compatibility
 // ========================================================
+//* global tizen, webapis *//
+/* exported RemoteControl */
 
 var RemoteControl = (function() {
     'use strict';
@@ -93,12 +95,14 @@ var RemoteControl = (function() {
         }
     }
 
-    function isElement(obj) {
-        return obj && obj.nodeType === 1;
-    }
+   // function isElement(obj)// 
+        //return obj && obj.nodeType === 1;//
+    
 
     function isVisible(element) {
-        if (!element) return false;
+        if (!element) {
+            return false;
+        }
         var style = window.getComputedStyle(element);
         return style.display !== 'none' && 
                style.visibility !== 'hidden' && 
@@ -128,7 +132,9 @@ var RemoteControl = (function() {
         var container = config.containerSelector ? 
             document.querySelector(config.containerSelector) : document;
         
-        if (!container) container = document;
+        if (!container) {
+            container = document;
+        }
         
         var elements = container.querySelectorAll(config.focusableSelector);
         state.focusableElements = [];
@@ -144,10 +150,14 @@ var RemoteControl = (function() {
     }
 
     function setFocus(element, scroll) {
-        if (!element) return false;
+        if (!element) {
+            return false;
+        }
         
         // Only show visual focus if user has started navigating with remote
-        if (!state.hasNavigated) return true;
+        if (!state.hasNavigated) {
+            return true;
+        }
         
         // Remove focus from all elements
         var allFocused = document.querySelectorAll('.' + config.focusClass);
@@ -182,7 +192,9 @@ var RemoteControl = (function() {
 
     function getCurrentFocusedElement() {
         var focused = document.querySelector('.' + config.focusClass);
-        if (focused) return focused;
+        if (focused) {
+            return focused;
+        }
         
         // Try document.activeElement
         if (document.activeElement && document.activeElement !== document.body) {
@@ -210,7 +222,9 @@ var RemoteControl = (function() {
 
     function focusNext() {
         updateFocusableElements();
-        if (state.focusableElements.length === 0) return false;
+        if (state.focusableElements.length === 0) {
+            return false;
+        }
         
         var nextIndex = state.currentFocusIndex + 1;
         if (nextIndex >= state.focusableElements.length) {
@@ -222,7 +236,9 @@ var RemoteControl = (function() {
 
     function focusPrev() {
         updateFocusableElements();
-        if (state.focusableElements.length === 0) return false;
+        if (state.focusableElements.length === 0) {
+            return false;
+        }
         
         var prevIndex = state.currentFocusIndex - 1;
         if (prevIndex < 0) {
@@ -249,7 +265,9 @@ var RemoteControl = (function() {
         
         for (var i = 0; i < state.focusableElements.length; i++) {
             var elem = state.focusableElements[i];
-            if (elem === current) continue;
+            if (elem === current) {
+                continue;
+            }
             
             var elemCenter = getElementCenter(elem);
             
@@ -303,7 +321,9 @@ var RemoteControl = (function() {
             }
         }
         
-        if (candidates.length === 0) return null;
+        if (candidates.length === 0) {
+            return null;
+        }
         
         // Sort by priority (high first), then by distance (low first)
         candidates.sort(function(a, b) {
@@ -349,13 +369,17 @@ var RemoteControl = (function() {
                 var first = state.focusableElements[0];
                 first.classList.add(config.focusClass);
                 state.currentFocusIndex = 0;
-                if (typeof first.focus === 'function') first.focus();
+                if (typeof first.focus === 'function') {
+                    first.focus();
+                }
             }
             return true;
         }
         
         var focused = getCurrentFocusedElement();
-        if (!focused) return false;
+        if (!focused) {
+            return false;
+        }
         
         log('Enter pressed on:', focused.tagName);
         
@@ -435,7 +459,20 @@ var RemoteControl = (function() {
     function handleNumberKey(num) {
         log('Number key pressed:', num);
         
+        // Check if channel search overlay is visible - don't handle numbers here
+        var channelOverlay = document.getElementById('channel-search-overlay');
+        if (channelOverlay && channelOverlay.classList.contains('show')) {
+            log('Channel overlay visible, skipping remote number handler');
+            return false; // Let the player handle it
+        }
+        
         var focused = getCurrentFocusedElement();
+        
+        // If focused on channel-input, don't handle here (player.html handles it)
+        if (focused && focused.classList.contains('channel-input')) {
+            log('Channel input focused, skipping remote number handler');
+            return false;
+        }
         
         // If focused on input, handle number entry
         if (focused && (focused.tagName === 'INPUT' || focused.classList.contains('otp-input'))) {
@@ -605,7 +642,9 @@ var RemoteControl = (function() {
         
         // Find channel cards
         var channelCards = document.querySelectorAll('.channel-card');
-        if (channelCards.length === 0) return false;
+        if (channelCards.length === 0) {
+            return false;
+        }
         
         var current = getCurrentFocusedElement();
         var currentIndex = -1;
@@ -618,8 +657,12 @@ var RemoteControl = (function() {
         }
         
         var newIndex = currentIndex + direction;
-        if (newIndex < 0) newIndex = channelCards.length - 1;
-        if (newIndex >= channelCards.length) newIndex = 0;
+        if (newIndex < 0) {
+            newIndex = channelCards.length - 1;
+        }
+        if (newIndex >= channelCards.length) {
+            newIndex = 0;
+        }
         
         setFocus(channelCards[newIndex], true);
         return true;
@@ -666,12 +709,24 @@ var RemoteControl = (function() {
         
         // Merge options
         if (options) {
-            if (options.focusableSelector) config.focusableSelector = options.focusableSelector;
-            if (options.focusClass) config.focusClass = options.focusClass;
-            if (options.containerSelector) config.containerSelector = options.containerSelector;
-            if (options.wrapNavigation !== undefined) config.wrapNavigation = options.wrapNavigation;
-            if (options.autoFocus !== undefined) config.autoFocus = options.autoFocus;
-            if (options.debug !== undefined) state.debug = options.debug;
+            if (options.focusableSelector) {
+                config.focusableSelector = options.focusableSelector;
+            }
+            if (options.focusClass) {
+                config.focusClass = options.focusClass;
+            }
+            if (options.containerSelector) {
+                config.containerSelector = options.containerSelector;
+            }
+            if (options.wrapNavigation !== undefined) {
+                config.wrapNavigation = options.wrapNavigation;
+            }
+            if (options.autoFocus !== undefined) {
+                config.autoFocus = options.autoFocus;
+            }
+            if (options.debug !== undefined) {
+                state.debug = options.debug;
+            }
         }
         
         // Register Tizen keys

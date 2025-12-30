@@ -53,7 +53,7 @@
                                     <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
-                            <input name="mobile" id="phoneNumberInput" type="tel" placeholder="Enter 10 Digit Number" maxlength="10" pattern="[0-9]{10}" inputmode="numeric" required class="phone-input" autocomplete="off">
+                            <input name="mobile" id="phoneNumberInput" type="tel" placeholder="Enter 10 Digit Number" maxlength="10" pattern="[0-9]{10}" required class="phone-input" autocomplete="off">
                         </div>
                     </div>
                     <div id="error-message" class="error-message"></div>
@@ -112,7 +112,7 @@
                     showError(result.message);
                     console.error('API Error:', result);
                 }
-            }).catch(function(error) {
+            }, function(error) {
                 btn.disabled = false;
                 spinner.style.display = 'none';
                 console.error('Request failed:', error);
