@@ -6,14 +6,7 @@
         </platform>
     </platforms>
     <package>
-        <blacklist>
-            <file path="bbnl-proxy/node_modules"/>
-            <file path="bbnl-proxy"/>
-            <file path=".git"/>
-            <file path="*.md"/>
-            <file path="*.bat"/>
-            <file path="*.ps1"/>
-            <file path="ES5_TIZEN_COMPATIBILITY_GUIDE.md"/>
-        </blacklist>
+        <blacklist/>
+        <resFallback autoGen="true"/>
     </package>
 </tproject>

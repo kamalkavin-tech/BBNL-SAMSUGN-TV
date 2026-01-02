@@ -547,9 +547,20 @@ var RemoteControl = (function() {
 
     function handleKeyDown(e) {
         var keyCode = e.keyCode;
+        var keyName = e.key || '';
         var handled = false;
         
-        log('Key pressed:', keyCode);
+        log('Key pressed: code=' + keyCode + ', key=' + keyName);
+        
+        // Handle digit keys using e.key for better emulator compatibility
+        if (keyName >= '0' && keyName <= '9') {
+            handled = handleNumberKey(keyName);
+            if (handled) {
+                e.preventDefault();
+                e.stopPropagation();
+                return;
+            }
+        }
         
         switch (keyCode) {
             // Navigation
@@ -575,7 +586,7 @@ var RemoteControl = (function() {
                 handled = handleExit();
                 break;
                 
-            // Number keys
+            // Number keys (fallback by keyCode)
             case KEY_CODES.NUM_0:
                 handled = handleNumberKey('0');
                 break;
@@ -685,20 +696,38 @@ var RemoteControl = (function() {
             "Extra", "PreviousChannel", "Caption"
         ];
         
-        if (typeof tizen !== 'undefined' && tizen.tvinputdevice) {
+        function doRegisterKeys() {
             log('Registering Tizen TV remote keys...');
             for (var i = 0; i < keys.length; i++) {
                 try {
                     tizen.tvinputdevice.registerKey(keys[i]);
-                    log('Registered key: ' + keys[i]);
+                    log('✅ Registered key: ' + keys[i]);
                 } catch (e) {
                     // Key may already be registered or not available on this device
-                    log('Could not register key: ' + keys[i]);
+                    log('⚠️ Could not register key: ' + keys[i]);
                 }
             }
             log('Tizen keys registration complete');
+        }
+        
+        // Check if Tizen API is immediately available
+        if (typeof tizen !== 'undefined' && tizen.tvinputdevice) {
+            doRegisterKeys();
         } else {
-            log('Tizen API not available - running in browser mode');
+            // Wait for Tizen APIs to be ready (for emulator/late loading)
+            log('Tizen API not immediately available - waiting...');
+            var attempts = 0;
+            var maxAttempts = 50; // 5 seconds max wait
+            var checkTizen = setInterval(function() {
+                attempts++;
+                if (typeof tizen !== 'undefined' && tizen.tvinputdevice) {
+                    clearInterval(checkTizen);
+                    doRegisterKeys();
+                } else if (attempts >= maxAttempts) {
+                    clearInterval(checkTizen);
+                    log('Tizen API not available after ' + (maxAttempts / 10) + 's - running in browser mode');
+                }
+            }, 100);
         }
     }
 

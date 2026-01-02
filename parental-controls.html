@@ -39,7 +39,8 @@
                 <button class="pc-icon-btn" onclick="window.location.href='homepage.html'" aria-label="Home">
                     <i class="fas fa-home"></i>
                 </button>
-                <button class="pc-icon-btn" onclick="window.location.href='notifications.html'" aria-label="Notifications">
+                <button class="pc-icon-btn" onclick="window.location.href='notifications.html'"
+                    aria-label="Notifications">
                     <i class="fas fa-bell"></i>
                 </button>
                 <div class="pc-profile-avatar">
@@ -104,7 +105,8 @@
                             <div class="pc-card-content">
                                 <div class="pc-card-info">
                                     <h3 class="pc-card-title">Set PIN</h3>
-                                    <p class="pc-card-description">A PIN required to change settings and bypass restrictions.</p>
+                                    <p class="pc-card-description">A PIN required to change settings and bypass
+                                        restrictions.</p>
                                 </div>
                                 <div class="pc-card-control">
                                     <button class="pc-action-btn" id="changePinBtn">Change</button>
@@ -146,13 +148,27 @@
     <!-- JavaScript for TV Remote Navigation -->
     <script src="js/parental-controls.js"></script>
     <script>
-        // Initialize remote control
-        document.addEventListener('DOMContentLoaded', function() {
-            RemoteControl.init({
-                focusableSelector: '.pc-nav-item, .pc-action-btn, .pc-toggle-switch input, button, a, input',
-                wrapNavigation: true,
-                autoFocus: false,
-                debug: false
-            });
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check authentication - redirect to login if not authenticated
+            if (typeof AuthAPI !== 'undefined' && !AuthAPI.isAuthenticated()) {
+                console.warn('⚠️ Authentication required - redirecting to login');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Initialize remote control
+            if (typeof RemoteControl !== 'undefined') {
+                RemoteControl.init({
+                    focusableSelector: '.pc-nav-item, .pc-action-btn, .pc-toggle-switch input, button, a, input',
+                    wrapNavigation: true,
+                    autoFocus: false,
+                    debug: false
+                });
+            }
         });
     </script>
+
+</body>
+
+</html>

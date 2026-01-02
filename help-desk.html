@@ -324,16 +324,19 @@
     <div role="main" class="helpdesk-container">
         <div class="helpdesk-header">
             <h1>Help Desk</h1>
-            <p>Need assistance? Raise a complaint or check your recent activity. We're here to help you resolve any issues quickly.</p>
+            <p>Need assistance? Raise a complaint or check your recent activity. We're here to help you resolve any
+                issues quickly.</p>
         </div>
 
         <div class="helpdesk-grid">
             <!-- Raise Complaint Form -->
             <div class="helpdesk-card">
                 <h2>Raise a Complaint</h2>
-                
-                <div class="help-instructions" style="background: rgba(255, 193, 7, 0.05); border: 1px solid rgba(255, 193, 7, 0.2); border-radius: 8px; padding: 16px; margin-bottom: 24px;">
-                    <h4 style="font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+
+                <div class="help-instructions"
+                    style="background: rgba(255, 193, 7, 0.05); border: 1px solid rgba(255, 193, 7, 0.2); border-radius: 8px; padding: 16px; margin-bottom: 24px;">
+                    <h4
+                        style="font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
                         <i class="fas fa-info-circle" style="color: #ffc107;"></i>
                         How to raise a complaint
                     </h4>
@@ -387,7 +390,8 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('complaint-form').reset()">Cancel</button>
+                        <button type="button" class="btn btn-secondary"
+                            onclick="document.getElementById('complaint-form').reset()">Cancel</button>
                         <button type="submit" class="btn btn-primary">Submit Complaint</button>
                     </div>
                 </form>
@@ -491,15 +495,15 @@
             var dateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
             var timeStr = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
             newActivity.innerHTML = '<div class="activity-icon pending">' +
-                    '<i class="fas fa-clock"></i>' +
+                '<i class="fas fa-clock"></i>' +
                 '</div>' +
                 '<div class="activity-details">' +
-                    '<h4>' + issueText + '</h4>' +
-                    '<p>User ID: ' + userId + '</p>' +
-                    '<div class="activity-meta">' +
-                        '<span><i class="far fa-calendar"></i> ' + dateStr + '</span>' +
-                        '<span><i class="far fa-clock"></i> ' + timeStr + '</span>' +
-                    '</div>' +
+                '<h4>' + issueText + '</h4>' +
+                '<p>User ID: ' + userId + '</p>' +
+                '<div class="activity-meta">' +
+                '<span><i class="far fa-calendar"></i> ' + dateStr + '</span>' +
+                '<span><i class="far fa-clock"></i> ' + timeStr + '</span>' +
+                '</div>' +
                 '</div>' +
                 '<span class="status-badge pending">Pending</span>';
             activityList.insertBefore(newActivity, activityList.firstChild);
@@ -517,16 +521,27 @@
                 newActivity.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 500);
         });
-        
-        // Initialize remote control
-        document.addEventListener('DOMContentLoaded', function() {
-            RemoteControl.init({
-                focusableSelector: '.faq-item, .activity-item, button, a, input, select, textarea',
-                wrapNavigation: true,
-                autoFocus: false,
-                debug: false
-            });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check authentication - redirect to login if not authenticated
+            if (typeof AuthAPI !== 'undefined' && !AuthAPI.isAuthenticated()) {
+                console.warn('⚠️ Authentication required - redirecting to login');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Initialize remote control
+            if (typeof RemoteControl !== 'undefined') {
+                RemoteControl.init({
+                    focusableSelector: '.faq-item, .activity-item, button, a, input, select, textarea',
+                    wrapNavigation: true,
+                    autoFocus: false,
+                    debug: false
+                });
+            }
         });
     </script>
 </body>
+
 </html>

@@ -50,37 +50,47 @@ app.get('/', (req, res) => {
 // =============================
 app.post('/api/:endpoint', async (req, res) => {
   const endpoint = req.params.endpoint;
-  
+
   // Determine which base URL and headers to use
   const isAdsEndpoint = ADS_ENDPOINTS.includes(endpoint);
   const baseUrl = isAdsEndpoint ? ADS_BASE_URL : AUTH_BASE_URL;
   const headers = isAdsEndpoint ? ADS_HEADERS : AUTH_HEADERS;
-  
+
   try {
-    console.log(`📥 ${endpoint.toUpperCase()} Request:`, req.body);
-    console.log(`🔗 Using: ${baseUrl}`);
-    
+    console.log(`\n📥 ${endpoint.toUpperCase()} Request:`);
+    console.log('   Payload:', JSON.stringify(req.body, null, 2));
+    console.log(`   🔗 Target URL: ${baseUrl}/${endpoint}`);
+    console.log('   Headers:', JSON.stringify(headers, null, 2));
+
     const response = await axios.post(
       `${baseUrl}/${endpoint}`,
       req.body,
-      { 
+      {
         headers: headers,
         timeout: 15000
       }
     );
-    
-    console.log(`✅ ${endpoint.toUpperCase()} Response:`, response.data.status);
+
+    console.log(`✅ ${endpoint.toUpperCase()} Response Status:`, response.status);
+    console.log('   Response Data:', JSON.stringify(response.data, null, 2));
     res.json(response.data);
-    
+
   } catch (err) {
-    console.error(`❌ ${endpoint.toUpperCase()} Error:`, err.message);
-    
+    console.error(`\n❌ ${endpoint.toUpperCase()} Error:`);
+    console.error('   Error Message:', err.message);
+
     // Log full error for debugging
     if (err.response) {
-      console.error('Response data:', err.response.data);
-      console.error('Response status:', err.response.status);
+      console.error('   Response Status:', err.response.status);
+      console.error('   Response Data:', JSON.stringify(err.response.data, null, 2));
+      console.error('   Response Headers:', JSON.stringify(err.response.headers, null, 2));
+    } else if (err.request) {
+      console.error('   No response received from server');
+      console.error('   Request was made but no response');
+    } else {
+      console.error('   Error setting up request:', err.message);
     }
-    
+
     res.status(500).json({
       body: [],
       status: {

@@ -1206,14 +1206,18 @@
             renderAllSections(results);
         }
         
-        // Play channel
+        // CORRECTED playChannel function
         function playChannel(index) {
+            // Validate index against allChannels array (not 'channels')
             if (index < 0 || index >= allChannels.length) {
                 console.error('Invalid channel index');
                 return;
             }
             
+            // Get the channel from allChannels array
             var channel = allChannels[index];
+            
+            // Check if channel has a stream link
             if (channel.streamlink) {
                 var channelNum = padNumber(index + 1, 3);
                 window.location.href = 'player.html?stream=' + encodeURIComponent(channel.streamlink) + 

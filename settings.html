@@ -101,7 +101,8 @@
                                 <div class="pc-card-content">
                                     <div class="pc-card-info">
                                         <h3 class="pc-card-title">Set PIN</h3>
-                                        <p class="pc-card-description">A PIN required to change settings and bypass restrictions.</p>
+                                        <p class="pc-card-description">A PIN required to change settings and bypass
+                                            restrictions.</p>
                                     </div>
                                     <div class="pc-card-control">
                                         <button class="pc-action-btn">Change</button>
@@ -142,7 +143,7 @@
                 <section id="reset" class="settings-section">
                     <h2>Reset App</h2>
                     <p class="settings-subtitle">Reset application data and settings</p>
-                    
+
                     <div class="pc-settings-cards">
                         <!-- Clear Cache -->
                         <div class="pc-card">
@@ -189,7 +190,7 @@
                 <section id="display" class="settings-section">
                     <h2>Display Settings</h2>
                     <p class="settings-subtitle">Manage your display settings and its size</p>
-                    
+
                     <div class="pc-settings-cards">
                         <!-- Streaming Quality -->
                         <div class="pc-card">
@@ -262,7 +263,7 @@
                 <section id="about" class="settings-section">
                     <h2>About App</h2>
                     <p class="settings-subtitle">Learn information about our app</p>
-                    
+
                     <div class="pc-settings-cards">
                         <!-- App Information Card -->
                         <div class="pc-card about-info-card">
@@ -338,7 +339,7 @@
         }
 
         for (var n = 0; n < navItems.length; n++) {
-            navItems[n].addEventListener('click', function(e) {
+            navItems[n].addEventListener('click', function (e) {
                 e.preventDefault();
                 var targetId = this.getAttribute('data-target');
                 switchSection(targetId);
@@ -346,7 +347,7 @@
         }
 
         // Handle Hash Navigation
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             var hash = window.location.hash.replace('#', '');
             if (hash) {
                 switchSection(hash);
@@ -361,7 +362,7 @@
             // Gather all focusable elements
             var buttons = document.querySelectorAll('.pc-action-btn, .settings-nav-item, .settings-icon-btn');
             var toggles = document.querySelectorAll('.pc-toggle-switch input');
-            
+
             focusableElements = [];
             for (var b = 0; b < buttons.length; b++) {
                 focusableElements.push(buttons[b]);
@@ -369,7 +370,7 @@
             for (var t = 0; t < toggles.length; t++) {
                 focusableElements.push(toggles[t]);
             }
-            
+
             if (focusableElements.length > 0) {
                 currentFocusIndex = 0;
                 focusableElements[0].focus();
@@ -378,21 +379,21 @@
 
         function moveFocus(direction) {
             if (focusableElements.length === 0) return;
-            
+
             currentFocusIndex += direction;
-            
+
             if (currentFocusIndex < 0) {
                 currentFocusIndex = focusableElements.length - 1;
             } else if (currentFocusIndex >= focusableElements.length) {
                 currentFocusIndex = 0;
             }
-            
+
             focusableElements[currentFocusIndex].focus();
         }
 
         // Keyboard navigation for TV remote
-        document.addEventListener('keydown', function(e) {
-            switch(e.key) {
+        document.addEventListener('keydown', function (e) {
+            switch (e.key) {
                 case 'ArrowDown':
                     e.preventDefault();
                     moveFocus(1);
@@ -408,13 +409,13 @@
         });
 
         // Initialize on page load
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             initRemoteNavigation();
         });
 
         // Re-initialize when section changes
         for (var r = 0; r < navItems.length; r++) {
-            navItems[r].addEventListener('click', function() {
+            navItems[r].addEventListener('click', function () {
                 setTimeout(initRemoteNavigation, 100);
             });
         }
@@ -422,22 +423,32 @@
         // Toggle switch keyboard support
         var toggleInputs = document.querySelectorAll('.pc-toggle-switch input');
         for (var ti = 0; ti < toggleInputs.length; ti++) {
-            toggleInputs[ti].addEventListener('keydown', function(e) {
+            toggleInputs[ti].addEventListener('keydown', function (e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     this.checked = !this.checked;
                 }
             });
         }
-        
+
         // Initialize remote control
-        document.addEventListener('DOMContentLoaded', function() {
-            RemoteControl.init({
-                focusableSelector: '.settings-nav-item, .settings-menu-item, button, input, select, a, .toggle-switch',
-                wrapNavigation: true,
-                autoFocus: false,
-                debug: false
-            });
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check authentication - redirect to login if not authenticated
+            if (typeof AuthAPI !== 'undefined' && !AuthAPI.isAuthenticated()) {
+                console.warn('⚠️ Authentication required - redirecting to login');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Initialize remote control
+            if (typeof RemoteControl !== 'undefined') {
+                RemoteControl.init({
+                    focusableSelector: '.settings-nav-item, .settings-menu-item, button, input, select, a, .toggle-switch',
+                    wrapNavigation: true,
+                    autoFocus: false,
+                    debug: false
+                });
+            }
         });
     </script>
 </body>

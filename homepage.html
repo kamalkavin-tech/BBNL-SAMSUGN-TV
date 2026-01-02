@@ -36,9 +36,11 @@
             cursor: pointer;
             transition: transform 0.2s;
         }
+
         .channel-card-home:hover {
             transform: scale(1.05);
         }
+
         .channel-card-inner-home {
             background: #fff;
             border-radius: 16px;
@@ -50,21 +52,25 @@
             position: relative;
             margin-bottom: 10px;
         }
+
         .channel-card-inner-home img {
             max-width: 100px;
             max-height: 80px;
             object-fit: contain;
         }
+
         .channel-card-inner-home .no-image {
             display: flex;
             flex-direction: column;
             align-items: center;
             color: #888;
         }
+
         .channel-card-inner-home .no-image i {
             font-size: 32px;
             margin-bottom: 8px;
         }
+
         .live-badge-home {
             position: absolute;
             top: 8px;
@@ -79,6 +85,7 @@
             align-items: center;
             gap: 3px;
         }
+
         .live-badge-home::before {
             content: "";
             width: 5px;
@@ -86,21 +93,25 @@
             background: #fff;
             border-radius: 50%;
         }
+
         .channel-name-home {
             font-size: 14px;
             font-weight: 500;
             color: #fff;
             margin-bottom: 2px;
         }
+
         .channel-type-home {
             font-size: 12px;
             color: #888;
         }
+
         .view-all-card {
             flex-shrink: 0;
             width: 160px;
             cursor: pointer;
         }
+
         .view-all-inner {
             background: #1a1a1a;
             border: 1px solid #333;
@@ -114,29 +125,34 @@
             margin-bottom: 10px;
             color: #fff;
         }
+
         .view-all-inner span {
             margin-bottom: 8px;
         }
+
         /* Ads Hero Slider Styles */
         .ads-hero-slider {
             position: relative;
             width: 100%;
             height: 100%;
         }
+
         .ads-hero-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: opacity 0.5s;
         }
+
         .ads-hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
         }
+
         .ads-hero-dots {
             position: absolute;
             bottom: 30px;
@@ -146,21 +162,25 @@
             gap: 12px;
             z-index: 10;
         }
+
         .ads-hero-dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.5);
+            background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             transition: all 0.3s;
         }
+
         .ads-hero-dot:hover {
-            background: rgba(255,255,255,0.8);
+            background: rgba(255, 255, 255, 0.8);
         }
+
         .ads-hero-dot.active {
             background: #fff;
             transform: scale(1.2);
         }
+
         /* Legacy ads slider styles */
         .ads-slider-container {
             width: 100%;
@@ -168,17 +188,20 @@
             border-radius: 12px;
             overflow: hidden;
         }
+
         .ads-slider {
             position: relative;
             width: 100%;
             height: 200px;
         }
+
         .ads-slide {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: opacity 0.5s;
         }
+
         .ads-dots {
             position: absolute;
             bottom: 10px;
@@ -187,40 +210,49 @@
             display: flex;
             gap: 8px;
         }
+
         .ads-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.5);
+            background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
         }
+
         .ads-dot.active {
             background: #fff;
         }
+
         /* Sidebar Submenu Styles */
         .sidebar-menu-group {
             display: flex;
             flex-direction: column;
         }
+
         .sidebar-menu-item.has-submenu {
             position: relative;
         }
+
         .submenu-arrow {
             margin-left: auto;
             font-size: 12px;
             transition: transform 0.3s ease;
         }
+
         .sidebar-menu-item.has-submenu.active .submenu-arrow {
             transform: rotate(180deg);
         }
+
         .sidebar-submenu {
             display: none;
             flex-direction: column;
             padding-left: 20px;
         }
+
         .sidebar-submenu.show {
             display: flex;
         }
+
         .sidebar-submenu-item {
             display: flex;
             align-items: center;
@@ -230,11 +262,13 @@
             font-size: 14px;
             transition: all 0.2s;
         }
+
         .sidebar-submenu-item i {
             margin-right: 12px;
             font-size: 14px;
             width: 20px;
         }
+
         .sidebar-submenu-item:hover {
             background: rgba(255, 255, 255, 0.05);
             color: #fff;
@@ -276,7 +310,9 @@
             <div class="hero-content">
                 <h1>The Batman</h1>
                 <p class="subtitle">Superhero - 2022</p>
-                <p class="description">noir-inspired reboot of the iconic superhero, directed by Matt Reeves and starring Robert Pattinson as a younger, more emotionally raw Bruce Wayne. Set during Batman's second year of crime-fighting.</p>
+                <p class="description">noir-inspired reboot of the iconic superhero, directed by Matt Reeves and
+                    starring Robert Pattinson as a younger, more emotionally raw Bruce Wayne. Set during Batman's second
+                    year of crime-fighting.</p>
                 <div class="tags">
                     <span class="tag">Sci-fi</span>
                     <span class="tag">Thriller</span>
@@ -364,7 +400,7 @@
                 <!-- Udhaya TV -->
                 <div class="media-item" onclick="window.location.href='player.html?title=Udhaya%20TV'">
                     <div class="media-icon-box white-bg">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5d/Udaya_TV_Logo.svg/200px-Udaya_TV_Logo.svg.png" 
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5d/Udaya_TV_Logo.svg/200px-Udaya_TV_Logo.svg.png"
                             alt="Udhaya TV" class="channel-logo-img">
                     </div>
                     <div class="media-info">
@@ -376,7 +412,7 @@
                 <!-- Colors Super TV -->
                 <div class="media-item" onclick="window.location.href='player.html?title=Colors%20Super%20TV'">
                     <div class="media-icon-box white-bg">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Colors_Super.svg/200px-Colors_Super.svg.png" 
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Colors_Super.svg/200px-Colors_Super.svg.png"
                             alt="Colors Super TV" class="channel-logo-img">
                     </div>
                     <div class="media-info">
@@ -388,7 +424,7 @@
                 <!-- Zee-kanada -->
                 <div class="media-item" onclick="window.location.href='player.html?title=Zee-kanada'">
                     <div class="media-icon-box white-bg">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Zee_Kannada_2017.svg/200px-Zee_Kannada_2017.svg.png" 
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Zee_Kannada_2017.svg/200px-Zee_Kannada_2017.svg.png"
                             alt="Zee-kanada" class="channel-logo-img">
                     </div>
                     <div class="media-info">
@@ -400,7 +436,7 @@
                 <!-- Gemini TV -->
                 <div class="media-item" onclick="window.location.href='player.html?title=Gemini%20TV'">
                     <div class="media-icon-box white-bg">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f0/Gemini_TV.svg/200px-Gemini_TV.svg.png" 
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f0/Gemini_TV.svg/200px-Gemini_TV.svg.png"
                             alt="Gemini TV" class="channel-logo-img">
                     </div>
                     <div class="media-info">
@@ -460,7 +496,7 @@
                     <i class="fas fa-bell"></i>
                     <span>Notification</span>
                 </a>
-                
+
                 <!-- Help Desk with Submenu -->
                 <div class="sidebar-menu-group">
                     <a href="#" class="sidebar-menu-item has-submenu" id="helpdesk-toggle">
@@ -533,9 +569,9 @@
         // Help Desk Submenu Toggle (ES5 Compatible)
         var helpdeskToggle = document.getElementById('helpdesk-toggle');
         var helpdeskSubmenu = document.getElementById('helpdesk-submenu');
-        
+
         if (helpdeskToggle && helpdeskSubmenu) {
-            helpdeskToggle.addEventListener('click', function(e) {
+            helpdeskToggle.addEventListener('click', function (e) {
                 e.preventDefault();
                 helpdeskToggle.classList.toggle('active');
                 helpdeskSubmenu.classList.toggle('show');
@@ -567,16 +603,16 @@
         var networkModal = document.getElementById('network-modal');
         var closeNetworkModal = document.getElementById('close-network-modal');
 
-        networkBtn.addEventListener('click', function() {
+        networkBtn.addEventListener('click', function () {
             networkModal.style.display = 'flex';
         });
 
-        closeNetworkModal.addEventListener('click', function() {
+        closeNetworkModal.addEventListener('click', function () {
             networkModal.style.display = 'none';
         });
 
         // Close modal when clicking outside
-        networkModal.addEventListener('click', function(e) {
+        networkModal.addEventListener('click', function (e) {
             if (e.target === networkModal) {
                 networkModal.style.display = 'none';
             }
@@ -585,12 +621,12 @@
         // Make Media Items Clickable (Navigate to Player)
         var mediaItems = document.querySelectorAll('.media-item');
         for (var mi = 0; mi < mediaItems.length; mi++) {
-            (function(item) {
+            (function (item) {
                 // Check if it's the view-all card
                 if (item.querySelector('.view-all-box')) return;
 
                 item.style.cursor = 'pointer';
-                item.addEventListener('click', function(e) {
+                item.addEventListener('click', function (e) {
                     // Prevent if clicking the favorite heart
                     if (e.target.closest('.favorite-icon-overlay') || e.target.classList.contains('fa-heart')) {
                         return;
@@ -639,7 +675,7 @@
         updateActiveProfile(savedProfile);
 
         // Toggle profile dropdown
-        profileMenuContainer.addEventListener('click', function(e) {
+        profileMenuContainer.addEventListener('click', function (e) {
             e.stopPropagation();
             var isVisible = profileDropdown.style.display === 'flex';
             profileDropdown.style.display = isVisible ? 'none' : 'flex';
@@ -647,7 +683,7 @@
 
         // Profile selection
         for (var ps = 0; ps < profileItems.length; ps++) {
-            profileItems[ps].addEventListener('click', function(e) {
+            profileItems[ps].addEventListener('click', function (e) {
                 e.stopPropagation();
                 var profileName = this.getAttribute('data-profile');
                 var avatarUrl = this.getAttribute('data-avatar');
@@ -671,7 +707,7 @@
         }
 
         // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!profileDropdown.contains(e.target) && !profileMenuContainer.contains(e.target)) {
                 profileDropdown.style.display = 'none';
             }
@@ -681,7 +717,7 @@
         var navLinks = document.querySelectorAll('.nav-link');
 
         for (var nl = 0; nl < navLinks.length; nl++) {
-            navLinks[nl].addEventListener('click', function(e) {
+            navLinks[nl].addEventListener('click', function (e) {
                 e.preventDefault();
 
                 // Remove active class from all links
@@ -708,17 +744,17 @@
         function loadLiveChannels() {
             var container = document.getElementById('live-channels-container');
             var loading = document.getElementById('channels-loading-home');
-            
+
             console.log('Loading channels for homepage...');
-            
+
             // Check if ChannelsAPI is available
             if (typeof ChannelsAPI === 'undefined') {
                 console.warn('ChannelsAPI not available');
                 renderFallbackChannels(container);
                 return;
             }
-            
-            ChannelsAPI.getChannelData().then(function(result) {
+
+            ChannelsAPI.getChannelData().then(function (result) {
                 if (result.success && result.channels.length > 0) {
                     renderHomeChannels(container, result.channels.slice(0, 4));
                     console.log('Channels loaded:', result.channels.length);
@@ -726,70 +762,70 @@
                     console.warn('No channels from API, using fallback');
                     renderFallbackChannels(container);
                 }
-            }, function(error) {
+            }, function (error) {
                 console.error('Failed to load channels:', error);
                 renderFallbackChannels(container);
             });
         }
-        
+
         function renderHomeChannels(container, channels) {
             var html = '';
-            
+
             for (var ci = 0; ci < channels.length; ci++) {
                 var channel = channels[ci];
                 var hasStream = !!channel.streamlink;
                 var logoUrl = channel.chlogo || '';
                 var channelTitle = channel.chtitle || 'Channel';
                 var streamLink = channel.streamlink || '';
-                
+
                 html += '<div class="channel-card-home" onclick="playChannel(\'' + streamLink.replace(/'/g, "\\'") + '\', \'' + channelTitle.replace(/'/g, "\\'") + '\')">' +
-                        '<div class="channel-card-inner-home">' +
-                            (hasStream ? '<span class="live-badge-home">Live</span>' : '');
-                
+                    '<div class="channel-card-inner-home">' +
+                    (hasStream ? '<span class="live-badge-home">Live</span>' : '');
+
                 if (logoUrl) {
                     html += '<img src="' + logoUrl + '" alt="' + channelTitle + '" onerror="this.parentElement.innerHTML=\'<div class=\\\'no-image\\\'><i class=\\\'fas fa-tv\\\'></i><span>No Image</span></div>\'">';
                 } else {
                     html += '<div class="no-image"><i class="fas fa-tv"></i><span>No Image</span></div>';
                 }
-                
+
                 html += '</div>' +
-                        '<p class="channel-name-home">' + channelTitle + '</p>' +
-                        '<p class="channel-type-home">live Channels</p>' +
+                    '<p class="channel-name-home">' + channelTitle + '</p>' +
+                    '<p class="channel-type-home">live Channels</p>' +
                     '</div>';
             }
-            
+
             // Add View All card
             html += '<div class="view-all-card" onclick="window.location.href=\'tv-channels.html\'">' +
-                    '<div class="view-all-inner">' +
-                        '<span>View All Channel</span>' +
-                        '<i class="fas fa-arrow-right"></i>' +
-                    '</div>' +
-                    '<p class="channel-name-home">View All Channels</p>' +
-                    '<p class="channel-type-home">Live Channels</p>' +
+                '<div class="view-all-inner">' +
+                '<span>View All Channel</span>' +
+                '<i class="fas fa-arrow-right"></i>' +
+                '</div>' +
+                '<p class="channel-name-home">View All Channels</p>' +
+                '<p class="channel-type-home">Live Channels</p>' +
                 '</div>';
-            
+
             container.innerHTML = html;
         }
-        
+
         function renderFallbackChannels(container) {
             container.innerHTML = '<div class="channel-card-home" onclick="window.location.href=\'tv-channels.html\'">' +
-                    '<div class="channel-card-inner-home">' +
-                        '<span class="live-badge-home">Live</span>' +
-                        '<div class="no-image"><i class="fas fa-tv"></i><span>No Image</span></div>' +
-                    '</div>' +
-                    '<p class="channel-name-home">Channel 1</p>' +
-                    '<p class="channel-type-home">live Channels</p>' +
+                '<div class="channel-card-inner-home">' +
+                '<span class="live-badge-home">Live</span>' +
+                '<div class="no-image"><i class="fas fa-tv"></i><span>No Image</span></div>' +
+                '</div>' +
+                '<p class="channel-name-home">Channel 1</p>' +
+                '<p class="channel-type-home">live Channels</p>' +
                 '</div>' +
                 '<div class="view-all-card" onclick="window.location.href=\'tv-channels.html\'">' +
-                    '<div class="view-all-inner">' +
-                        '<span>View All Channel</span>' +
-                        '<i class="fas fa-arrow-right"></i>' +
-                    '</div>' +
-                    '<p class="channel-name-home">View All Channels</p>' +
-                    '<p class="channel-type-home">Live Channels</p>' +
+                '<div class="view-all-inner">' +
+                '<span>View All Channel</span>' +
+                '<i class="fas fa-arrow-right"></i>' +
+                '</div>' +
+                '<p class="channel-name-home">View All Channels</p>' +
+                '<p class="channel-type-home">Live Channels</p>' +
                 '</div>';
         }
-        
+
         function playChannel(streamUrl, title) {
             if (streamUrl) {
                 window.location.href = 'player.html?stream=' + encodeURIComponent(streamUrl) + '&title=' + encodeURIComponent(title);
@@ -797,23 +833,23 @@
                 alert('Stream not available for this channel');
             }
         }
-        
+
         // ========================================
         // Load Ads from API - Hero Section (ES5)
         // ========================================
         function loadAds() {
             var heroSection = document.getElementById('ads-hero-section');
             var placeholder = document.getElementById('ads-loading-placeholder');
-            
+
             console.log('Loading ads for homepage hero...');
-            
+
             if (typeof AdsAPI === 'undefined') {
                 console.warn('AdsAPI not available');
                 showFallbackHero();
                 return;
             }
-            
-            AdsAPI.getIPTVAds().then(function(result) {
+
+            AdsAPI.getIPTVAds().then(function (result) {
                 if (result.success && result.ads.length > 0) {
                     // Create full-screen ads slider in hero section
                     renderAdsHero(result.ads);
@@ -822,32 +858,32 @@
                     console.warn('No ads available, showing fallback');
                     showFallbackHero();
                 }
-            }, function(error) {
+            }, function (error) {
                 console.error('Failed to load ads:', error);
                 showFallbackHero();
             });
         }
-        
+
         function renderAdsHero(ads) {
             var heroSection = document.getElementById('ads-hero-section');
-            
+
             var dotsHtml = '';
             for (var di = 0; di < ads.length; di++) {
                 dotsHtml += '<span class="ads-hero-dot ' + (di === 0 ? 'active' : '') + '" data-index="' + di + '"></span>';
             }
-            
+
             heroSection.innerHTML = '<div class="ads-hero-slider">' +
-                    '<img src="' + ads[0] + '" alt="Advertisement" class="ads-hero-image" id="ads-hero-img">' +
-                    '<div class="ads-hero-overlay"></div>' +
-                    '<div class="ads-hero-dots">' + dotsHtml + '</div>' +
+                '<img src="' + ads[0] + '" alt="Advertisement" class="ads-hero-image" id="ads-hero-img">' +
+                '<div class="ads-hero-overlay"></div>' +
+                '<div class="ads-hero-dots">' + dotsHtml + '</div>' +
                 '</div>';
-            
+
             // Auto-rotate ads
             var currentIndex = 0;
             var slideImg = document.getElementById('ads-hero-img');
             var dots = heroSection.querySelectorAll('.ads-hero-dot');
-            
-            setInterval(function() {
+
+            setInterval(function () {
                 currentIndex = (currentIndex + 1) % ads.length;
                 slideImg.src = ads[currentIndex];
                 for (var dj = 0; dj < dots.length; dj++) {
@@ -858,10 +894,10 @@
                     }
                 }
             }, 5000);
-            
+
             // Click handlers for dots
             for (var dk = 0; dk < dots.length; dk++) {
-                dots[dk].addEventListener('click', function(e) {
+                dots[dk].addEventListener('click', function (e) {
                     currentIndex = parseInt(e.target.getAttribute('data-index'));
                     slideImg.src = ads[currentIndex];
                     for (var dl = 0; dl < dots.length; dl++) {
@@ -874,27 +910,34 @@
                 });
             }
         }
-        
+
         function showFallbackHero() {
             var heroSection = document.getElementById('ads-hero-section');
             heroSection.innerHTML = '<div class="hero-bg-overlay"></div>' +
                 '<div class="hero-content">' +
-                    '<h1>Welcome to BBNL</h1>' +
-                    '<p class="subtitle">Live TV & Streaming</p>' +
-                    '<p class="description">Watch your favorite channels, movies, and shows. Enjoy seamless streaming on your Samsung TV.</p>' +
-                    '<div class="hero-actions">' +
-                        '<button class="btn btn-watch focusable" onclick="window.location.href=\'tv-channels.html\'">Watch Live TV</button>' +
-                    '</div>' +
+                '<h1>Welcome to BBNL</h1>' +
+                '<p class="subtitle">Live TV & Streaming</p>' +
+                '<p class="description">Watch your favorite channels, movies, and shows. Enjoy seamless streaming on your Samsung TV.</p>' +
+                '<div class="hero-actions">' +
+                '<button class="btn btn-watch focusable" onclick="window.location.href=\'tv-channels.html\'">Watch Live TV</button>' +
+                '</div>' +
                 '</div>';
         }
-        
+
         // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check authentication - redirect to login if not authenticated
+            if (typeof AuthAPI !== 'undefined' && !AuthAPI.isAuthenticated()) {
+                console.warn('⚠️ Authentication required - redirecting to login');
+                window.location.href = 'index.html';
+                return;
+            }
+
             loadLiveChannels();
             loadAds();
-            
+
             // Initialize remote control
-            setTimeout(function() {
+            setTimeout(function () {
                 RemoteControl.init({
                     focusableSelector: '.sidebar-menu-item, .media-item, .channel-card-home, .ott-app-card, .app-card, .btn, button, a, .view-all-link, .focusable',
                     wrapNavigation: true,

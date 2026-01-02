@@ -231,26 +231,33 @@
         </div>
 
         <div class="feedback-form-card">
-            <div class="feedback-info" style="background: rgba(34, 197, 94, 0.05); border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 8px; padding: 20px; margin-bottom: 28px;">
-                <h3 style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <div class="feedback-info"
+                style="background: rgba(34, 197, 94, 0.05); border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 8px; padding: 20px; margin-bottom: 28px;">
+                <h3
+                    style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
                     <i class="fas fa-lightbulb" style="color: #86efac;"></i>
                     Help us serve you better
                 </h3>
                 <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 12px;">
-                    Your feedback helps us understand what you love and what we can improve. Whether it's about streaming quality, content variety, user interface, or customer support – we want to hear from you!
+                    Your feedback helps us understand what you love and what we can improve. Whether it's about
+                    streaming quality, content variety, user interface, or customer support – we want to hear from you!
                 </p>
                 <div style="display: grid; gap: 8px; margin-top: 16px;">
-                    <div style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: var(--text-secondary);">
+                    <div
+                        style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: var(--text-secondary);">
                         <i class="fas fa-star" style="color: #ffc107; margin-top: 2px;"></i>
                         <span><strong>Rating:</strong> Select 1-5 stars based on your overall experience</span>
                     </div>
-                    <div style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: var(--text-secondary);">
+                    <div
+                        style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: var(--text-secondary);">
                         <i class="fas fa-comment-dots" style="color: #86efac; margin-top: 2px;"></i>
                         <span><strong>Detailed feedback:</strong> Share specific details about your experience</span>
                     </div>
-                    <div style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: var(--text-secondary);">
+                    <div
+                        style="display: flex; align-items: start; gap: 8px; font-size: 13px; color: var(--text-secondary);">
                         <i class="fas fa-shield-alt" style="color: #60a5fa; margin-top: 2px;"></i>
-                        <span><strong>Privacy:</strong> Your feedback is confidential and helps improve our service</span>
+                        <span><strong>Privacy:</strong> Your feedback is confidential and helps improve our
+                            service</span>
                     </div>
                 </div>
             </div>
@@ -361,16 +368,27 @@
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-        
-        // Initialize remote control
-        document.addEventListener('DOMContentLoaded', function() {
-            RemoteControl.init({
-                focusableSelector: '.star-rating i, button, a, input, select, textarea',
-                wrapNavigation: true,
-                autoFocus: false,
-                debug: false
-            });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check authentication - redirect to login if not authenticated
+            if (typeof AuthAPI !== 'undefined' && !AuthAPI.isAuthenticated()) {
+                console.warn('⚠️ Authentication required - redirecting to login');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Initialize remote control
+            if (typeof RemoteControl !== 'undefined') {
+                RemoteControl.init({
+                    focusableSelector: '.star-rating i, button, a, input, select, textarea',
+                    wrapNavigation: true,
+                    autoFocus: false,
+                    debug: false
+                });
+            }
         });
     </script>
 </body>
+
 </html>

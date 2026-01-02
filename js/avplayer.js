@@ -29,8 +29,6 @@ var AVPlayer = (function() {
         videoElementId: 'video-player',
         avplayObjectId: 'av-player',
         debug: true,
-        // Public HLS test stream for emulator testing
-        testStreamUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
     };
 
     // Environment detection

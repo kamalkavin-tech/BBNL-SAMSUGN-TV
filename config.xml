@@ -1,44 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets"
-        xmlns:tizen="http://tizen.org/ns/widgets"
-        id="http://yourdomain/samsugnmaster"
-        version="1.0.0"
-        viewmodes="maximized">
-
-    <!-- REQUIRED for TV launch -->
-    <tizen:application
-        id="EyBxZxVYCG.SAMSUGNMASTER"
-        package="EyBxZxVYCG"
-        required_version="9.0"/>
-
-    <!-- Entry point -->
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/samsungnmaster" version="1.0.0" viewmodes="maximized">
+    <tizen:application id="bNoSQVUTDy.SAMSUNGNMASTER" package="bNoSQVUTDy" required_version="9.0"/>
     <content src="index.html"/>
-
-    <!-- TV PROFILE (MANDATORY) -->
-    <tizen:profile name="tv-samsung"/>
-
-    <!-- Features -->
-    <feature name="http://tizen.org/feature/tv.inputdevice"/>
-
-    <!-- Privileges -->
+    <icon src="icon.png"/>
+    <name>SAMSUNGNMASTER</name>
     <tizen:privilege name="http://tizen.org/privilege/internet"/>
-    <tizen:privilege name="http://tizen.org/privilege/keyevent"/>
     <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
-    <tizen:privilege name="http://tizen.org/privilege/tv.window"/>
-    <tizen:privilege name="http://tizen.org/privilege/multimedia"/>
-    <tizen:privilege name="http://tizen.org/privilege/mediastorage"/>
     <tizen:privilege name="http://developer.samsung.com/privilege/avplay"/>
-
-    <!-- Network -->
-    <access origin="*" subdomains="true"/>
-
-    <!-- App name -->
-    <name>SAMSUGNMASTER</name>
-
-    <!-- Settings -->
-    <tizen:setting
-        screen-orientation="landscape"
-        context-menu="enable"
-        background-support="disable"
-        hwkey-event="enable"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/productinfo"/>
+    <tizen:profile name="tv-samsung"/>
+    <tizen:setting screen-orientation="landscape" context-menu="enable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable"/>
 </widget>

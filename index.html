@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,13 +24,14 @@
     <script src="api/config.js"></script>
     <script src="api/auth.js"></script>
 </head>
+
 <body>
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-content">
                 <h2 class="auth-title">Welcome Back</h2>
                 <p class="auth-subtitle">Sign in to continue to your profile</p>
-                
+
                 <!-- Step Indicator -->
                 <div class="step-indicator">
                     <div class="step active">
@@ -42,18 +44,21 @@
                         <span class="step-label">Verify</span>
                     </div>
                 </div>
-                
+
                 <form class="auth-form" id="login-form" onsubmit="return false;">
                     <div class="form-group">
-                        <label class="form-label">Phone Number</label>
+                        <label for="phoneNumberInput" class="form-label">Phone Number</label>
                         <div class="phone-input-wrapper">
                             <div class="country-code-select">
                                 <span class="country-code">+91</span>
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </div>
-                            <input name="mobile" id="phoneNumberInput" type="tel" placeholder="Enter 10 Digit Number" maxlength="10" pattern="[0-9]{10}" required class="phone-input" autocomplete="off">
+                            <input name="mobile" id="phoneNumberInput" type="tel" placeholder="Enter 10 Digit Number"
+                                maxlength="10" pattern="[0-9]{10}" required class="phone-input" autocomplete="off">
                         </div>
                     </div>
                     <div id="error-message" class="error-message"></div>
@@ -71,62 +76,67 @@
             var errorDiv = document.getElementById('error-message');
             errorDiv.textContent = message;
             errorDiv.style.display = 'block';
-            setTimeout(function() {
+            setTimeout(function () {
                 errorDiv.style.display = 'none';
             }, 5000);
         }
-        
+
         // Handle login form submission
         function submitLoginForm() {
             var mobile = document.getElementById('phoneNumberInput').value.trim();
-            
+
             if (!mobile) {
                 showError('Please enter your mobile number');
                 return;
             }
-            
+
             if (mobile.length !== 10 || !/^[0-9]{10}$/.test(mobile)) {
                 showError('Please enter a valid 10-digit mobile number');
                 return;
             }
-            
+
             var btn = document.getElementById('get-otp-btn');
             var spinner = document.getElementById('loading-spinner');
-            
+
             btn.disabled = true;
             spinner.style.display = 'block';
-            
+
             // Store mobile for verify page
             sessionStorage.setItem('bbnl_mobile', mobile);
-            
+
             // Per API docs: userid from config, mobile from user input
             var userid = API_CONFIG.USER_CREDENTIALS.userid;
-            AuthAPI.requestOTP(userid, mobile).then(function(result) {
+            AuthAPI.requestOTP(userid, mobile).then(function (result) {
                 btn.disabled = false;
                 spinner.style.display = 'none';
-                
+
                 if (result.success) {
-                    // OTP sent successfully
+                    // Store OTP in session for verify page to display
+                    if (result.otp) {
+                        sessionStorage.setItem('bbnl_otp', result.otp);
+                    }
+                    // OTP sent successfully - redirect to verify page
+                    // (OTP is logged in console for testing)
                     window.location.href = 'verify.html';
                 } else {
                     showError(result.message);
                     console.error('API Error:', result);
                 }
-            }, function(error) {
+            }, function (error) {
                 btn.disabled = false;
                 spinner.style.display = 'none';
                 console.error('Request failed:', error);
                 showError(error.message || 'Network error. Please check your connection.');
             });
         }
-        
-        document.getElementById('login-form').addEventListener('submit', function(e) {
+
+        document.getElementById('login-form').addEventListener('submit', function (e) {
             e.preventDefault();
             submitLoginForm();
         });
-        
+
         // Initialize remote control
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Initialize remote with auto-focus disabled
             RemoteControl.init({
                 focusableSelector: 'input, button:not([disabled]), .btn',
@@ -137,4 +147,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -572,8 +572,10 @@
                     <!-- Colors TV -->
                     <div class="channel-card">
                         <div class="channel-header">
-                            <div class="channel-logo" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                                <img src="https://www.lyngsat.com/logo/tv/cc/colors_in.png" alt="Colors TV" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
+                            <div class="channel-logo"
+                                style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                <img src="https://www.lyngsat.com/logo/tv/cc/colors_in.png" alt="Colors TV"
+                                    style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
                             </div>
                             <div class="channel-info">
                                 <h4 class="channel-name">Colors TV</h4>
@@ -587,7 +589,8 @@
                             </div>
                             <div class="qr-content">
                                 <h4 class="qr-title">Renew Colors TV for $8.99</h4>
-                                <p class="qr-description">Scan the QR Code with your mobile device's camera or a payment app to complete the renewal</p>
+                                <p class="qr-description">Scan the QR Code with your mobile device's camera or a payment
+                                    app to complete the renewal</p>
                             </div>
                         </div>
                     </div>
@@ -595,8 +598,10 @@
                     <!-- Gemini TV -->
                     <div class="channel-card">
                         <div class="channel-header">
-                            <div class="channel-logo" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                                <img src="https://www.lyngsat.com/logo/tv/gg/gemini_tv.png" alt="Gemini TV" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
+                            <div class="channel-logo"
+                                style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                                <img src="https://www.lyngsat.com/logo/tv/gg/gemini_tv.png" alt="Gemini TV"
+                                    style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
                             </div>
                             <div class="channel-info">
                                 <h4 class="channel-name">Gemini TV</h4>
@@ -609,8 +614,10 @@
                     <!-- Udhaya TV -->
                     <div class="channel-card">
                         <div class="channel-header">
-                            <div class="channel-logo" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
-                                <img src="https://www.indiantvinfo.com/media/2023/03/Udaya-TV-Logo.jpg" alt="Udhaya TV" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
+                            <div class="channel-logo"
+                                style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                                <img src="https://www.indiantvinfo.com/media/2023/03/Udaya-TV-Logo.jpg" alt="Udhaya TV"
+                                    style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
                             </div>
                             <div class="channel-info">
                                 <h4 class="channel-name">Udhaya TV</h4>
@@ -645,13 +652,13 @@
             'payment-history': document.getElementById('payment-history-section')
         };
 
-        navItems.forEach(function(item) {
-            item.addEventListener('click', function(e) {
+        navItems.forEach(function (item) {
+            item.addEventListener('click', function (e) {
                 e.preventDefault();
                 var targetSection = this.getAttribute('data-section');
 
                 // Update active state
-                navItems.forEach(function(nav) {
+                navItems.forEach(function (nav) {
                     nav.classList.remove('active');
                 });
                 this.classList.add('active');
@@ -667,8 +674,8 @@
 
         // Payment method click handlers
         var paymentMethods = document.querySelectorAll('.payment-method');
-        paymentMethods.forEach(function(method) {
-            method.addEventListener('click', function() {
+        paymentMethods.forEach(function (method) {
+            method.addEventListener('click', function () {
                 var methodName = this.querySelector('.payment-method-name').textContent;
                 alert('Selected: ' + methodName + '\nPayment processing would be implemented here.');
             });
@@ -676,8 +683,8 @@
 
         // Option cards click handlers
         var optionCards = document.querySelectorAll('.option-card');
-        optionCards.forEach(function(card) {
-            card.addEventListener('click', function() {
+        optionCards.forEach(function (card) {
+            card.addEventListener('click', function () {
                 var label = this.querySelector('.option-label').textContent.trim();
                 alert('Navigate to: ' + label);
             });
@@ -685,8 +692,8 @@
 
         // Renew button handlers
         var renewButtons = document.querySelectorAll('.btn-renew');
-        renewButtons.forEach(function(btn) {
-            btn.addEventListener('click', function() {
+        renewButtons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
                 var channelName = this.closest('.channel-card').querySelector('.channel-name').textContent;
                 alert('Renewing ' + channelName + '...');
             });
@@ -694,8 +701,8 @@
 
         // Cancel button handler
         var cancelButtons = document.querySelectorAll('.btn-cancel');
-        cancelButtons.forEach(function(btn) {
-            btn.addEventListener('click', function() {
+        cancelButtons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
                 var channelName = this.closest('.channel-card').querySelector('.channel-name').textContent;
                 if (confirm('Are you sure you want to cancel ' + channelName + '?')) {
                     alert('Cancellation processed for ' + channelName);
@@ -706,20 +713,31 @@
         // Make Payment Now button
         var makePaymentBtn = document.querySelector('.btn-primary');
         if (makePaymentBtn) {
-            makePaymentBtn.addEventListener('click', function() {
+            makePaymentBtn.addEventListener('click', function () {
                 alert('Redirecting to payment gateway...');
             });
         }
-        
-        // Initialize remote control
-        document.addEventListener('DOMContentLoaded', function() {
-            RemoteControl.init({
-                focusableSelector: '.plan-card, .nav-item, .payment-card, button, a, input',
-                wrapNavigation: true,
-                autoFocus: false,
-                debug: false
-            });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check authentication - redirect to login if not authenticated
+            if (typeof AuthAPI !== 'undefined' && !AuthAPI.isAuthenticated()) {
+                console.warn('⚠️ Authentication required - redirecting to login');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Initialize remote control
+            if (typeof RemoteControl !== 'undefined') {
+                RemoteControl.init({
+                    focusableSelector: '.plan-card, .nav-item, .payment-card, button, a, input',
+                    wrapNavigation: true,
+                    autoFocus: false,
+                    debug: false
+                });
+            }
         });
     </script>
 </body>
+
 </html>
