@@ -298,9 +298,11 @@ var AVPlayer = (function() {
 
             try {
                 webapis.avplay.open(streamUrl);
-                log('AVPlay opened with URL:', streamUrl);
+                log('✅ AVPlay opened with URL:', streamUrl);
             } catch (openErr) {
-                error('AVPlay open failed:', openErr);
+                // This is EXPECTED in emulator - AVPlay has limited support
+                log('⚠️ AVPlay open failed (expected in emulator):', openErr.message || openErr);
+                log('⚠️ Switching to HLS.js player for compatibility...');
                 // Try to fallback to HLS.js on open failure
                 return fallbackToHLS('open_failed');
             }
@@ -397,7 +399,8 @@ var AVPlayer = (function() {
      * @returns {boolean} Success status
      */
     function fallbackToHLS(reason) {
-        log('⚠️ Falling back to HLS.js player. Reason:', reason);
+        log('🔄 Falling back to HLS.js player. Reason:', reason);
+        log('📺 This is normal for emulator/browser - HLS.js provides full playback support');
         
         // Clean up failed AVPlay
         try {
@@ -416,6 +419,7 @@ var AVPlayer = (function() {
         var videoEl = getVideoElement();
         if (videoEl) {
             videoEl.style.display = 'block';
+            videoEl.style.visibility = 'visible';
         }
 
         // Initialize HLS.js
@@ -539,6 +543,10 @@ var AVPlayer = (function() {
             return false;
         }
 
+        // Get playback URL (proxied for browser, direct for TV)
+        var playbackUrl = getPlaybackUrl(state.videoUrl);
+        log('Playback URL:', playbackUrl);
+
         // Check HLS.js support
         if (typeof Hls !== 'undefined' && Hls.isSupported()) {
             log('HLS.js supported, initializing...');
@@ -554,7 +562,7 @@ var AVPlayer = (function() {
                 maxMaxBufferLength: 60
             });
 
-            state.hlsPlayer.loadSource(state.videoUrl);
+            state.hlsPlayer.loadSource(playbackUrl);
             state.hlsPlayer.attachMedia(videoEl);
 
             state.hlsPlayer.on(Hls.Events.MANIFEST_PARSED, function(event, data) {
@@ -632,7 +640,7 @@ var AVPlayer = (function() {
             // Ensure video element is fullscreen
             videoEl.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;background:#000;z-index:1;';
             
-            videoEl.src = state.videoUrl;
+            videoEl.src = playbackUrl;
             
             videoEl.addEventListener('loadedmetadata', function() {
                 videoEl.play().then(function() {
@@ -711,6 +719,48 @@ var AVPlayer = (function() {
     }
 
     // -------------------- PUBLIC API --------------------
+
+    /**
+     * Get stream URL with proxy for browser playback
+     * On Tizen TV: use original URL
+     * On Chrome/Browser: use proxy URL to avoid CORS
+     * @param {string} url - Original stream URL
+     * @returns {string} URL to use for playback
+     */
+    function getPlaybackUrl(url) {
+        if (!url) return url;
+        
+        // On Tizen TV, use direct URLs
+        if (isTizenTV()) {
+            return url;
+        }
+        
+        // In browser, proxy HLS streams to avoid CORS
+        if (url.indexOf('.m3u8') !== -1 && url.indexOf('/stream?') === -1) {
+            // Determine proxy base URL
+            var proxyBase = '';
+            if (typeof window !== 'undefined' && window.location) {
+                var hostname = window.location.hostname;
+                var port = window.location.port || (window.location.protocol === 'https:' ? '443' : '80');
+                
+                // If running from proxy server (port 3000), use same host
+                if (port === '3000' || hostname === 'localhost' || hostname === '127.0.0.1') {
+                    proxyBase = window.location.protocol + '//' + hostname + ':3000';
+                } else {
+                    // Fallback to localhost
+                    proxyBase = 'http://localhost:3000';
+                }
+            } else {
+                proxyBase = 'http://localhost:3000';
+            }
+            
+            var proxiedUrl = proxyBase + '/stream?url=' + encodeURIComponent(url);
+            log('Using proxied stream URL:', proxiedUrl);
+            return proxiedUrl;
+        }
+        
+        return url;
+    }
 
     return {
         /**

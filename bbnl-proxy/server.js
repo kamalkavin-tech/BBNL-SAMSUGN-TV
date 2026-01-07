@@ -1,10 +1,50 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// =============================
+// SERVE STATIC FILES (for Chrome preview)
+// =============================
+const staticPath = path.join(__dirname, '..');
+app.use(express.static(staticPath));
+console.log('📁 Serving static files from:', staticPath);
+
+// =============================
+// SERVE VIDEO FILES (BBNL Logo Video)
+// This endpoint serves the intro video before phone number login
+// =============================
+const videoPath = path.join(__dirname, '..', 'video');
+app.use('/video', express.static(videoPath));
+console.log('🎬 Serving video files from:', videoPath);
+
+// Specific endpoint for BBNL intro video
+app.get('/intro-video', (req, res) => {
+  const introVideoPath = path.join(videoPath, 'BBNL LOGO 3.mp4');
+  res.sendFile(introVideoPath, (err) => {
+    if (err) {
+      console.error('❌ Error serving intro video:', err.message);
+      res.status(404).json({ error: 'Intro video not found' });
+    }
+  });
+});
+
+// Video info endpoint
+app.get('/api/video-info', (req, res) => {
+  res.json({
+    status: 'success',
+    video: {
+      name: 'BBNL Logo Intro',
+      url: '/video/BBNL LOGO 3.mp4',
+      directUrl: '/intro-video',
+      description: 'BBNL intro video displayed before phone number login'
+    }
+  });
+});
 
 // =============================
 // BBNL API CONFIG (Per Documentation)
@@ -33,6 +73,62 @@ const ADS_HEADERS = {
 const ADS_ENDPOINTS = ['iptvads', 'ads'];
 
 // =============================
+// STREAM PROXY (for Chrome/Browser playback)
+// Proxies HLS streams to avoid CORS issues
+// Usage: /stream?url=https://livestream.bbnl.in/ddnational/index.m3u8
+// =============================
+app.get('/stream', async (req, res) => {
+  // Get the stream URL from query parameter
+  const streamUrl = req.query.url;
+  
+  if (!streamUrl || !streamUrl.startsWith('http')) {
+    return res.status(400).json({ error: 'Invalid stream URL. Use ?url=https://...' });
+  }
+
+  try {
+    console.log(`📺 Stream Proxy Request: ${streamUrl}`);
+    
+    const response = await axios.get(streamUrl, {
+      responseType: 'arraybuffer',
+      timeout: 30000,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+      }
+    });
+
+    // Set appropriate content type
+    const contentType = response.headers['content-type'] || 'application/vnd.apple.mpegurl';
+    res.setHeader('Content-Type', contentType);
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    
+    // For m3u8 playlists, rewrite URLs to go through proxy
+    if (streamUrl.endsWith('.m3u8')) {
+      let content = response.data.toString('utf8');
+      
+      // Get base URL for relative paths
+      const baseUrl = streamUrl.substring(0, streamUrl.lastIndexOf('/') + 1);
+      
+      // Rewrite relative URLs to go through our proxy
+      content = content.replace(/^(?!#)(?!http)(.+\.ts)$/gm, (match, p1) => {
+        return `/stream?url=${encodeURIComponent(baseUrl + p1)}`;
+      });
+      content = content.replace(/^(?!#)(?!http)(.+\.m3u8)$/gm, (match, p1) => {
+        return `/stream?url=${encodeURIComponent(baseUrl + p1)}`;
+      });
+      
+      res.send(content);
+    } else {
+      // For .ts segments, send as-is
+      res.send(response.data);
+    }
+    
+  } catch (err) {
+    console.error(`❌ Stream Proxy Error: ${err.message}`);
+    res.status(500).json({ error: 'Stream fetch failed', message: err.message });
+  }
+});
+
+// =============================
 // HEALTH CHECK
 // =============================
 app.get('/', (req, res) => {
@@ -41,7 +137,8 @@ app.get('/', (req, res) => {
     message: '✅ BBNL Production Proxy Server',
     auth_api: AUTH_BASE_URL,
     ads_api: ADS_BASE_URL,
-    endpoints: 'POST /api/:endpoint (supports all BBNL APIs)'
+    endpoints: 'POST /api/:endpoint (supports all BBNL APIs)',
+    stream_proxy: 'GET /stream/{url} (proxy HLS streams for Chrome)'
   });
 });
 
@@ -51,6 +148,12 @@ app.get('/', (req, res) => {
 app.post('/api/:endpoint', async (req, res) => {
   const endpoint = req.params.endpoint;
 
+  // Get client IP address
+  const clientIp = req.headers['x-forwarded-for'] || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress ||
+                   'unknown';
+  
   // Determine which base URL and headers to use
   const isAdsEndpoint = ADS_ENDPOINTS.includes(endpoint);
   const baseUrl = isAdsEndpoint ? ADS_BASE_URL : AUTH_BASE_URL;
@@ -58,6 +161,7 @@ app.post('/api/:endpoint', async (req, res) => {
 
   try {
     console.log(`\n📥 ${endpoint.toUpperCase()} Request:`);
+    console.log('   Client IP:', clientIp);
     console.log('   Payload:', JSON.stringify(req.body, null, 2));
     console.log(`   🔗 Target URL: ${baseUrl}/${endpoint}`);
     console.log('   Headers:', JSON.stringify(headers, null, 2));
@@ -73,7 +177,16 @@ app.post('/api/:endpoint', async (req, res) => {
 
     console.log(`✅ ${endpoint.toUpperCase()} Response Status:`, response.status);
     console.log('   Response Data:', JSON.stringify(response.data, null, 2));
-    res.json(response.data);
+    
+    // Add client IP to response for device info
+    const responseData = {
+      ...response.data,
+      _clientInfo: {
+        ip: clientIp.replace('::ffff:', '') // Remove IPv6 prefix if present
+      }
+    };
+    
+    res.json(responseData);
 
   } catch (err) {
     console.error(`\n❌ ${endpoint.toUpperCase()} Error:`);
@@ -109,12 +222,17 @@ const PORT = 3000;
 const server = app.listen(PORT, () => {
   console.log(`\n✅ BBNL Production Proxy Server Running`);
   console.log(`📡 Listening on: http://localhost:${PORT}`);
+  console.log(`🌐 Preview app in Chrome: http://localhost:${PORT}/index.html`);
   console.log(`🔗 Auth/Channel API: ${AUTH_BASE_URL}`);
   console.log(`🔗 Ads API: ${ADS_BASE_URL}`);
   console.log(`\n📋 Universal Endpoint:`);
   console.log(`   POST /api/:endpoint`);
+  console.log(`\n🎬 Video Endpoints:`);
+  console.log(`   GET /intro-video - BBNL intro video (before login)`);
+  console.log(`   GET /video/BBNL LOGO 3.mp4 - Direct video access`);
+  console.log(`   GET /api/video-info - Video metadata`);
   console.log(`\n📝 Supported APIs:`);
-  console.log(`   Auth: login, loginOtp, logout`);
+  console.log(`   Auth: login, logout`);
   console.log(`   Channels: chnl_categlist, chnl_list, chnl_data, stream`);
   console.log(`   Ads: ads, iptvads`);
   console.log(`   Other: applock, allowedapps, profilelist, profileselect`);

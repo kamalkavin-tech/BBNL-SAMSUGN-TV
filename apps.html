@@ -11,6 +11,8 @@
     <!-- Component Styles -->
     <link rel="stylesheet" href="css/componentes/remote.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- Tizen Web APIs (MUST be first script for Samsung TV) -->
+    <script type="text/javascript" src="$WEBAPIS/webapis/webapis.js"></script>
     <!-- Remote Control -->
     <script src="js/remote.js"></script>
     <!-- Axios for API calls -->
@@ -643,9 +645,9 @@
                 }
 
                 renderApps(apps);
-            })
-            .catch(function(error) {
-                console.error('Failed to load apps from API');
+            }, function(error) {
+                // Error handler (ES5 compatible - no .catch())
+                console.error('Failed to load apps from API:', error);
                 // Load fallback apps on error
                 loadFallbackApps();
             });

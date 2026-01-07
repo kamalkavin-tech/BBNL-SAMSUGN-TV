@@ -141,10 +141,23 @@ var AuthAPI = {
             }
         }, function (error) {
             console.error('❌ OTP verification failed:', error);
+            console.log('📊 Error details - message:', error.message, 'code:', error.code);
+            
+            // Extract error message from API response if available
+            var errorMessage = 'OTP verification failed. Please try again.';
+            
+            // Check if error contains API response data (from apiCall throwing on err_code !== 0)
+            if (error.data && error.data.status && error.data.status.err_msg) {
+                errorMessage = error.data.status.err_msg;
+                console.log('📊 API error message:', errorMessage);
+            } else if (error.message) {
+                // Use the error message directly (apiCall creates error with err_msg as message)
+                errorMessage = mapBBNLError(error.message);
+            }
 
             return {
                 success: false,
-                message: mapBBNLError(error.message) || 'OTP verification failed. Please try again.',
+                message: errorMessage,
                 error: error
             };
         });

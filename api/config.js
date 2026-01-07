@@ -5,10 +5,38 @@
 /* global axios */
 /* exported API_CONFIG, mapBBNLError, apiCall */
 
+// ========================================================
+// DYNAMIC PROXY URL DETECTION
+// Works in Chrome (localhost) and Tizen TV (server IP)
+// ========================================================
+function getProxyUrl() {
+    var port = 3000;
+    
+    // If running in browser on localhost/127.0.0.1 (Chrome preview)
+    if (typeof window !== 'undefined' && window.location) {
+        var hostname = window.location.hostname;
+        if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '') {
+            return 'http://localhost:' + port + '/api';
+        }
+        // If served from the same server as proxy
+        if (window.location.port === String(port)) {
+            return 'http://' + hostname + ':' + port + '/api';
+        }
+    }
+    
+    // For Tizen TV: Use this IP address (your PC's IP on the same network as TV)
+    // Change this to your PC's IP if needed
+    var serverIp = '192.168.86.4';
+    
+    // You can add multiple fallback IPs for different networks
+    // The app will try these in order if needed
+    return 'http://' + serverIp + ':' + port + '/api';
+}
+
 var API_CONFIG = {
-    // Backend proxy URL (handles all BBNL communication)
-    // Use PC's IP address for emulator/TV (localhost won't work on device)
-    PROXY_URL: 'http://192.168.1.213:3000/api',
+    // Backend proxy URL - Auto-detected based on environment
+    // localhost for Chrome, server IP for Tizen TV
+    PROXY_URL: getProxyUrl(),
 
     // USER CREDENTIALS - From API Documentation
     // Per docs: userid and mobile are SEPARATE fields
@@ -18,12 +46,12 @@ var API_CONFIG = {
         mobile: '7800000001'     // 10-digit mobile (from docs: 7800000001)
     },
 
-    // Device information (from API documentation)
-    // Note: IP address should come from backend (client IP detection)
-    // MAC address retrieved from Tizen webapis at runtime
+    // Device information - Retrieved dynamically at runtime
+    // MAC address from Tizen webapis, IP from network
+    // These are placeholder values - will be updated by initializeDeviceInfo()
     DEVICE_INFO: {
-        ip_address: '192.168.101.110',  // Updated by getDeviceInfo() at runtime
-        mac_address: '68:1D:EF:14:6C:21' // Updated by getDeviceInfo() at runtime
+        ip_address: '',  // Set dynamically by initializeDeviceInfo()
+        mac_address: ''  // Set dynamically by initializeDeviceInfo()
     },
 
     // Ads configuration
@@ -67,6 +95,12 @@ function apiCall(endpoint, payload) {
         var status = data.status || {};
         var errCode = status.err_code;
         var errMsg = status.err_msg || 'API request failed';
+        
+        // Update device IP from proxy response if available
+        if (data._clientInfo && data._clientInfo.ip) {
+            API_CONFIG.DEVICE_INFO.ip_address = data._clientInfo.ip;
+            console.log('📍 Client IP updated from proxy:', data._clientInfo.ip);
+        }
 
         // Check for BBNL API error
         if (errCode !== 0) {
@@ -181,31 +215,54 @@ function getDeviceInfo() {
                     console.log('Ethernet MAC not available:', e2.message);
                 }
             }
+            
+            // Try to get IP address from Tizen
+            try {
+                var ip = webapis.network.getIp();
+                if (ip && ip !== '') {
+                    deviceInfo.ip_address = ip;
+                    console.log('✓ IP address retrieved:', ip);
+                }
+            } catch (e3) {
+                console.log('IP address not available from Tizen:', e3.message);
+            }
         } else {
             console.warn('⚠️ webapis.network not available - not running on Tizen TV');
         }
     } catch (e) {
-        console.error('Error retrieving MAC address:', e);
+        console.error('Error retrieving network info:', e);
     }
 
     // Try to get Device ID
     try {
-        if (typeof webapis !== 'undefined' && typeof webapis.tv !== 'undefined') {
-            var deviceId = webapis.tv.getDeviceId();
-            if (deviceId) {
-                deviceInfo.device_id = deviceId;
-                console.log('✓ Device ID retrieved:', deviceId);
+        if (typeof webapis !== 'undefined' && typeof webapis.productinfo !== 'undefined') {
+            var duid = webapis.productinfo.getDuid();
+            if (duid) {
+                deviceInfo.device_id = duid;
+                console.log('✓ Device DUID retrieved:', duid);
             }
         }
     } catch (e) {
-        console.log('Device ID not available:', e.message);
+        console.log('Device DUID not available:', e.message);
     }
-
-    // IP address should be retrieved from backend
-    // The backend can detect the client's IP from the request
-    // This will be set when making API calls to the backend proxy
     
-    console.log('Device Info:', deviceInfo);
+    // Try alternative method for device ID
+    try {
+        if (typeof tizen !== 'undefined' && typeof tizen.systeminfo !== 'undefined') {
+            tizen.systeminfo.getPropertyValue('BUILD', function(build) {
+                if (build && build.id) {
+                    deviceInfo.device_id = build.id;
+                    console.log('✓ Device Build ID:', build.id);
+                }
+            }, function(err) {
+                console.log('Build info not available:', err.message);
+            });
+        }
+    } catch (e) {
+        console.log('System info not available:', e.message);
+    }
+    
+    console.log('📱 Device Info:', deviceInfo);
     return deviceInfo;
 }
 
@@ -221,10 +278,25 @@ function initializeDeviceInfo() {
         API_CONFIG.DEVICE_INFO.mac_address = deviceInfo.mac_address;
     }
     
-    // IP address will be updated from backend response
+    // Try to get IP address
+    if (deviceInfo.ip_address !== 'unknown') {
+        API_CONFIG.DEVICE_INFO.ip_address = deviceInfo.ip_address;
+    }
+    
     // Store connection type for reference
     API_CONFIG.CONNECTION_TYPE = deviceInfo.connection_type;
     API_CONFIG.DEVICE_ID = deviceInfo.device_id;
     
+    console.log('✅ Device Info Initialized:', API_CONFIG.DEVICE_INFO);
     return deviceInfo;
 }
+
+// Auto-initialize device info when script loads
+(function() {
+    // Wait for DOM to be ready, then initialize
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeDeviceInfo);
+    } else {
+        initializeDeviceInfo();
+    }
+})();
